@@ -3,6 +3,8 @@ package cz.pf.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.pf.Sound;
+
 public class Room {
     Room north;
     Room east;
@@ -10,8 +12,7 @@ public class Room {
     Room south;
     Room up;
     Room down;
-
-
+    public Sound ajeje;
     String description;
     List<Item> items;
     boolean isExit;
@@ -42,31 +43,32 @@ public class Room {
         System.out.println(description);
         if (items != null
                 && (!items.isEmpty())) {
-            System.out.println("There are some items on the floor:");
+            System.out.println("Na podlaze se něco třpití:");
             // items.stream().forEach(i->System.out.println(i));
             for (Item item : items) {
                 System.out.println(item.description);
             }
         }
-        if (north != null) System.out.println("You can go the North!");
-        if (south != null) System.out.println("You can go the South!");
-        if (east != null) System.out.println("You can go the East!");
-        if (west != null) System.out.println("You can go the West!");
-        if (up != null) System.out.println("You can go the Up!");
-        if (down != null) System.out.println("You can go the Down!");
+        if (north != null) System.out.println("Můžeš jít dopředu.");
+        if (south != null) System.out.println("Můžeš jít dozadu.");
+        if (east != null) System.out.println("Můžeš jít doprava.");
+        if (west != null) System.out.println("Můžeš jít doleva.");
+        if (up != null) System.out.println("Můžeš jit nahoru");
+        if (down != null) System.out.println("Můžeš jít dolu.");
+        if (ajeje != null) ajeje.ff();
     }
     Room goIfNotZero(Room room){
         return  room!=null?room:this;
     }
     public Room play(String response, Player player) {
         if(response==null || response.trim().isEmpty()) return this;
-        if(response.toLowerCase().equals("n")) return goIfNotZero(this.getNorth());
-        if(response.toLowerCase().equals("w")) return goIfNotZero(this.getWest());
-        if(response.toLowerCase().equals("e")) return goIfNotZero(this.getEast());
+        if(response.toLowerCase().equals("w")) return goIfNotZero(this.getNorth());
+        if(response.toLowerCase().equals("a")) return goIfNotZero(this.getWest());
+        if(response.toLowerCase().equals("d")) return goIfNotZero(this.getEast());
         if(response.toLowerCase().equals("s")) return goIfNotZero(this.getSouth());
         if(response.toLowerCase().equals("u")) return goIfNotZero(this.getUp());
-        if(response.toLowerCase().equals("d")) return goIfNotZero(this.getDown());
-        if(response.toLowerCase().equals("t")) {
+        if(response.toLowerCase().equals("j")) return goIfNotZero(this.getDown());
+        if(response.toLowerCase().equals("e")) {
             player.getItems().addAll(this.items);
             this.items.clear();
         }

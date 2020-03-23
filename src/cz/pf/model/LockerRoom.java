@@ -1,8 +1,12 @@
 package cz.pf.model;
 
+import cz.pf.Sound;
+
 public class LockerRoom extends Room {
     public LockerRoom(String description){
         super(description);
+        door = new Sound();
+        door.file = "D:\\Filip\\Videa\\sound3.wav";
     }
     Item keyNorth;
     Item keySouth;
@@ -10,7 +14,7 @@ public class LockerRoom extends Room {
     Item keyEast;
     Item keyUp;
     Item keyDown;
-
+    Sound door;
     Room lockedNorth;
     Room lockedEast;
     Room lockedWest;
@@ -20,35 +24,53 @@ public class LockerRoom extends Room {
 
     private void printKey(Item key, Room room){
         if(key!=null && room == null) {
-            System.out.println("Some doors can be locked. You need this key:");
+            System.out.println("Jsou tu zamčený dveře, potřebuješ tenhle klíč:");
             System.out.println(key.description);
         }
     }
     public void printRoom(Player player) {
         super.printRoom(player);
         if(player.getItems().contains(keyNorth) && north == null){
-            System.out.println("Unlocking North room.");
+            System.out.println("Odemkl jsi přední dveře, můžeš jít dopředu.");
             this.setNorth(this.lockedNorth);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
         if(player.getItems().contains(keySouth) && south == null){
-            System.out.println("Unlocking South room.");
+            System.out.println("Odemkl jsi zadní dveře, můžeš jít dozadu.");
             this.setSouth( this.lockedSouth);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
         if(player.getItems().contains(keyWest) && west == null){
-            System.out.println("Unlocking West room.");
+            System.out.println("Odemkl jsi levé dveře, můžeš jít doleva.");
             this.setWest(this.lockedWest);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
         if(player.getItems().contains(keyEast) && east == null){
-            System.out.println("Unlocking East room.");
+            System.out.println("Odemkl jsi pravé dveře, můžeš jít doprava.");
             this.setEast( this.lockedEast);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
         if(player.getItems().contains(keyUp) && up == null){
-            System.out.println("Unlocking Up room.");
+            System.out.println("Odemkl jsi schodiště nahoru, můžeš jít nahoru.");
             this.setUp( this.lockedUp);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
         if(player.getItems().contains(keyDown) && down == null){
-            System.out.println("Unlocking Down room.");
+            System.out.println("Odemkl jsi schodiště dolu, můžeš jít dolu.");
             this.setDown( this.lockedDown);
+            if(door!=null){ 
+            	door.ff();
+            }
         }
 
         printKey(keyNorth, north);
