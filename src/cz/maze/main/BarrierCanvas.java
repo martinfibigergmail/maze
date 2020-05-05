@@ -12,6 +12,7 @@ package cz.maze.main;
 	    int x;
 	    int y;   
 	    public BarrierCanvas(){
+	    	
 	    }
 	
 	    
@@ -22,11 +23,17 @@ package cz.maze.main;
 	    
 	    
 	        public void paint(Graphics g){
+	        	int width;
+	        	width= this.getWidth();
+	        	System.out.println(width);
+	        	int height;
+	        	height= this.getHeight();
+	        	System.out.println(height);
+	           
 	            Graphics2D g2 = (Graphics2D)g;
 	            g2.setColor(Color.BLACK);
-	           g2.drawLine(0, 0, 30, 0);
-	          	   
-	          	   
+	           g2.drawRect(0, 0, width-1, height-1);
+	        
 	        }
 
 	}		

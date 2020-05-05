@@ -11,6 +11,7 @@ public class VykreslovacTextur {
 
         //frame size 1400 width and 1400 height
         f.setSize(498,605);
+        f.setExtendedState(Frame.MAXIMIZED_BOTH);
         f.setLayout(null);//no layout manager
 
 
@@ -30,7 +31,7 @@ public class VykreslovacTextur {
         myCanvas.addMouseListener(listener); */
         // set size of the canvas
         f.setVisible(true);
-        f.setSize(f.getWidth()+f.getInsets().left+f.getInsets().right,f.getHeight()+f.getInsets().top + f.getInsets().bottom);
+        
         myCanvas.setLocation(f.getInsets().left,f.getInsets().top);
         myCanvas.setSize(f.getWidth()-f.getInsets().left - f.getInsets().right, f.getHeight()-f.getInsets().top - f.getInsets().bottom);
         // add the canvas to the window which is larger
