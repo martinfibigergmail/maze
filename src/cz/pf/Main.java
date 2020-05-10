@@ -17,8 +17,7 @@ public class Main {
 		Sound welcome = new Sound();
 		welcome.file = "D:\\Filip\\Videa\\zvukvitej.wav";
 		welcome.ff();
-		Sound ajajajaj = new Sound();
-		ajajajaj.file = "D:\\Filip\\Videa\\ajajajajaj.wav";
+		
 		
 		/*
 		 * main.setNorth(new Room(null, null, null, null,
@@ -32,26 +31,34 @@ public class Main {
 		 * null, "There is a door. But they are locked!"));
 		 * main.getNorth().getNorth().getNorth().getEast().setExit(true);
 		 */
+		Item key = new Item("žlutej klíč");
+	    Main support=new Main();
+		Room map=support.createMap(key);
+		support.run(map, key);
+	}
 
-		Room main = new Room(null, null, null, null, null, null, "jsi na startuuuuuuuuuuuu");
+	public Room createMap(Item key) {
+		Sound ajajajaj = new Sound();
+		ajajajaj.file = "D:\\Filip\\Videa\\ajajajajaj.wav";
+		Room startingPosition = new Room(null, null, null, null, null, null, "jsi na startuuuuuuuuuuuu");
 
-		main.setEast(new Room("Jsi o kousek vpravo"));
+		startingPosition.setEast(new Room("Jsi o kousek vpravo"));
 
-		main.getEast().setSouth(new Room("jsi o kousek vzadu"));
-		main.getEast().getSouth().setEast(new Room("jsi o kousek vpravo"));
-		main.getEast().getSouth().setWest(new Room("jsi o kousek vlevo"));
-		main.getEast().getSouth().getEast().setEast(new Room("jsi o kousek vpravo"));
-		main.getEast().getSouth().getEast().getEast().setNorth(new Room("jsi o kousek vepředu"));
+		startingPosition.getEast().setSouth(new Room("jsi o kousek vzadu"));
+		startingPosition.getEast().getSouth().setEast(new Room("jsi o kousek vpravo"));
+		startingPosition.getEast().getSouth().setWest(new Room("jsi o kousek vlevo"));
+		startingPosition.getEast().getSouth().getEast().setEast(new Room("jsi o kousek vpravo"));
+		startingPosition.getEast().getSouth().getEast().getEast().setNorth(new Room("jsi o kousek vepředu"));
 		Room soundRoom = new Room("a jé je slepá ulička");
 		soundRoom.ajeje = ajajajaj;
-		main.getEast().getSouth().getEast().getEast().getNorth().setEast(soundRoom);
-		Item key = new Item("žlutej klíč");
-		main.getEast().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
+		startingPosition.getEast().getSouth().getEast().getEast().getNorth().setEast(soundRoom);
+		
+		startingPosition.getEast().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
 
-		main.getEast().getSouth().getWest().setSouth(new Room("jsi o kousek vzadu"));
+		startingPosition.getEast().getSouth().getWest().setSouth(new Room("jsi o kousek vzadu"));
 
 		LockerRoom yellowLockerRoom = new LockerRoom("jsi o kousek vzadu napravo jsou žlutý dveře");
-		main.getEast().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
+		startingPosition.getEast().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
 		yellowLockerRoom.setKeyEast(key);
 		yellowLockerRoom.setLockedEast(new Room("blížíš se ke schodům"));
 
@@ -115,8 +122,7 @@ public class Main {
 		GLR.setKeyEast(keyg);
 		GLR.setLockedEast(new Room("Došel jsi cíle gratuluji.                 HURRRRÁÁÁÁÁÁÁÁÁÁÁÁÁÁ"));
 		GLR.getLockedEast().setExit(true);
-
-		new Main().run(main, key);
+		return startingPosition;
 	}
 
 	void run(Room room, Item key) {

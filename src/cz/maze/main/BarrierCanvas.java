@@ -1,7 +1,12 @@
 package cz.maze.main;
 
 	import javax.imageio.ImageIO;
-	import java.awt.*;
+
+import cz.pf.Main;
+import cz.pf.model.Item;
+import cz.pf.model.Room;
+
+import java.awt.*;
 	import java.io.File;
 	import java.util.ArrayList;
 	import java.util.stream.Collector;
@@ -10,9 +15,12 @@ package cz.maze.main;
 	    public ArrayList buttons= new ArrayList();
 	    public String display="0";
 	    int x;
-	    int y;   
+	    int y; 
+	    Room map;
 	    public BarrierCanvas(){
-	    	
+	    	Item key = new Item("žlutej klíč");
+	    	Main support= new Main();
+	        map=support.createMap(key);
 	    }
 	
 	    
@@ -34,6 +42,7 @@ package cz.maze.main;
 	            g2.setColor(Color.BLACK);
 	           g2.drawRect(0, 0, width-1, height-1);
 	        
+
 	        }
 
 	}		

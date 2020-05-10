@@ -7,9 +7,7 @@ import javax.imageio.ImageIO;
 public class VykreslovacTextur {
 
 	public static void main(String[] args) {
-        Frame f = new Frame();
-
-        //frame size 1400 width and 1400 height
+        Frame f = new Frame();     
         f.setSize(498,605);
         f.setExtendedState(Frame.MAXIMIZED_BOTH);
         f.setLayout(null);//no layout manager
@@ -24,31 +22,17 @@ public class VykreslovacTextur {
         // Define canvas class with paint method overrided
         // will be called when window is drawn
         BarrierCanvas myCanvas = new BarrierCanvas();
-        // set background to gray
-        // myCanvas.setBackground (new Color(5,0xe,6));
-        /* Mouse listener= new Mouse();
-        listener.buttons=myCanvas.buttons;  
-        myCanvas.addMouseListener(listener); */
-        // set size of the canvas
+        
         f.setVisible(true);
         
         myCanvas.setLocation(f.getInsets().left,f.getInsets().top);
-        myCanvas.setSize(f.getWidth()-f.getInsets().left - f.getInsets().right, f.getHeight()-f.getInsets().top - f.getInsets().bottom);
-        // add the canvas to the window which is larger
+        myCanvas.setSize(f.getWidth()-f.getInsets().left - f.getInsets().right, f.getHeight()-f.getInsets().top - f.getInsets().bottom);      
         f.add(myCanvas);
-        // switch the frame on
-
-        //now frame will be visible, by default not visible
+       
         
 
 			
-        
-        
-     
-        
-
-
-
+  
 	}
 
 }
