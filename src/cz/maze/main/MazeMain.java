@@ -4,7 +4,7 @@ import java.awt.Frame;
 
 import javax.imageio.ImageIO;
 
-public class VykreslovacTextur {
+public class MazeMain {
 
 	public static void main(String[] args) {
         Frame f = new Frame();     
