@@ -99,9 +99,49 @@ import java.awt.*;
 	            	g2.setColor(Color.black);
 	            	g2.fillRect(x, y, width, height);
 	            }
+	            	width = screenWidth / 3;
+	            	x =	0;
+	            	height = screenHeight / 3;	
+	            	y = 2 * 0;
+
+
+	            	g2.setColor(Color.gray);
+	            	g2.fillRect(x, y, width, height);
+	            	
+	            	
+	            	width = screenWidth / 3;
+	 	        	x =	0;
+	 	        	height = screenHeight / 3;	
+	 	        	y = height * 2;
+	 	        	
+	 	        
 	         
-               
-	        }
+	 	        	g2.setColor(Color.gray);
+	            	g2.fillRect(x, y, width, height);
+	            	
+	            	
+	            	width = screenWidth / 3;
+	 	        	x =	width * 2;
+	 	        	height = screenHeight / 3;	
+	 	        	y = height * 2;
+	 	        	
+	 	        
+	         
+	 	        	g2.setColor(Color.gray);
+	            	g2.fillRect(x, y, width, height);
+	            	
+	            	width = screenWidth / 3;
+	 	        	x =	width * 2;
+	 	        	height = screenHeight / 3;	
+	 	        	y = 0;
+	 	        	
+	 	        
+	         
+	 	        	g2.setColor(Color.gray);
+	            	g2.fillRect(x, y, width, height);
+	        
+	        
+	        }  
 
 	}		
 
