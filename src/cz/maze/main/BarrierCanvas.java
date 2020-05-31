@@ -10,12 +10,15 @@ import java.awt.*;
 	import java.io.File;
 	import java.util.ArrayList;
 	import java.util.stream.Collector;
+	import java.awt.event.KeyListener;
+	import java.awt.event.KeyEvent;
 	
-	public class BarrierCanvas extends Canvas{ 
+	
+	public class BarrierCanvas extends Canvas implements KeyListener{
 	    public ArrayList buttons= new ArrayList();
 	    public String display="0";
-	    int x;
-	    int y;
+	    public int x;
+	    public int y;
 		public Room playersPosition; 
 	    Room map;
 	    public BarrierCanvas(){
@@ -24,8 +27,69 @@ import java.awt.*;
 	        map=support.createMap(key);
 	        
 	       playersPosition = map;
+	       addKeyListener(this);
 
 	    }
+	    
+	
+		public ArrayList actions = new ArrayList();
+		
+		@Override
+		public void keyTyped(KeyEvent e) {
+		
+			
+		}
+		@Override
+		public void keyPressed(KeyEvent event){
+			if(!actions.contains(event.getKeyCode())) {
+				actions.add(new Integer(event.getKeyCode()));
+				
+			
+			}
+			System.out.println("Pressed" + event.getKeyCode() );
+		}
+		@Override
+		public void  keyReleased(KeyEvent event) {
+			
+				if(actions.contains(KeyEvent.VK_W)) {
+				
+					if(playersPosition.getNorth()!=null) {
+						playersPosition=playersPosition.getNorth();
+					}
+					
+				}
+				
+				if(actions.contains(KeyEvent.VK_S)){
+					
+					if(playersPosition.getSouth()!=null) {
+						playersPosition=playersPosition.getSouth();
+					}
+					
+				}
+				
+				if(actions.contains(KeyEvent.VK_A)){
+					
+					if(playersPosition.getWest()!=null) {
+						playersPosition=playersPosition.getWest();
+					}
+					
+				}
+				
+				if(actions.contains(KeyEvent.VK_D)){
+					
+					if(playersPosition.getEast()!=null) {
+						playersPosition=playersPosition.getEast();
+					}
+				
+				}
+			repaint();
+			actions.remove(new Integer(event.getKeyCode()));	
+		}
+	
+		
+		
+	    
+		
 
         public void paint(Graphics g){
         	
@@ -205,6 +269,8 @@ import java.awt.*;
 	        		g2.fillRect(x, y, width, height);
 	        	}
 			}
+
+			
 
 			
 
