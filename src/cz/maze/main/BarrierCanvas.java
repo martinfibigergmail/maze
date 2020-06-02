@@ -4,6 +4,7 @@ package cz.maze.main;
 
 import cz.pf.Main;
 import cz.pf.model.Item;
+import cz.pf.model.LockerRoom;
 import cz.pf.model.Room;
 
 import java.awt.*;
@@ -22,14 +23,24 @@ import java.awt.*;
 		public Room playersPosition; 
 	    Room map;
 	    public BarrierCanvas(){
-	    	Item key = new Item("žlutej klíč");
+	    	Item key = new Item("žlutej klíč",Color.YELLOW);
 	    	Main support= new Main();
 	        map=support.createMap(key);
 	        
 	       playersPosition = map;
 	       addKeyListener(this);
+	       
+	       if(playersPosition instanceof LockerRoom) {
+       		LockerRoom lockerRoom = (LockerRoom)playersPosition;
+       		
+       			
+       		}
+       			
+       		
+       		
+       	}
 
-	    }
+	    
 	    
 	
 		public ArrayList actions = new ArrayList();
@@ -195,7 +206,17 @@ import java.awt.*;
 
 
 	            	g2.setColor(Color.black);
+	            	
+	            	if(playersPosition instanceof LockerRoom) {
+	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
+	            		if(lockerRoom.getLockedSouth()!=null) {
+	            			
+	            		g2.setColor(Color.MAGENTA);
+	            		}
+	            	}
 	            	g2.fillRect(x, y, width, height);
+	            	
+	            	
 	            }
 			}
 
@@ -219,7 +240,17 @@ import java.awt.*;
 
 
 	               g2.setColor(Color.black);
+	               
+	               if(playersPosition instanceof LockerRoom) {
+	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
+	            		if(lockerRoom.getLockedWest()!=null) {
+	            			
+	            			g2.setColor(Color.MAGENTA);
+	            		}
+	            	}
 	               g2.fillRect(x, y, width, height);
+	               
+	              
 	            }
 			}
 
@@ -242,7 +273,17 @@ import java.awt.*;
 	 	        	y = height;
 
 	            	g2.setColor(Color.black);
+	            	
+	            	if(playersPosition instanceof LockerRoom) {
+	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
+	            		if(lockerRoom.getLockedEast()!=null) {
+	            			
+	            			g2.setColor(Color.MAGENTA);
+	            		}
+	            	}
 	            	g2.fillRect(x, y, width, height);
+	            	
+	            	
 	            }
 			}
 
@@ -266,7 +307,18 @@ import java.awt.*;
 
 	        	
 	        		g2.setColor(Color.black);
+	        		
+	        		if(playersPosition instanceof LockerRoom) {
+	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
+	            		if(lockerRoom.getLockedNorth()!=null) {
+	            			
+	            			g2.setColor(Color.MAGENTA);
+	            		}
+	            	}
+	        		
 	        		g2.fillRect(x, y, width, height);
+	        		
+	        		
 	        	}
 			}
 
@@ -275,6 +327,3 @@ import java.awt.*;
 			
 
 	}		
-
-		
-

@@ -1,10 +1,14 @@
 package cz.pf.model;
 
+import java.awt.Color;
+
 public class Item {
     String description;
+    Color color;
     boolean important = false;
-    public Item(String description){
+    public Item(String description,Color color){
         this.description = description;
+        this.color = color;
     }
 
     public String getDescription() {
