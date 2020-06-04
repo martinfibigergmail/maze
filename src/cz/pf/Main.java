@@ -46,20 +46,21 @@ public class Main {
 		startingPosition.setEast(new Room("Jsi o kousek vpravo"));
 
 		startingPosition.getEast().setSouth(new Room("jsi o kousek vzadu"));
-		startingPosition.getEast().getSouth().setEast(new Room("jsi o kousek vpravo"));
-		startingPosition.getEast().getSouth().setWest(new Room("jsi o kousek vlevo"));
-		startingPosition.getEast().getSouth().getEast().setEast(new Room("jsi o kousek vpravo"));
-		startingPosition.getEast().getSouth().getEast().getEast().setNorth(new Room("jsi o kousek vepředu"));
+		startingPosition.getEast().getSouth().setSouth(new Room("jsi o kousek vzadu"));
+		startingPosition.getEast().getSouth().getSouth().setEast(new Room("jsi o kousek vpravo"));
+		startingPosition.getEast().getSouth().getSouth().setWest(new Room("jsi o kousek vlevo"));
+		startingPosition.getEast().getSouth().getSouth().getEast().setEast(new Room("jsi o kousek vpravo"));
+		startingPosition.getEast().getSouth().getSouth().getEast().getEast().setNorth(new Room("jsi o kousek vepředu"));
 		Room soundRoom = new Room("a jé je slepá ulička");
 		soundRoom.ajeje = ajajajaj;
-		startingPosition.getEast().getSouth().getEast().getEast().getNorth().setEast(soundRoom);
+		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().setEast(soundRoom);
 		
-		startingPosition.getEast().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
+		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
 
-		startingPosition.getEast().getSouth().getWest().setSouth(new Room("jsi o kousek vzadu"));
+		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(new Room("jsi o kousek vzadu"));
 
 		LockerRoom yellowLockerRoom = new LockerRoom("jsi o kousek vzadu napravo jsou žlutý dveře");
-		startingPosition.getEast().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
+		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
 		yellowLockerRoom.setKeyEast(key);
 		yellowLockerRoom.setLockedEast(new Room("blížíš se ke schodům"));
 

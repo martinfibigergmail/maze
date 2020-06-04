@@ -159,30 +159,53 @@ import java.awt.*;
 	            
 	            int x =	0;
 				int y =  0;
-            	drawShadowBox(g2, x, y, boxWidth, boxHeight);
-
-            	x =	0;
+				
+				if((!(playersPosition.getWest()!=null && playersPosition.getWest().getNorth()!=null))
+				 && (!(playersPosition.getNorth()!=null && playersPosition.getNorth().getWest()!=null))) {
+					
+					drawShadowBox(g2, x, y, boxWidth, boxHeight);
+				}
+				
+				
+				x =	0;
  	        	y = boxHeight * 2;
- 	        	drawShadowBox(g2, x, y, boxWidth, boxHeight);
+				
+				if(!((playersPosition.getWest()!=null && playersPosition.getWest().getSouth()!=null)) 
+				&& (! (playersPosition.getSouth()!=null && playersPosition.getSouth().getWest()!=null))){
+					
+					drawShadowBox(g2, x, y, boxWidth, boxHeight);
+				}
             	
-            	x =	boxWidth * 2;
- 	        	y = boxHeight * 2;
- 	        	drawShadowBox(g2, x, y, boxWidth, boxHeight);
-            	
-            	x =	boxWidth * 2;
+ 	        	
+ 	        	x =	boxWidth * 2;
  	        	y = 0;
- 	        	drawShadowBox(g2, x, y, boxWidth, boxHeight);
-			}
+ 	        	
+ 	        	if(!((playersPosition.getEast()!=null && playersPosition.getEast().getNorth()!=null)) 
+ 						&& (! (playersPosition.getNorth()!=null && playersPosition.getNorth().getEast()!=null))){
+ 							
+ 							drawShadowBox(g2, x, y, boxWidth, boxHeight);
+ 						}
+ 	        	
+ 	        	
+ 	        	x =	boxWidth * 2;
+ 	        	y = boxHeight * 2;
+ 	        	
+ 	        	if(!((playersPosition.getEast()!=null && playersPosition.getEast().getSouth()!=null)) 
+ 						&& (! (playersPosition.getSouth()!=null && playersPosition.getSouth().getEast()!=null))){
+ 							
+ 							drawShadowBox(g2, x, y, boxWidth, boxHeight);
+ 						}
+ 	        	}
 
 
-
+			
 
 
 
 
 
 			private void drawShadowBox(Graphics2D g2, int x, int y, int width, int height) {
-				g2.setColor(Color.gray);
+				g2.setColor(Color.black);
 				g2.fillRect(x, y, width, height);
 			}
 
@@ -211,7 +234,7 @@ import java.awt.*;
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedSouth()!=null) {
 	            			
-	            		g2.setColor(Color.MAGENTA);
+	            		g2.setColor(Color.gray);
 	            		}
 	            	}
 	            	g2.fillRect(x, y, width, height);
@@ -245,7 +268,7 @@ import java.awt.*;
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedWest()!=null) {
 	            			
-	            			g2.setColor(Color.MAGENTA);
+	            			g2.setColor(Color.gray);
 	            		}
 	            	}
 	               g2.fillRect(x, y, width, height);
@@ -278,7 +301,7 @@ import java.awt.*;
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedEast()!=null) {
 	            			
-	            			g2.setColor(Color.MAGENTA);
+	            			g2.setColor(Color.gray);
 	            		}
 	            	}
 	            	g2.fillRect(x, y, width, height);
@@ -312,7 +335,7 @@ import java.awt.*;
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedNorth()!=null) {
 	            			
-	            			g2.setColor(Color.MAGENTA);
+	            			g2.setColor(Color.gray);
 	            		}
 	            	}
 	        		
