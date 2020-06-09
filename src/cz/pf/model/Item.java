@@ -11,7 +11,15 @@ public class Item {
         this.color = color;
     }
 
-    public String getDescription() {
+    public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public String getDescription() {
         return description;
     }
 

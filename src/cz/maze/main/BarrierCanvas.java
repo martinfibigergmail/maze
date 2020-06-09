@@ -297,19 +297,32 @@ import java.awt.*;
 
 	            	g2.setColor(Color.black);
 	            	
+	            	
+	            	
+	            	
+	                Color keyColor=null;
 	            	if(playersPosition instanceof LockerRoom) {
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedEast()!=null) {
 	            			
 	            			g2.setColor(Color.gray);
 	            		}
+	            	
+	            		if(lockerRoom.getKeyEast()!=null) {
+	            			keyColor = lockerRoom.getKeyEast().getColor();
+	            			
+	            		}
 	            	}
 	            	g2.fillRect(x, y, width, height);
 	            	
+	            	if(keyColor!=null) {
+	            		g2.setColor(keyColor);
+	            		g2.fillOval(x, y, width, height);
+	            	}
 	            	
-	            }
+				}
 			}
-
+			
 
 
 
