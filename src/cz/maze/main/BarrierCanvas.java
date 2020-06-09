@@ -227,22 +227,36 @@ import java.awt.*;
 		 	        	height = canvasHeight / 3;	
 		 	        	y = 2 * height;
 
-
 	            	g2.setColor(Color.black);
 	            	
+	            	
+	            	
+	            	
+	            	Color keyColor=null;
 	            	if(playersPosition instanceof LockerRoom) {
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedSouth()!=null) {
 	            			
 	            		g2.setColor(Color.gray);
 	            		}
+	            	
+	            	
+	            	if(lockerRoom.getKeySouth()!=null) {
+            			keyColor = lockerRoom.getKeySouth().getColor();
+            			
 	            	}
-	            	g2.fillRect(x, y, width, height);
-	            	
-	            	
 	            }
+            	
+            	g2.fillRect(x, y, width, height);
+            	
+            	if(keyColor!=null) {
+            		g2.setColor(keyColor);
+            		g2.fillOval(x, y, width, height);
+	            	}
+				
+				}
+			
 			}
-
 
 
 
@@ -260,22 +274,36 @@ import java.awt.*;
 		 	        	x =	0;
 		 	        	height = canvasHeight / 3;	
 		 	        	y = height;
-
-
+		 	        	
 	               g2.setColor(Color.black);
 	               
+	               
+	               
+	               
+	               Color keyColor=null;
 	               if(playersPosition instanceof LockerRoom) {
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedWest()!=null) {
 	            			
 	            			g2.setColor(Color.gray);
 	            		}
+	            		
+	            		if(lockerRoom.getKeyWest()!=null) {
+	            			keyColor = lockerRoom.getKeyWest().getColor();
+	            			
+	            		}
 	            	}
-	               g2.fillRect(x, y, width, height);
-	               
-	              
-	            }
+	            	g2.fillRect(x, y, width, height);
+	            	
+	            	if(keyColor!=null) {
+	            		g2.setColor(keyColor);
+	            		g2.fillOval(x, y, width, height);
+	            	}
+	              		
+				}
+	             
 			}
+			
 
 
 
@@ -341,25 +369,41 @@ import java.awt.*;
 		 	        	height = canvasHeight / 3;	
 		 	        	y = 0;
 
-	        	
 	        		g2.setColor(Color.black);
 	        		
+	        		
+	        		
+	        		
+	        		Color keyColor=null;
 	        		if(playersPosition instanceof LockerRoom) {
 	            		LockerRoom lockerRoom = (LockerRoom)playersPosition;
 	            		if(lockerRoom.getLockedNorth()!=null) {
 	            			
 	            			g2.setColor(Color.gray);
 	            		}
-	            	}
+	            	
+	        		if(lockerRoom.getKeyNorth()!=null) {
+            			keyColor = lockerRoom.getKeyNorth().getColor();
+            			
+            		}
+            	}
+            	g2.fillRect(x, y, width, height);
+            	
+            	if(keyColor!=null) {
+            		g2.setColor(keyColor);
+            		g2.fillOval(x, y, width, height);
+            	}
 	        		
-	        		g2.fillRect(x, y, width, height);
 	        		
 	        		
-	        	}
+	        		
+				}
+				
 			}
+	}
 
 			
 
 			
 
-	}		
+			
