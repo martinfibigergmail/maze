@@ -32,7 +32,7 @@ public class Main {
 		 * null, "There is a door. But they are locked!"));
 		 * main.getNorth().getNorth().getNorth().getEast().setExit(true);
 		 */
-		Item key = new Item("žlutej klíč",Color.YELLOW);
+		Item key = new Item("žlutej klíč",Color.YELLOW, 1);
 	    Main support=new Main();
 		Room map=support.createMap(key);
 		support.run(map, key);
@@ -75,7 +75,7 @@ public class Main {
 		Room soundBlind = new Room("a jé je slepá ulička");
 		first.getEast().getEast().getNorth().setEast(soundBlind);
 		soundBlind.ajeje = ajajajaj;
-		Item keyb = new Item("modrej klíč",Color.BLUE);
+		Item keyb = new Item("modrej klíč",Color.BLUE, 2);
 		first.getEast().getEast().getNorth().getEast().getItems().add(keyb);
 		LockerRoom BLR = new LockerRoom("jsi o kousek vlevo vlevo jsou modrý dveře");
 		first.setWest(BLR);
@@ -85,7 +85,7 @@ public class Main {
 		first.setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom OLR = new LockerRoom("jsi o kousek vlevo vlevo jsou oranžový dveře");
-		Item keyo = new Item("ornžovej klíč",Color.ORANGE);
+		Item keyo = new Item("ornžovej klíč",Color.ORANGE, 3);
 		BLRT.setLockedNorth(OLR);
 		OLR.setKeyEast(keyo);
 		OLR.setLockedEast(new Room("jsi o kousek vpravo"));
@@ -97,7 +97,7 @@ public class Main {
 		Room dRoom = new Room("a jé je slepá ulička");
 		OLR.getLockedEast().setEast(dRoom);
 		dRoom.ajeje = ajajajaj;
-		Item keyh = new Item("CYAN klíč",Color.CYAN);
+		Item keyh = new Item("CYAN klíč",Color.CYAN, 4);
 		OLR.getLockedEast().getEast().getItems().add(keyh);
 		OLR.getLockedEast().setSouth(new Room("jsi o kousek vzadu a dolu vedou schody"));
 		OLR.getLockedEast().getSouth().setDown(new Room("Gratuluji prošel jsi první level, jsi dole pod schodama."));
@@ -113,7 +113,7 @@ public class Main {
 		HLR.getLockedSouth().getSouth().setEast(new Room("jsi o kousek vpravo"));
 		HLR.getLockedSouth().getSouth().getEast().setEast(new Room("a jé je slepá ulička"));
 		soundRoom.ajeje = ajajajaj;
-		Item keyg = new Item("zelenej klíč",Color.GREEN);
+		Item keyg = new Item("zelenej klíč",Color.GREEN, 5);
 		HLR.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyg);
 		HLR.getLockedSouth().getSouth().setWest(new Room("jsi o kousek vlevo"));
 		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("jsi o kousek vlevo"));

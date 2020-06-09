@@ -5,12 +5,16 @@ import java.awt.Color;
 public class Item {
     String description;
     Color color;
+    int type;
     boolean important = false;
-    public Item(String description,Color color){
+    public Item(String description,Color color, int type){
         this.description = description;
         this.color = color;
+        this.type = type;
     }
-
+    public int getType(){
+    	return type;
+    }
     public Color getColor() {
 		return color;
 	}

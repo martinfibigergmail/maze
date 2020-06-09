@@ -23,7 +23,7 @@ import java.awt.*;
 		public Room playersPosition; 
 	    Room map;
 	    public BarrierCanvas(){
-	    	Item key = new Item("žlutej klíč",Color.YELLOW);
+	    	Item key = new Item("žlutej klíč",Color.YELLOW, 1);
 	    	Main support= new Main();
 	        map=support.createMap(key);
 	        
@@ -136,8 +136,16 @@ import java.awt.*;
             g2.drawOval(x, y, 100, 100);
             g2.setColor(Color.red);
             g2.fillOval(x, y, 100, 100);
-			
+			for(Item item : playersPosition.getItems()) {
+				if(item.getType() == 1){
+	            	g2.setColor(item.getColor());	            	
+	            	g2.drawOval(x, y, 20, 20);
+	            }
+			}
+            
 		}  
+		
+		
 
 	    
 	    
