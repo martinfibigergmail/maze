@@ -12,7 +12,7 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class Main {
+public class MainMap {
 	public static void main(String args[]) {
 		
 		Sound welcome = new Sound();
@@ -32,8 +32,10 @@ public class Main {
 		 * null, "There is a door. But they are locked!"));
 		 * main.getNorth().getNorth().getNorth().getEast().setExit(true);
 		 */
+
 		Item key = new Item("žlutej klíč",Color.YELLOW, 1);
-	    Main support=new Main();
+	    MainMap support=new MainMap();
+
 		Room map=support.createMap(key);
 		support.run(map, key);
 	}
