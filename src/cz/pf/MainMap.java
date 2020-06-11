@@ -53,6 +53,7 @@ public class MainMap {
 		startingPosition.getEast().getSouth().getSouth().setWest(new Room("jsi o kousek vlevo"));
 		startingPosition.getEast().getSouth().getSouth().getEast().setEast(new Room("jsi o kousek vpravo"));
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().setNorth(new Room("jsi o kousek vepředu"));
+		
 		Room soundRoom = new Room("a jé je slepá ulička");
 		soundRoom.ajeje = ajajajaj;
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().setEast(soundRoom);
@@ -89,8 +90,8 @@ public class MainMap {
 		LockerRoom OLR = new LockerRoom("jsi o kousek vlevo vlevo jsou oranžový dveře");
 		Item keyo = new Item("ornžovej klíč",Color.ORANGE, 3);
 		BLRT.setLockedNorth(OLR);
-		OLR.setKeyEast(keyo);
-		OLR.setLockedEast(new Room("jsi o kousek vpravo"));
+		OLR.setKeyEast(keyo); 
+		OLR.setLockedEast(new Room("jsi o kousek vpravo")); 
 		BLR.getLockedWest().setNorth(new Room("jsi o kousek vepředu"));
 		Room fRoom = new Room("a jé je slepá ulička");
 		BLR.getLockedWest().getNorth().setNorth(fRoom);

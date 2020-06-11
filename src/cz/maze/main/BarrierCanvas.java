@@ -153,11 +153,35 @@ import java.awt.*;
 
 		int x = 0;
 		int y = 0;
-
-		if ((!(playersPosition.getWest() != null && playersPosition.getWest().getNorth() != null))
+		
+		
+		if (!((playersPosition.getWest() != null && playersPosition.getWest().getNorth() != null))
 				&& (!(playersPosition.getNorth() != null && playersPosition.getNorth().getWest() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
+
+			if (playersPosition.getWest() instanceof LockerRoom) {
+				LockerRoom lockerRoomWest = (LockerRoom) playersPosition.getWest();
+				if ((playersPosition.getWest() != null && lockerRoomWest.getLockedNorth() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					System.out.println("jsem tu");
+
+				}
+			}
+			if (playersPosition.getNorth() instanceof LockerRoom) {
+				LockerRoom lockerRoomNorth = (LockerRoom) playersPosition.getNorth();
+
+				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedWest() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					//System.out.println("jsem tu");
+					g2.setColor(lockerRoomNorth.getKeyWest().getColor());/* to do:solve null point exception*/
+					g2.fillOval(x, y, boxWidth, boxHeight);
+					
+
+				}
+			}
 		}
 
 		x = 0;
@@ -167,6 +191,29 @@ import java.awt.*;
 				&& (!(playersPosition.getSouth() != null && playersPosition.getSouth().getWest() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
+
+			if (playersPosition.getWest() instanceof LockerRoom) {
+				LockerRoom lockerRoomWest = (LockerRoom) playersPosition.getWest();
+				if ((playersPosition.getWest() != null && lockerRoomWest.getLockedSouth() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					System.out.println("jsem tu");
+
+				}
+			}
+			if (playersPosition.getSouth() instanceof LockerRoom) {
+				LockerRoom lockerRoomSouth = (LockerRoom) playersPosition.getSouth();
+
+				if ((playersPosition.getSouth() != null && lockerRoomSouth.getLockedWest() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					//System.out.println("jsem tu");
+					g2.setColor(lockerRoomSouth.getKeyWest().getColor());/* to do:solve null point exception*/
+					g2.fillOval(x, y, boxWidth, boxHeight);
+					
+
+				}
+			}
 		}
 
 		x = boxWidth * 2;
@@ -176,6 +223,29 @@ import java.awt.*;
 				&& (!(playersPosition.getNorth() != null && playersPosition.getNorth().getEast() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
+
+			if (playersPosition.getEast() instanceof LockerRoom) {
+				LockerRoom lockerRoomEast = (LockerRoom) playersPosition.getEast();
+				if ((playersPosition.getEast() != null && lockerRoomEast.getLockedNorth() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					System.out.println("jsem tu");
+
+				}
+			}
+			if (playersPosition.getNorth() instanceof LockerRoom) {
+				LockerRoom lockerRoomNorth = (LockerRoom) playersPosition.getNorth();
+
+				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedEast() != null)) {
+					g2.setColor(Color.gray);
+					g2.fillRect(x, y, boxWidth, boxHeight);
+					//System.out.println("jsem tu");
+					g2.setColor(lockerRoomNorth.getKeyEast().getColor());/* to do:solve null point exception*/
+					g2.fillOval(x, y, boxWidth, boxHeight);
+					
+
+				}
+			}
 		}
 
 		x = boxWidth * 2;
