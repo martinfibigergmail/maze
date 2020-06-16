@@ -97,9 +97,9 @@ import java.awt.*;
 		if (actions.contains(KeyEvent.VK_E)) {
 			 playersPosition.getItems().size(); 
 				 
-			 for(int cicle = 0;cicle<playersPosition.getItems().size();cicle ++) {
-				 if(playersPosition.getItems().get(cicle).getType()==1) {
-					 player.getItems().add(playersPosition.getItems().get(cicle)); 
+			 for(int cycle = 0;cycle<playersPosition.getItems().size();cycle ++) {
+				 if(playersPosition.getItems().get(cycle).getType()==1) {
+					 player.getItems().add(playersPosition.getItems().get(cycle)); 
 				 }
 			 }
 			 
