@@ -66,7 +66,7 @@ public class MainMap {
 		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
 		yellowLockerRoom.setKeyEast(key);
 		yellowLockerRoom.setLockedEast(new Room("blížíš se ke schodům"));
-
+   
 		yellowLockerRoom.getLockedEast().setEast(new Room("už jsi skoro tam"));
 		yellowLockerRoom.getLockedEast().getEast().setNorth(new Room("dolu vedou schody"));
 		yellowLockerRoom.getLockedEast().getEast().getNorth().setDown(new Room("Gratuluji prošel jsi tutoriál, jsi dole pod schodama."));

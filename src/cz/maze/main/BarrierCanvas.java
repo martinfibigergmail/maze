@@ -8,7 +8,7 @@ import cz.pf.model.LockerRoom;
 import cz.pf.model.Room;
 
 import java.awt.*;
-
+    import cz.pf.model.Player;
 	import java.io.File;
 	import java.util.ArrayList;
 	import java.util.stream.Collector;
@@ -17,16 +17,13 @@ import java.awt.*;
 	
 	
 	public class BarrierCanvas extends Canvas implements KeyListener{
-	    public ArrayList buttons= new ArrayList();
-	    public String display="0";
-	    public int x;
-	    public int y;
 		public Room playersPosition; 
 	    Room map;
+	    Player player = new Player();
 	    public BarrierCanvas(){
 	    	Item key = new Item("žlutej klíč",Color.YELLOW, 1);
 	    	MainMap support= new MainMap();
-	        map=support.createMap(key);
+	        map = support.createMap(key);
 	        
 	       playersPosition = map;
 	       addKeyListener(this);
@@ -96,6 +93,16 @@ import java.awt.*;
 				playersPosition = playersPosition.getEast();
 			}
 
+		}
+		if (actions.contains(KeyEvent.VK_E)) {
+			 playersPosition.getItems().size(); 
+				 
+			 for(int cicle = 0;cicle<playersPosition.getItems().size();cicle ++) {
+				 if(playersPosition.getItems().get(cicle).getType()==1) {
+					 player.getItems().add(playersPosition.getItems().get(cicle)); 
+				 }
+			 }
+			 
 		}
 		repaint();
 		actions.remove(new Integer(event.getKeyCode()));
