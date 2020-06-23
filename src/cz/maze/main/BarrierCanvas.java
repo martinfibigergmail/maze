@@ -16,6 +16,7 @@ import java.awt.*;
 	import java.awt.event.KeyEvent;
 	
 	
+	
 	public class BarrierCanvas extends Canvas implements KeyListener{
 		public Room playersPosition; 
 	    Room map;
@@ -106,8 +107,20 @@ import java.awt.*;
 			 }
 			 
 		}
-		repaint();
+		
+		if(playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
+					if(player.getItems().contains(playersPositionLocked.getKeyEast()) && playersPositionLocked.getEast() == null){
+				            System.out.println("Odemkl jsi pravé dveře, můžeš jít doprava.");
+				            playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
+					
+				
+				
+			}
+		}
+				 repaint();
 		actions.remove(new Integer(event.getKeyCode()));
+		
 	}
 
 	public void paint(Graphics g) {
