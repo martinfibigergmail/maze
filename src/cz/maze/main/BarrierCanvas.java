@@ -92,14 +92,16 @@ import java.awt.*;
 			if (playersPosition.getEast() != null) {
 				playersPosition = playersPosition.getEast();
 			}
-
+			
 		}
 		if (actions.contains(KeyEvent.VK_E)) {
 			 playersPosition.getItems().size(); 
-				 
+			 
 			 for(int cycle = 0;cycle<playersPosition.getItems().size();cycle ++) {
 				 if(playersPosition.getItems().get(cycle).getType()==1) {
-					 player.getItems().add(playersPosition.getItems().get(cycle)); 
+					 player.getItems().add(playersPosition.getItems().get(cycle));
+					 playersPosition.getItems().remove(cycle);
+					 break;
 				 }
 			 }
 			 
