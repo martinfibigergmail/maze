@@ -111,13 +111,43 @@ import java.awt.*;
 		if(playersPosition instanceof LockerRoom) {
 			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
 					if(player.getItems().contains(playersPositionLocked.getKeyEast()) && playersPositionLocked.getEast() == null){
-				            System.out.println("Odemkl jsi pravé dveře, můžeš jít doprava.");
 				            playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
 					
 				
 				
-			}
+					}
 		}
+		
+		if(playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
+					if(player.getItems().contains(playersPositionLocked.getKeyWest()) && playersPositionLocked.getWest() == null){
+				            playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
+					
+				
+	
+					}
+		}
+		
+		if(playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
+					if(player.getItems().contains(playersPositionLocked.getKeySouth()) && playersPositionLocked.getSouth() == null){
+				            playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
+					
+				
+				
+					}
+		}
+		
+		if(playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
+					if(player.getItems().contains(playersPositionLocked.getKeyNorth()) && playersPositionLocked.getNorth() == null){
+				            playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
+					
+				
+				
+					}
+		}
+		
 				 repaint();
 		actions.remove(new Integer(event.getKeyCode()));
 		
