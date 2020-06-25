@@ -61,9 +61,9 @@ public class MainMap {
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
 
 		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(new Room("jsi o kousek vzadu"));
-
+		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(new Room("jsi o kousek vzadu"));
 		LockerRoom yellowLockerRoom = new LockerRoom("jsi o kousek vzadu napravo jsou žlutý dveře");
-		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(yellowLockerRoom);
+		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth().setSouth(yellowLockerRoom);
 		yellowLockerRoom.setKeyEast(key);
 		yellowLockerRoom.setLockedEast(new Room("blížíš se ke schodům"));
    

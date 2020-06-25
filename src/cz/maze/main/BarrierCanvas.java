@@ -95,6 +95,21 @@ import java.awt.*;
 			}
 			
 		}
+		
+		if (actions.contains(KeyEvent.VK_SPACE)) {
+
+			if (playersPosition.getUp() != null) {
+				playersPosition = playersPosition.getUp();
+			}
+
+		}
+		if (actions.contains(KeyEvent.VK_SHIFT)) {
+
+			if (playersPosition.getDown() != null) {
+				playersPosition = playersPosition.getDown();
+			}
+
+		}
 		if (actions.contains(KeyEvent.VK_E)) {
 			 playersPosition.getItems().size(); 
 			 
@@ -162,6 +177,7 @@ import java.awt.*;
 		drawRectangle(g2, canvasWidth, canvasHeight);
 
 		drawPlayer(g2, canvasWidth, canvasHeight);
+		drawStairs(g2, canvasWidth, canvasHeight);
 		drawNorthernRoom(g2, canvasWidth, canvasHeight);
 		drawEasternRoom(g2, canvasWidth, canvasHeight);
 		drawWesternRoom(g2, canvasWidth, canvasHeight);
@@ -333,7 +349,21 @@ import java.awt.*;
 		}
 
 	}
-
+	public void drawStairs(Graphics2D g2, int canvasWidth, int canvasHeight) {
+		int width;
+		int height;
+		int x;
+		int y;
+		if (playersPosition.getDown() !=null){
+		g2.setColor(Color.gray);
+		width =   canvasWidth / 3;
+		x = width;
+		height =   canvasHeight / 3;
+		y = height;
+		
+		g2.fillRect(x, y, width, height);
+		}
+	}
 	private void drawBox(Graphics2D g2, int x, int y, int width, int height) {
 		g2.setColor(Color.black);
 		g2.fillRect(x, y, width, height);
