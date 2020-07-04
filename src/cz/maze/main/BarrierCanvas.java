@@ -8,46 +8,38 @@ import cz.pf.model.LockerRoom;
 import cz.pf.model.Room;
 
 import java.awt.*;
-    import cz.pf.model.Player;
-	import java.io.File;
-	import java.util.ArrayList;
-	import java.util.stream.Collector;
-	import java.awt.event.KeyListener;
-	import java.awt.event.KeyEvent;
-	
-	
-	
-	public class BarrierCanvas extends Canvas implements KeyListener{
-		public Room playersPosition; 
-	    Room map;
-	    Player player = new Player();
-	    public BarrierCanvas(){
-	    	Item key = new Item("žlutej klíč",Color.YELLOW, 1);
-	    	MainMap support= new MainMap();
-	        map = support.createMap(key);
-	        
-	       playersPosition = map;
-	       addKeyListener(this);
-	       
-	       if(playersPosition instanceof LockerRoom) {
-       		LockerRoom lockerRoom = (LockerRoom)playersPosition;
-       		
-       			
-       		}
-       			
-       		
-       		
-       	}
+import cz.pf.model.Player;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.stream.Collector;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-	    
-	    
-	
-		public ArrayList actions = new ArrayList();
-		
-		@Override
-		public void keyTyped(KeyEvent e) {
-		
+public class BarrierCanvas extends Canvas implements KeyListener {
+	public Room playersPosition;
+	Item key;
+	Room map;
+	Player player = new Player();
 
+	public BarrierCanvas() {
+		Item key = new Item("žlutej klíč", Color.YELLOW, 1);
+		MainMap support = new MainMap();
+		map = support.createMap(key);
+		this.key = key;
+		playersPosition = map;
+		addKeyListener(this);
+
+		if (playersPosition instanceof LockerRoom) {
+			LockerRoom lockerRoom = (LockerRoom) playersPosition;
+
+		}
+
+	}
+
+	public ArrayList actions = new ArrayList();
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 
 	}
 
@@ -87,15 +79,14 @@ import java.awt.*;
 
 		}
 
-
 		if (actions.contains(KeyEvent.VK_D)) {
 
 			if (playersPosition.getEast() != null) {
 				playersPosition = playersPosition.getEast();
 			}
-			
+
 		}
-		
+
 		if (actions.contains(KeyEvent.VK_SPACE)) {
 
 			if (playersPosition.getUp() != null) {
@@ -111,61 +102,58 @@ import java.awt.*;
 
 		}
 		if (actions.contains(KeyEvent.VK_E)) {
-			 playersPosition.getItems().size(); 
-			 
-			 for(int cycle = 0;cycle<playersPosition.getItems().size();cycle ++) {
-				 if(playersPosition.getItems().get(cycle).getType()==1) {
-					 player.getItems().add(playersPosition.getItems().get(cycle));
-					 playersPosition.getItems().remove(cycle);
-					 break;
-				 }
-			 }
-			 
+			playersPosition.getItems().size();
+
+			for (int cycle = 0; cycle < playersPosition.getItems().size(); cycle++) {
+				if (playersPosition.getItems().get(cycle).getType() == 1) {
+					player.getItems().add(playersPosition.getItems().get(cycle));
+					playersPosition.getItems().remove(cycle);
+					break;
+				}
+			}
+
 		}
-		
-		if(playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
-					if(player.getItems().contains(playersPositionLocked.getKeyEast()) && playersPositionLocked.getEast() == null){
-				            playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
-					
-				
-				
-					}
+
+		if (playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+			if (player.getItems().contains(playersPositionLocked.getKeyEast())
+					&& playersPositionLocked.getEast() == null) {
+				playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
+
+			}
 		}
-		
-		if(playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
-					if(player.getItems().contains(playersPositionLocked.getKeyWest()) && playersPositionLocked.getWest() == null){
-				            playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
-					
-				
-	
-					}
+
+		if (playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+			if (player.getItems().contains(playersPositionLocked.getKeyWest())
+					&& playersPositionLocked.getWest() == null) {
+				playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
+
+			}
 		}
-		
-		if(playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
-					if(player.getItems().contains(playersPositionLocked.getKeySouth()) && playersPositionLocked.getSouth() == null){
-				            playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
-					
-				
-				
-					}
+
+		if (playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+			if (player.getItems().contains(playersPositionLocked.getKeySouth())
+					&& playersPositionLocked.getSouth() == null) {
+				playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
+
+			}
 		}
-		
-		if(playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom ) playersPosition;
-					if(player.getItems().contains(playersPositionLocked.getKeyNorth()) && playersPositionLocked.getNorth() == null){
-				            playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
-					
-				
-				
-					}
+
+		if (playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+			if (player.getItems().contains(playersPositionLocked.getKeyNorth())
+					&& playersPositionLocked.getNorth() == null) {
+				playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
+
+			}
 		}
-		
-				 repaint();
+
+		repaint();
 		actions.remove(new Integer(event.getKeyCode()));
-		
+
+		this.exit();
 	}
 
 	public void paint(Graphics g) {
@@ -198,22 +186,21 @@ import java.awt.*;
 		int x;
 		int y;
 		width = canvasWidth / 2;
-    	x =	width - 50;
-    	height = canvasHeight / 2;	
-    	y = height - 50;
-    	g2.setColor(Color.black);
-        g2.drawOval(x, y, 100, 100);
-        g2.setColor(Color.red);
-        g2.fillOval(x, y, 100, 100);
-		for(Item item : playersPosition.getItems()) {
-			if(item.getType() == 1){
-            	g2.setColor(item.getColor());	            	
-            	g2.drawOval(x, y, 20, 20);
-            }
+		x = width - 50;
+		height = canvasHeight / 2;
+		y = height - 50;
+		g2.setColor(Color.black);
+		g2.drawOval(x, y, 100, 100);
+		g2.setColor(Color.red);
+		g2.fillOval(x, y, 100, 100);
+		for (Item item : playersPosition.getItems()) {
+			if (item.getType() == 1) {
+				g2.setColor(item.getColor());
+				g2.drawOval(x, y, 20, 20);
+			}
 		}
-        
-	}  
-	
+
+	}
 
 	private void drawShadowCorners(Graphics2D g2, int canvasWidth, int canvasHeight) {
 		int boxWidth = canvasWidth / 3;
@@ -221,8 +208,7 @@ import java.awt.*;
 
 		int x = 0;
 		int y = 0;
-		
-		
+
 		if (!((playersPosition.getWest() != null && playersPosition.getWest().getNorth() != null))
 				&& (!(playersPosition.getNorth() != null && playersPosition.getNorth().getWest() != null))) {
 			g2.setColor(Color.black);
@@ -243,10 +229,9 @@ import java.awt.*;
 				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedWest() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					//System.out.println("jsem tu");
-					g2.setColor(lockerRoomNorth.getKeyWest().getColor());/* to do:solve null point exception*/
+					// System.out.println("jsem tu");
+					g2.setColor(lockerRoomNorth.getKeyWest().getColor());/* to do:solve null point exception */
 					g2.fillOval(x, y, boxWidth, boxHeight);
-					
 
 				}
 			}
@@ -275,10 +260,9 @@ import java.awt.*;
 				if ((playersPosition.getSouth() != null && lockerRoomSouth.getLockedWest() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					//System.out.println("jsem tu");
-					g2.setColor(lockerRoomSouth.getKeyWest().getColor());/* to do:solve null point exception*/
+					// System.out.println("jsem tu");
+					g2.setColor(lockerRoomSouth.getKeyWest().getColor());/* to do:solve null point exception */
 					g2.fillOval(x, y, boxWidth, boxHeight);
-					
 
 				}
 			}
@@ -307,10 +291,9 @@ import java.awt.*;
 				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedEast() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					//System.out.println("jsem tu");
-					g2.setColor(lockerRoomNorth.getKeyEast().getColor());/* to do:solve null point exception*/
+					// System.out.println("jsem tu");
+					g2.setColor(lockerRoomNorth.getKeyEast().getColor());/* to do:solve null point exception */
 					g2.fillOval(x, y, boxWidth, boxHeight);
-					
 
 				}
 			}
@@ -339,31 +322,32 @@ import java.awt.*;
 				if ((playersPosition.getSouth() != null && lockerRoomSouth.getLockedEast() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					//System.out.println("jsem tu");
-					g2.setColor(lockerRoomSouth.getKeyEast().getColor());/* to do:solve null point exception*/
+					// System.out.println("jsem tu");
+					g2.setColor(lockerRoomSouth.getKeyEast().getColor());/* to do:solve null point exception */
 					g2.fillOval(x, y, boxWidth, boxHeight);
-					
 
 				}
 			}
 		}
 
 	}
+
 	public void drawStairs(Graphics2D g2, int canvasWidth, int canvasHeight) {
 		int width;
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getDown() !=null){
-		g2.setColor(Color.gray);
-		width =   canvasWidth / 3;
-		x = width;
-		height =   canvasHeight / 3;
-		y = height;
-		
-		g2.fillRect(x, y, width, height);
+		if (playersPosition.getDown() != null) {
+			g2.setColor(Color.gray);
+			width = canvasWidth / 3;
+			x = width;
+			height = canvasHeight / 3;
+			y = height;
+
+			g2.fillRect(x, y, width, height);
 		}
 	}
+
 	private void drawBox(Graphics2D g2, int x, int y, int width, int height) {
 		g2.setColor(Color.black);
 		g2.fillRect(x, y, width, height);
@@ -517,5 +501,12 @@ import java.awt.*;
 
 		}
 
+	}
+
+	public void exit() {
+
+		if (playersPosition.isExit() == true && player.getItems().contains(this.key)) {
+			System.exit(0);
+		}
 	}
 }
