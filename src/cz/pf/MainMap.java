@@ -78,7 +78,7 @@ public class MainMap {
 		Room soundBlind = new Room("a jé je slepá ulička");
 		first.getEast().getEast().getNorth().setEast(soundBlind);
 		soundBlind.ajeje = ajajajaj;
-		Item keyb = new Item("modrej klíč",Color.BLUE, 2);
+		Item keyb = new Item("modrej klíč",Color.BLUE, 1);
 		first.getEast().getEast().getNorth().getEast().getItems().add(keyb);
 		LockerRoom BLR = new LockerRoom("jsi o kousek vlevo vlevo jsou modrý dveře");
 		first.setWest(BLR);
@@ -88,7 +88,7 @@ public class MainMap {
 		first.setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom OLR = new LockerRoom("jsi o kousek vlevo vlevo jsou oranžový dveře");
-		Item keyo = new Item("ornžovej klíč",Color.ORANGE, 3);
+		Item keyo = new Item("ornžovej klíč",Color.ORANGE, 1);
 		BLRT.setLockedNorth(OLR);
 		OLR.setKeyEast(keyo); 
 		OLR.setLockedEast(new Room("jsi o kousek vpravo")); 
@@ -100,7 +100,7 @@ public class MainMap {
 		Room dRoom = new Room("a jé je slepá ulička");
 		OLR.getLockedEast().setEast(dRoom);
 		dRoom.ajeje = ajajajaj;
-		Item keyh = new Item("CYAN klíč",Color.CYAN, 4);
+		Item keyh = new Item("CYAN klíč",Color.CYAN, 1);
 		OLR.getLockedEast().getEast().getItems().add(keyh);
 		OLR.getLockedEast().setSouth(new Room("jsi o kousek vzadu a dolu vedou schody"));
 		OLR.getLockedEast().getSouth().setDown(new Room("Gratuluji prošel jsi první level, jsi dole pod schodama."));
@@ -116,7 +116,7 @@ public class MainMap {
 		HLR.getLockedSouth().getSouth().setEast(new Room("jsi o kousek vpravo"));
 		HLR.getLockedSouth().getSouth().getEast().setEast(new Room("a jé je slepá ulička"));
 		soundRoom.ajeje = ajajajaj;
-		Item keyg = new Item("zelenej klíč",Color.GREEN, 5);
+		Item keyg = new Item("zelenej klíč",Color.GREEN, 1);
 		HLR.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyg);
 		HLR.getLockedSouth().getSouth().setWest(new Room("jsi o kousek vlevo"));
 		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("jsi o kousek vlevo"));
