@@ -34,42 +34,42 @@ public class LockerRoom extends Room {
             System.out.println("Odemkl jsi přední dveře, můžeš jít dopředu.");
             this.setNorth(this.lockedNorth);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
         if(player.getItems().contains(keySouth) && south == null){
             System.out.println("Odemkl jsi zadní dveře, můžeš jít dozadu.");
             this.setSouth( this.lockedSouth);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
         if(player.getItems().contains(keyWest) && west == null){
             System.out.println("Odemkl jsi levé dveře, můžeš jít doleva.");
             this.setWest(this.lockedWest);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
         if(player.getItems().contains(keyEast) && east == null){
             System.out.println("Odemkl jsi pravé dveře, můžeš jít doprava.");
             this.setEast( this.lockedEast);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
         if(player.getItems().contains(keyUp) && up == null){
             System.out.println("Odemkl jsi schodiště nahoru, můžeš jít nahoru.");
             this.setUp( this.lockedUp);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
         if(player.getItems().contains(keyDown) && down == null){
             System.out.println("Odemkl jsi schodiště dolu, můžeš jít dolu.");
             this.setDown( this.lockedDown);
             if(door!=null){ 
-            	door.ff();
+            	door.play();
             }
         }
 

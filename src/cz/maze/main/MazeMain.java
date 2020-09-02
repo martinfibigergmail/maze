@@ -19,7 +19,7 @@ public class MazeMain {
         myCanvas.setLocation(f.getInsets().left,f.getInsets().top);
         myCanvas.setSize(f.getWidth()-f.getInsets().left - f.getInsets().right, f.getHeight()-f.getInsets().top - f.getInsets().bottom);      
         f.add(myCanvas);
-       
+        
         
 
 			

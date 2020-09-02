@@ -7,7 +7,7 @@ import javax.sound.sampled.Clip;
 
 public class Sound {
 	public String file;
-	public void ff() {
+	public void play() {
 		File zvuk = new File(file);
 	
 		try {

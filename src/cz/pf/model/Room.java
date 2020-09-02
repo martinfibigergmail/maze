@@ -55,7 +55,7 @@ public class Room {
         if (west != null) System.out.println("Můžeš jít doleva.");
         if (up != null) System.out.println("Můžeš jit nahoru");
         if (down != null) System.out.println("Můžeš jít dolu.");
-        if (ajeje != null) ajeje.ff();
+        if (ajeje != null) ajeje.play();
     }
     Room goIfNotZero(Room room){
         return  room!=null?room:this;

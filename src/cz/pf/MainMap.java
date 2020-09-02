@@ -17,7 +17,7 @@ public class MainMap {
 		
 		Sound welcome = new Sound();
 		welcome.file = "D:\\Filip\\Videa\\zvukvitej.wav";
-		welcome.ff();
+		welcome.play();
 		
 		
 		/*
@@ -85,29 +85,31 @@ public class MainMap {
 		BLR.setKeyWest(keyb);
 		BLR.setLockedWest(new Room("jsi o kousek vlevo"));
 		LockerRoom BLRT = new LockerRoom("jsi o kousek vepředu před tebou jsou modrý dveře");
-		first.setNorth(BLRT);
+		first.setNorth(new Room("Jsi o kousek ve predu"));
+		first.getNorth().setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom OLR = new LockerRoom("jsi o kousek vlevo vlevo jsou oranžový dveře");
 		Item keyo = new Item("ornžovej klíč",Color.ORANGE, 1);
 		BLRT.setLockedNorth(OLR);
 		OLR.setKeyEast(keyo); 
 		OLR.setLockedEast(new Room("jsi o kousek vpravo")); 
+		OLR.getLockedEast().setEast(new Room("jsi o kousek vpravo")); 
 		BLR.getLockedWest().setNorth(new Room("jsi o kousek vepředu"));
 		Room fRoom = new Room("a jé je slepá ulička");
 		BLR.getLockedWest().getNorth().setNorth(fRoom);
 		fRoom.ajeje = ajajajaj;
 		BLR.getLockedWest().getNorth().getNorth().getItems().add(keyo);
 		Room dRoom = new Room("a jé je slepá ulička");
-		OLR.getLockedEast().setEast(dRoom);
+		OLR.getLockedEast().getEast().setEast(dRoom);
 		dRoom.ajeje = ajajajaj;
 		Item keyh = new Item("CYAN klíč",Color.CYAN, 1);
-		OLR.getLockedEast().getEast().getItems().add(keyh);
-		OLR.getLockedEast().setSouth(new Room("jsi o kousek vzadu a dolu vedou schody"));
-		OLR.getLockedEast().getSouth().setDown(new Room("Gratuluji prošel jsi první level, jsi dole pod schodama."));
-		OLR.getLockedEast().getSouth().getDown().setSouth(new Room("jsi kousek vzadu"));
-		OLR.getLockedEast().getSouth().getDown().getSouth().setWest(new Room("jsi o kousek vlevo"));
+		OLR.getLockedEast().getEast().getEast().getItems().add(keyh);
+		OLR.getLockedEast().getEast().setSouth(new Room("jsi o kousek vzadu a dolu vedou schody"));
+		OLR.getLockedEast().getEast().getSouth().setDown(new Room("Gratuluji prošel jsi první level, jsi dole pod schodama."));
+		OLR.getLockedEast().getEast().getSouth().getDown().setSouth(new Room("jsi kousek vzadu"));
+		OLR.getLockedEast().getEast().getSouth().getDown().getSouth().setWest(new Room("jsi o kousek vlevo"));
 		LockerRoom HLR = new LockerRoom("jsi o kousek vlevo vzadu jsou hnědý dveře");
-		OLR.getLockedEast().getSouth().getDown().getSouth().getWest().setWest(HLR);
+		OLR.getLockedEast().getEast().getSouth().getDown().getSouth().getWest().setWest(HLR);
 		HLR.setKeySouth(keyh);
 		HLR.setLockedSouth(new Room("jsi o kousek vzadu"));
 		HLR.setWest(new Room("a jé je slepá ulička"));

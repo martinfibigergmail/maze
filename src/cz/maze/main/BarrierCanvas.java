@@ -3,6 +3,7 @@ package cz.maze.main;
 import javax.imageio.ImageIO;
 
 import cz.pf.MainMap;
+import cz.pf.Sound;
 import cz.pf.model.Item;
 import cz.pf.model.LockerRoom;
 import cz.pf.model.Room;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.stream.Collector;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+
 
 public class BarrierCanvas extends Canvas implements KeyListener {
 	public Room playersPosition;
@@ -35,7 +37,10 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 
 	}
-
+	
+		
+		
+		
 	public ArrayList actions = new ArrayList();
 
 	@Override
@@ -54,11 +59,14 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent event) {
+		Sound steps = new Sound();
+        steps.file = "D:\\Filip\\videa\\steps1.wav";
 
 		if (actions.contains(KeyEvent.VK_W)) {
 
 			if (playersPosition.getNorth() != null) {
 				playersPosition = playersPosition.getNorth();
+				steps.play();
 			}
 
 		}
@@ -67,6 +75,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getSouth() != null) {
 				playersPosition = playersPosition.getSouth();
+				steps.play();
 			}
 
 		}
@@ -75,6 +84,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getWest() != null) {
 				playersPosition = playersPosition.getWest();
+				steps.play();
 			}
 
 		}
@@ -83,6 +93,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getEast() != null) {
 				playersPosition = playersPosition.getEast();
+				steps.play();
 			}
 
 		}
@@ -91,6 +102,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getUp() != null) {
 				playersPosition = playersPosition.getUp();
+				steps.play();
 			}
 
 		}
@@ -98,6 +110,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getDown() != null) {
 				playersPosition = playersPosition.getDown();
+				steps.play();
 			}
 
 		}
@@ -502,6 +515,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 
 	}
+	
+	
 
 	public void exit() {
 
