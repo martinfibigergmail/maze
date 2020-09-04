@@ -59,8 +59,12 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent event) {
+		/** Todo as members */
 		Sound steps = new Sound();
-        steps.file = "D:\\Filip\\videa\\steps1.wav";
+        steps.file = "Steps_2.wav";
+        
+        Sound doors = new Sound();
+        doors.file = "door_sound.wav";
 
 		if (actions.contains(KeyEvent.VK_W)) {
 
@@ -132,7 +136,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.getItems().contains(playersPositionLocked.getKeyEast())
 					&& playersPositionLocked.getEast() == null) {
 				playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
-
+				doors.play();
 			}
 		}
 
@@ -141,7 +145,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.getItems().contains(playersPositionLocked.getKeyWest())
 					&& playersPositionLocked.getWest() == null) {
 				playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
-
+				doors.play();
 			}
 		}
 
@@ -150,7 +154,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.getItems().contains(playersPositionLocked.getKeySouth())
 					&& playersPositionLocked.getSouth() == null) {
 				playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
-
+				doors.play();
 			}
 		}
 
@@ -159,7 +163,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.getItems().contains(playersPositionLocked.getKeyNorth())
 					&& playersPositionLocked.getNorth() == null) {
 				playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
-
+				doors.play();
 			}
 		}
 
