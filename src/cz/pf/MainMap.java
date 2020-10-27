@@ -180,11 +180,9 @@ public class MainMap {
         	necromancersNarrowPassage.getEast().getEast().setEast(new Room("Nekromantova soutěska"));
         	necromancersNarrowPassage.getEast().getEast().getEast().setEast(new Room("Nekromantova soutěska"));
         	necromancersNarrowPassage.getEast().getEast().getEast().getEast().setEast(new Room("Nekromantova soutěska"));
-        	necromancersNarrowPassage.getEast().getEast().getEast().getEast().getEast().setEast(new Room("Nekromantova soutěska"));
-        	LockerRoom purpleDoubleDoor = new LockerRoom("Nekromantova labotař");
-        	necromancersNarrowPassage.getEast().getEast().getEast().getEast().getEast().getEast().setEast(purpleDoubleDoor);
-        	// ((LockerRoom)necromancersNarrowPassage.getEast().getEast().getEast().getEast().getEast().getEast()).setLockedEast(purpleDoubleDoor);
-        	purpleDoubleDoor.setSouth(new Room("necromancersLaboratory"));
+        	LockerRoom purpleDoubleDoor = new LockerRoom("Nekromantova laborař");
+        	necromancersNarrowPassage.getEast().getEast().getEast().getEast().getEast().setEast(purpleDoubleDoor);
+        	purpleDoubleDoor.setLockedEast(new Room("Nekromantova Laboratoř"));
         	LockerRoom greenDoor = new LockerRoom("Temná cesta");
         	greenDoor.setKeyEast(keyGreen);
         	firstFourthFloorRoom.setEast(new Room("Temná cesta"));
@@ -201,24 +199,24 @@ public class MainMap {
         	floodedStairs.getEast().getEast().setEast(new Room("zatopené schodiště"));
         	Item keyPurple = new Item("fialoví klíč",Color.MAGENTA,1);
         	floodedStairs.getEast().getEast().getItems().add(keyPurple);
-        	//purpleDoubleDoor.setKeyEast(keyPurple);
+        	purpleDoubleDoor.setKeyEast(keyPurple);
         	Room secretTunnel = new Room("tajný průchod");
         	floodedStairs.getEast().getEast().getEast().setSouth(secretTunnel);
         	secretTunnel.setSouth(new Room("tajný průchod"));
         	secretTunnel.getSouth().setSouth(new Room("tajný průchod"));
         	secretTunnel.getSouth().getSouth().setSouth(new Room("tajný průchod"));
-        	secretTunnel.getSouth().getSouth().getSouth().setSouth(purpleDoubleDoor);
+        	secretTunnel.getSouth().getSouth().getSouth().setSouth(purpleDoubleDoor.getLockedEast());
         	Room portal = new Room("Portál");
         	floodedStairs.getEast().getEast().getEast().setNorth(portal);
         	portal.setNorth(new Room("anotherRealm"));
         	portal.getNorth().setWest(new Room("anotherRealm"));
         	portal.getNorth().getWest().setWest(new Room("anotherRealm"));
         	portal.getNorth().getWest().getWest().setDown(new Room("anotherRealm"));
-        	purpleDoubleDoor.getSouth().setSouth(new Room("necromancersLaboratory"));
-        	purpleDoubleDoor.getSouth().getSouth().setSouth(new Room("necromancersLaboratory"));
-        	purpleDoubleDoor.getSouth().getSouth().getSouth().setSouth(new Room("necromancersLaboratory"));
-        	purpleDoubleDoor.getSouth().getSouth().getSouth().getSouth().setWest(new Room("necromancersLaboratory"));
-        	purpleDoubleDoor.getSouth().getSouth().getSouth().getSouth().getWest().setWest(new Room("necromancersLaboratory"));
+        	purpleDoubleDoor.getLockedEast().setSouth(new Room("necromancersLaboratory"));
+        	purpleDoubleDoor.getLockedEast().getSouth().setSouth(new Room("necromancersLaboratory"));
+        	purpleDoubleDoor.getLockedEast().getSouth().getSouth().setSouth(new Room("necromancersLaboratory"));
+        	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().setWest(new Room("necromancersLaboratory"));
+        	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().getWest().setWest(new Room("necromancersLaboratory"));
         return tunnelCorner; 
         }
 	
