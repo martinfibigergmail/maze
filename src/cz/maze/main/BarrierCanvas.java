@@ -119,6 +119,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 		}
 		if (actions.contains(KeyEvent.VK_E)) {
+			
 			playersPosition.getItems().size();
 
 			for (int cycle = 0; cycle < playersPosition.getItems().size(); cycle++) {
@@ -130,7 +131,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			}
 
 		}
-
+		System.out.println(playersPosition.getDescription());
 		if (playersPosition instanceof LockerRoom) {
 			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeyEast())

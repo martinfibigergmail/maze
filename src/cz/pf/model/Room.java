@@ -12,8 +12,8 @@ public class Room {
     Room south;
     Room up;
     Room down;
-    public Sound ajeje;
-    String description;
+    Sound ajeje;
+    public String description;
     List<Item> items;
     boolean isExit;
 

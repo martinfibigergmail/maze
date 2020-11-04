@@ -21,6 +21,10 @@ public class LockerRoom extends Room {
     Room lockedSouth;
     Room lockedUp;
     Room lockedDown;
+    Room lockedNorthDouble;
+    Room lockedEastDouble;
+    Room lockedWestDouble;
+    Room lockedSouthDouble;
 
     private void printKey(Item key, Room room){
         if(key!=null && room == null) {
@@ -181,5 +185,56 @@ public class LockerRoom extends Room {
 
     public void setLockedDown(Room lockedDown) {
         this.lockedDown = lockedDown;
+        
+       
     }
+    
+ /*	public Room getLockedNorthDouble(Room lockedNorthDouble) {
+ 		return lockedNorthDouble;
+ 		
+ 		
+ 	}
+ 	
+ 	public void getLockedNorthDouble(Room lockedNorthDouble) {
+ 		this.lockedNorthDouble;
+ 		
+ 		
+	}
+ 	
+ 	public Room getLockedNorthDouble(Room lockedNorthDouble) {
+ 		return lockedNorthDouble;
+ 		
+ 		
+	}
+ 	
+ 	public void getLockedNorthDouble(Room lockedNorthDouble) {
+ 		this.lockedNorthDouble;
+ 		
+ 		
+	}
+ 	
+ 	public Room getLockedNorthDouble(Room lockedNorthDouble) {
+ 		return lockedNorthDouble;
+ 		
+ 		
+	}
+ 	
+ 	public void getLockedNorthDouble(Room lockedNorthDouble) {
+ 		this.lockedNorthDouble;
+ 		
+ 		
+	}
+	
+	public Room getLockedNorthDouble(Room lockedNorthDouble) {
+	        return lockedNorthDouble;
+	        
+	        
+	}
+ 	
+ 	public void getLockedNorthDouble(Room lockedNorthDouble) {
+	        return lockedNorthDouble;
+	        
+	        
+	}
+ 	*/
 }
