@@ -6,7 +6,7 @@ public class LockerRoom extends Room {
     public LockerRoom(String description){
         super(description);
         door = new Sound();
-        door.file = "D:\\Filip\\Videa\\sound3.wav";
+//        door.file = "D:\\Filip\\Videa\\sound3.wav";
     }
     Item keyNorth;
     Item keySouth;

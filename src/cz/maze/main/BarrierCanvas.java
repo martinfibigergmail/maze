@@ -54,7 +54,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			actions.add(new Integer(event.getKeyCode()));
 
 		}
-		System.out.println("Pressed" + event.getKeyCode());
+		//System.out.println("Pressed" + event.getKeyCode());
 	}
 
 	@Override
