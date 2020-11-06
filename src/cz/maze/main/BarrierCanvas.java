@@ -61,7 +61,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public void keyReleased(KeyEvent event) {
 		/** Todo as members */
 		Sound steps = new Sound();
-        steps.file = "Steps_2.wav";
+        steps.file = "Steps2.wav";
         
         Sound doors = new Sound();
         doors.file = "door_sound.wav";
