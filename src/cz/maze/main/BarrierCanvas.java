@@ -97,7 +97,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			if (playersPosition.getEast() != null) {
 				playersPosition = playersPosition.getEast();
-				steps.play();
+ 				steps.play();
 			}
 
 		}
@@ -181,7 +181,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int canvasHeight = this.getHeight();
 
 		drawRectangle(g2, canvasWidth, canvasHeight);
-
+		
 		drawPlayer(g2, canvasWidth, canvasHeight);
 		drawStairs(g2, canvasWidth, canvasHeight);
 		drawNorthernRoom(g2, canvasWidth, canvasHeight);
@@ -190,6 +190,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		drawSouthernRoom(g2, canvasWidth, canvasHeight);
 
 		drawShadowCorners(g2, canvasWidth, canvasHeight);
+		g2.setColor(Color.green);
+		g2.drawString(playersPosition.description, canvasWidth / 20, canvasHeight - canvasHeight / 15);
 
 	}
 
