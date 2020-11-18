@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+	public int health=3;
     List<Item> items;
     public Player(){
         this.items = new ArrayList<>();
@@ -15,5 +16,7 @@ public class Player {
 
     public void setItems(List<Item> items) {
         this.items = items;
+        
+        
     }
 }

@@ -110,24 +110,24 @@ public class MainMap {
     
     
     public Room createThirdFloor(Item keyh, LockerRoom orangeLockerRoom) {
-    	orangeLockerRoom.getLockedEast().getEast().getSouth().setDown(new Room("Gratuluji prošel jsi vchodovou halou, nacháziš ve skladu."));
-    	orangeLockerRoom.getLockedEast().getEast().getSouth().getDown().setSouth(new Room(""));
-    	orangeLockerRoom.getLockedEast().getEast().getSouth().getDown().getSouth().setWest(new Room("jsi o kousek vlevo"));
-    	LockerRoom HLR = new LockerRoom("jsi o kousek vlevo vzadu jsou hnědý dveře");
+    	orangeLockerRoom.getLockedEast().getEast().getSouth().setDown(new Room("Gratuluji prošel jsi vchodovou halou, nacháziš ve skladu chemikalií."));
+    	orangeLockerRoom.getLockedEast().getEast().getSouth().getDown().setSouth(new Room("chodba od A do Z"));
+    	orangeLockerRoom.getLockedEast().getEast().getSouth().getDown().getSouth().setWest(new Room("chodba od A do Z"));
+    	LockerRoom HLR = new LockerRoom("chodba od A do Z");
     	orangeLockerRoom.getLockedEast().getEast().getSouth().getDown().getSouth().getWest().setWest(HLR);
     	HLR.setKeySouth(keyh);
-		HLR.setLockedSouth(new Room("jsi o kousek vzadu"));
-		HLR.setWest(new Room("a jé je slepá ulička"));		
-		HLR.getLockedSouth().setSouth(new Room("jsi o kousek vzadu"));
-		HLR.getLockedSouth().getSouth().setEast(new Room("jsi o kousek vpravo"));
-		HLR.getLockedSouth().getSouth().getEast().setEast(new Room("a jé je slepá ulička"));	
+		HLR.setLockedSouth(new Room("vchod do skladu"));
+		HLR.setWest(new Room("seznamovací koutek"));		
+		HLR.getLockedSouth().setSouth(new Room("překvapivě čistý sklad"));
+		HLR.getLockedSouth().getSouth().setEast(new Room("překvapivě čistý sklad"));
+		HLR.getLockedSouth().getSouth().getEast().setEast(new Room("překvapivě čistý sklad"));	
 		Item keyg = new Item("zelenej klíč",Color.GREEN, 1);
 		HLR.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyg);
-		HLR.getLockedSouth().getSouth().setWest(new Room("jsi o kousek vlevo"));
-		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("jsi o kousek vlevo"));
-		HLR.getLockedSouth().getSouth().getWest().getWest().setNorth(new Room("jsi o kousek vepředu"));
-		HLR.getLockedSouth().getSouth().getWest().getWest().getNorth().setNorth(new Room("jsi o kousek vepředu"));
-		LockerRoom GLR = new LockerRoom("jsi o kousek vepředu a vpravo jsou zelený dveře");
+		HLR.getLockedSouth().getSouth().setWest(new Room("překvapivě čistý sklad"));
+		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("překvapivě čistý sklad"));
+		HLR.getLockedSouth().getSouth().getWest().getWest().setNorth(new Room("překvapivě čistý sklad"));
+		HLR.getLockedSouth().getSouth().getWest().getWest().getNorth().setNorth(new Room("fake regál"));
+		LockerRoom GLR = new LockerRoom("tajná chodba za regálem");
 		HLR.getLockedSouth().getSouth().getWest().getWest().getNorth().getNorth().setNorth(GLR);
 		GLR.setKeyEast(keyg);
 		GLR.setLockedEast(new Room("vchod do krápníkové jeskyně"));
@@ -179,14 +179,14 @@ public class MainMap {
         	necromancersNarrowPassage.getEast().getEast().setEast(new Room("Nekromantova soutěska"));
         	necromancersNarrowPassage.getEast().getEast().getEast().setEast(new Room("Nekromantova soutěska"));
         	necromancersNarrowPassage.getEast().getEast().getEast().getEast().setEast(new Room("Nekromantova soutěska"));
-        	LockerRoom purpleDoubleDoor = new LockerRoom("Nekromantova laborař");
+        	LockerRoom purpleDoubleDoor = new LockerRoom("Nekromantova soutěska");
 
         	necromancersNarrowPassage.getEast().getEast().getEast().getEast().getEast().setEast(purpleDoubleDoor);
 
         	LockerRoom purpleDoubleDoorOnEast = new LockerRoom("Nekromantova Laboratoř");
         	purpleDoubleDoor.setLockedEast(purpleDoubleDoorOnEast);
         	purpleDoubleDoorOnEast.setLockedWest(purpleDoubleDoor);
-
+ 
         	LockerRoom greenDoor = new LockerRoom("Temná cesta");
         	greenDoor.setKeyEast(keyGreen);
         	firstFourthFloorRoom.setEast(new Room("Temná cesta"));
@@ -200,7 +200,8 @@ public class MainMap {
         	greenDoor.getLockedEast().getNorth().getNorth().getNorth().setNorth(floodedStairs);
         	floodedStairs.setEast(new Room("zatopené schodiště"));
         	floodedStairs.getEast().setEast(new Room("zatopené schodiště"));
-        	floodedStairs.getEast().getEast().setEast(new Room("zatopené schodiště"));
+        	LockerRoom floodedLockerStairs = new LockerRoom("zatopené schodiště");
+        	floodedStairs.getEast().getEast().setEast(floodedLockerStairs);
         	Item keyPurple = new Item("fialoví klíč",Color.MAGENTA,1);
         	floodedStairs.getEast().getEast().getItems().add(keyPurple);
         	purpleDoubleDoor.setKeyEast(keyPurple);
@@ -214,8 +215,10 @@ public class MainMap {
 
 
         	secretTunnel.getSouth().getSouth().getSouth().setSouth(purpleDoubleDoor.getLockedEast());
-        	Room portal = new Room("Portál");
-        	floodedStairs.getEast().getEast().getEast().setNorth(portal);
+        	Item keyBlack = new Item ("Černej klíč",Color.BLACK, 1); 
+        	Room portal = new LockerRoom("Portál");
+        	floodedLockerStairs.setKeyNorth(keyBlack);
+        	floodedLockerStairs.setLockedNorth(portal);
         	portal.setNorth(new Room("jiný svět"));
         	portal.getNorth().setWest(new Room("jiný svět"));
         	portal.getNorth().getWest().setWest(new Room("jiný svět"));
@@ -225,6 +228,7 @@ public class MainMap {
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().setSouth(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().setWest(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().getWest().setWest(new Room("Nekromantova Laboratoř"));
+        	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().getWest().getWest().getItems().add(keyBlack);    //udělat texturu jako kyblík(keyBlack)
         return tunnelCorner; 
         }
 	

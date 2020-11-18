@@ -19,9 +19,11 @@ import java.awt.event.KeyEvent;
 
 public class BarrierCanvas extends Canvas implements KeyListener {
 	public Room playersPosition;
+	
 	Item key;
 	Room map;
 	Player player = new Player();
+	String deathList;
 
 	public BarrierCanvas() {
 		Item key = new Item("žlutej klíč", Color.YELLOW, 1);
@@ -65,41 +67,77 @@ public class BarrierCanvas extends Canvas implements KeyListener {
         
         Sound doors = new Sound();
         doors.file = "door_sound.wav";
+        
 
 		if (actions.contains(KeyEvent.VK_W)) {
+			
+			if(playersPosition.getNorth() == null) {
+				//deathList +="North in wall";
+				player.health = player.health - 1;
+				
+				if(player.health == 0) {
+					System.exit(0);
+				}
+			}
 
 			if (playersPosition.getNorth() != null) {
 				playersPosition = playersPosition.getNorth();
 				steps.play();
+			
 			}
-
+			
 		}
 
 		if (actions.contains(KeyEvent.VK_S)) {
+			
+			if(playersPosition.getSouth() == null) {
+				//deathList +="South in wall";
+				player.health = player.health - 1;
+				
+				if(player.health == 0) {
+					System.exit(0);
+				}
+			}
 
 			if (playersPosition.getSouth() != null) {
 				playersPosition = playersPosition.getSouth();
 				steps.play();
+				
 			}
-
 		}
 
 		if (actions.contains(KeyEvent.VK_A)) {
+			
+			if(playersPosition.getWest() == null) {
+				//deathList +="West in wall";
+				player.health = player.health - 1;
+				
+				if(player.health == 0) {
+					System.exit(0);
+				}
+			}
 
 			if (playersPosition.getWest() != null) {
 				playersPosition = playersPosition.getWest();
 				steps.play();
 			}
-
 		}
 
 		if (actions.contains(KeyEvent.VK_D)) {
+			
+			if(playersPosition.getEast() == null) {
+				//deathList +="East in wall";
+				player.health = player.health - 1;
+				
+				if(player.health == 0) {
+					System.exit(0);
+				}
+			}
 
 			if (playersPosition.getEast() != null) {
 				playersPosition = playersPosition.getEast();
  				steps.play();
 			}
-
 		}
 
 		if (actions.contains(KeyEvent.VK_SPACE)) {
@@ -108,7 +146,6 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				playersPosition = playersPosition.getUp();
 				steps.play();
 			}
-
 		}
 		if (actions.contains(KeyEvent.VK_SHIFT)) {
 
@@ -116,7 +153,6 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				playersPosition = playersPosition.getDown();
 				steps.play();
 			}
-
 		}
 		if (actions.contains(KeyEvent.VK_E)) {
 			
@@ -129,7 +165,6 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 					break;
 				}
 			}
-
 		}
 		System.out.println(playersPosition.getDescription());
 		if (playersPosition instanceof LockerRoom) {
@@ -173,7 +208,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 		this.exit();
 	}
-
+	
+	
 	public void paint(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
