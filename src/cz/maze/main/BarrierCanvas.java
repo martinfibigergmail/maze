@@ -11,11 +11,13 @@ import cz.pf.model.Room;
 import java.awt.*;
 import cz.pf.model.Player;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.stream.Collector;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-
+import java.awt.image.BufferedImage;
 
 public class BarrierCanvas extends Canvas implements KeyListener {
 	public Room playersPosition;
@@ -204,6 +206,9 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 
 		repaint();
+		
+		
+		
 		actions.remove(new Integer(event.getKeyCode()));
 
 		this.exit();
@@ -212,6 +217,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	
 	public void paint(Graphics g) {
 
+		InputStream imageInputStream = BarrierCanvas.class.getResourceAsStream("Life.png");
+		
 		Graphics2D g2 = (Graphics2D) g;
 		int canvasWidth = this.getWidth();
 		int canvasHeight = this.getHeight();
@@ -228,6 +235,42 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		drawShadowCorners(g2, canvasWidth, canvasHeight);
 		g2.setColor(Color.green);
 		g2.drawString(playersPosition.description, canvasWidth / 20, canvasHeight - canvasHeight / 15);
+		
+
+
+		try {
+			BufferedImage img = ImageIO.read(imageInputStream);
+			
+			for(int hp = 0;hp < player.health; hp++ ) {
+				g.drawImage(img, hp*img.getWidth(),0, null);
+			}
+			
+			/*eif(player.health == 3) {
+				g.drawImage(img, 0 ,0, null);
+				g.drawImage(img, 75, 0, null);
+				g.drawImage(img, 150, 0, null);
+				
+			}
+			
+			if(player.health == 2) {
+				g.drawImage(img, 0, 0, null);
+				g.drawImage(img, 75, 0, null);
+					
+				}
+				
+			if(player.health == 1) {
+					g.drawImage(img, 0, 0, null);
+						
+					}*/
+				
+			
+		
+	}
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}
 
