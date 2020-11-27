@@ -217,7 +217,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	
 	public void paint(Graphics g) {
 
-		InputStream imageInputStream = BarrierCanvas.class.getResourceAsStream("Life.png");
+		InputStream imageInputStream = BarrierCanvas.class.getResourceAsStream("LifeBorderless.png");
 		
 		Graphics2D g2 = (Graphics2D) g;
 		int canvasWidth = this.getWidth();
