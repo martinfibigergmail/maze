@@ -149,6 +149,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				steps.play();
 			}
 		}
+		
 		if (actions.contains(KeyEvent.VK_SHIFT)) {
 
 			if (playersPosition.getDown() != null) {
@@ -156,19 +157,18 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				steps.play();
 			}
 		}
+		
 		if (actions.contains(KeyEvent.VK_E)) {
 			
-			playersPosition.getItems().size();
-
-			for (int cycle = 0; cycle < playersPosition.getItems().size(); cycle++) {
-				if (playersPosition.getItems().get(cycle).getType() == 1) {
-					player.getItems().add(playersPosition.getItems().get(cycle));
-					playersPosition.getItems().remove(cycle);
-					break;
-				}
+			if(player.getItems().size() != 7 && playersPosition.getItems().size() != 0 ) {
+				player.getItems().add(playersPosition.getItems().get(0));
+				playersPosition.getItems().remove(0);
+			
 			}
 		}
+		
 		System.out.println(playersPosition.getDescription());
+		
 		if (playersPosition instanceof LockerRoom) {
 			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeyEast())
@@ -216,8 +216,10 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	
 	
 	public void paint(Graphics g) {
-
-		InputStream imageInputStream = BarrierCanvas.class.getResourceAsStream("LifeBorderless.png");
+		
+		
+		InputStream imageInputStreamItem = BarrierCanvas.class.getResourceAsStream("Itembar.png");
+		InputStream imageInputStreamLife = BarrierCanvas.class.getResourceAsStream("LifeBorderless.png");
 		
 		Graphics2D g2 = (Graphics2D) g;
 		int canvasWidth = this.getWidth();
@@ -239,11 +241,16 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 
 		try {
-			BufferedImage img = ImageIO.read(imageInputStream);
+			BufferedImage imgItem = ImageIO.read(imageInputStreamItem);
+			BufferedImage imgLife = ImageIO.read(imageInputStreamLife);
+			
+			g.drawImage(imgItem, canvasWidth - imgItem.getWidth(),0,null);
 			
 			for(int hp = 0;hp < player.health; hp++ ) {
-				g.drawImage(img, hp*img.getWidth(),0, null);
+				g.drawImage(imgLife, hp*imgLife.getWidth(),0, null);
 			}
+			
+			
 			
 			/*eif(player.health == 3) {
 				g.drawImage(img, 0 ,0, null);
