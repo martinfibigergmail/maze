@@ -1,19 +1,39 @@
 package cz.pf;
 
+import cz.maze.main.BarrierCanvas;
 import cz.pf.model.Item;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+
 import cz.pf.model.LockerRoom;
 import cz.pf.model.Player;
 import cz.pf.model.Room;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class MainMap {
-	public static void main(String args[]) {
+		public static BufferedImage loadImage(String imageName){
+			
+			InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream(imageName);
+			try {
+				BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
+				return imgKey;
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.exit(1);
+				return null;
+				}
+		}
+	
+		public static void main(String args[]) {
 		
 		Sound welcome = new Sound();
 		welcome.file = "zvukvitej.wav";
@@ -32,13 +52,20 @@ public class MainMap {
 		 * null, "There is a door. But they are locked!"));
 		 * main.getNorth().getNorth().getNorth().getEast().setExit(true);
 		 */
-
-		Item key = new Item("Klíč ke konci",Color.YELLOW, 1);
-	    MainMap support=new MainMap();
-
-		Room map=support.createMap(key);
-		support.run(map, key);
-		
+		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyGreen.png");
+		try {
+			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
+			Item key = new Item("Klíč ke konci",Color.YELLOW, 1, imgKey);
+			MainMap support=new MainMap();
+	    
+			Room map=support.createMap(key);
+			support.run(map, key);
+		}
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	
     public Room createFirstFloor (Sound ajajajaj,Item key) {
@@ -78,7 +105,7 @@ public class MainMap {
 		Room soundBlind = new Room("konec podivné místnosti");
 		first.getEast().getEast().getNorth().setEast(soundBlind);
 		//soundBlind.ajeje = disapointmentSound;
-		Item keyb = new Item("modrej klíč",Color.BLUE, 1);
+		Item keyb = new Item("modrej klíč",Color.BLUE, 1, loadImage("ItemKeyBlue.png"));
 		first.getEast().getEast().getNorth().getEast().getItems().add(keyb);
 		LockerRoom BLR = new LockerRoom("špinavá chodba");
 		first.setWest(BLR);
@@ -89,7 +116,7 @@ public class MainMap {
 		first.getNorth().setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom orangeLockerRoom = new LockerRoom("křivý sál");
-		Item keyo = new Item("oranžovej klíč",Color.ORANGE, 1);
+		Item keyo = new Item("oranžovej klíč",Color.ORANGE, 1, loadImage("ItemKeyOrange.png"));
 		BLRT.setLockedNorth(orangeLockerRoom);
 		orangeLockerRoom.setKeyEast(keyo); 
 		orangeLockerRoom.setLockedEast(new Room("křivý sál")); 
@@ -121,7 +148,7 @@ public class MainMap {
 		HLR.getLockedSouth().setSouth(new Room("překvapivě čistý sklad"));
 		HLR.getLockedSouth().getSouth().setEast(new Room("překvapivě čistý sklad"));
 		HLR.getLockedSouth().getSouth().getEast().setEast(new Room("překvapivě čistý sklad"));	
-		Item keyg = new Item("zelenej klíč",Color.GREEN, 1);
+		Item keyg = new Item("zelenej klíč",Color.GREEN, 1, loadImage("ItemKeyGreen.png"));
 		HLR.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyg);
 		HLR.getLockedSouth().getSouth().setWest(new Room("překvapivě čistý sklad"));
 		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("překvapivě čistý sklad"));
@@ -154,7 +181,7 @@ public class MainMap {
         	midTunnelRoom.getSouth().getSouth().getSouth().setSouth(new Room("nevyspytatelný tunel"));
         	Room tunnelCorner = new Room("nevyspytatelný tunel");
         	midTunnelRoom.getSouth().getSouth().getSouth().getSouth().setSouth(tunnelCorner);
-        	Item keyRed = new Item ("Červenej klič",Color.RED, 1); 
+        	Item keyRed = new Item ("Červenej klič",Color.RED, 1, loadImage("ItemKeyRed.png")); 
         	tunnelCorner.getItems().add(keyRed);
         	tunnelCorner.setEast(new Room("škvoří chodba"));
         	tunnelCorner.getEast().setEast(new Room("škvoří chodba"));
@@ -167,7 +194,7 @@ public class MainMap {
         	goldenDoor.setLockedSouth(new Room("pavoučí trhlina"));
         	goldenDoor.setKeySouth(keyRed);
         	goldenDoor.getLockedSouth().setSouth(new Room("pavoučí trhlina"));
-        	Item keyGreen = new Item ("zelenej klič",Color.GREEN, 1); 
+        	Item keyGreen = new Item ("zelenej klič",Color.GREEN, 1, loadImage("ItemKeyGreen.png")); 
         	goldenDoor.getLockedSouth().getSouth().setEast(new Room("pavoučí trhlina"));
         	goldenDoor.getLockedSouth().getSouth().getEast().setEast(new Room("pavoučí trhlina"));        	
         	goldenDoor.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyGreen);
@@ -202,7 +229,7 @@ public class MainMap {
         	floodedStairs.getEast().setEast(new Room("zatopené schodiště"));
         	LockerRoom floodedLockerStairs = new LockerRoom("zatopené schodiště");
         	floodedStairs.getEast().getEast().setEast(floodedLockerStairs);
-        	Item keyPurple = new Item("fialoví klíč",Color.MAGENTA,1);
+        	Item keyPurple = new Item("fialoví klíč",Color.MAGENTA,1, loadImage("ItemKeyMagenta.png"));
         	floodedStairs.getEast().getEast().getItems().add(keyPurple);
         	purpleDoubleDoor.setKeyEast(keyPurple);
         	purpleDoubleDoorOnEast.setKeyWest(keyPurple);
@@ -215,7 +242,7 @@ public class MainMap {
 
 
         	secretTunnel.getSouth().getSouth().getSouth().setSouth(purpleDoubleDoor.getLockedEast());
-        	Item keyBlack = new Item ("Černej klíč",Color.BLACK, 1); 
+        	Item keyBlack = new Item ("Černej klíč",Color.BLACK, 1, loadImage("ItemKeyBlack.png")); 
         	Room portal = new LockerRoom("Portál");
         	floodedLockerStairs.setKeyNorth(keyBlack);
         	floodedLockerStairs.setLockedNorth(portal);
@@ -240,7 +267,7 @@ public class MainMap {
 		disapointmentSound.file = "D:\\Filip\\Videa\\ajajajajaj.wav";
 		Room startingPosition = createFirstFloor(disapointmentSound,key);
 		yellowLockerRoom = (LockerRoom)startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth().getSouth();
-		Item keyh = new Item("CYAN klíč",Color.CYAN, 1);
+		Item keyh = new Item("CYAN klíč",Color.CYAN, 1, loadImage("ItemKeyCyan.png"));
 		LockerRoom orangeLockerRoom = (LockerRoom)createSecondFloor(disapointmentSound,key,yellowLockerRoom,keyh);
 		LockerRoom GLR = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom);
 		Room shortcut = createFourthFloor(GLR);

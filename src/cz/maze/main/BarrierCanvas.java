@@ -28,10 +28,19 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	String deathList;
 
 	public BarrierCanvas() {
-		Item key = new Item("žlutej klíč", Color.YELLOW, 1);
-		MainMap support = new MainMap();
-		map = support.createMap(key);
-		this.key = key;
+		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyGreen.png");
+		try {
+			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
+			Item key = new Item("žlutej klíč", Color.YELLOW, 1, imgKey);
+			MainMap support = new MainMap();
+			map = support.createMap(key);
+			this.key = key;
+		}
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
 		playersPosition = map;
 		addKeyListener(this);
 
