@@ -279,13 +279,18 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 						
 					}*/
 				
-			
-		
-	}
-		 catch (IOException e) {
+			int Y = 5;
+			for(int itemCounter = 0; itemCounter < player.getItems().size() ;itemCounter++,Y=Y+50) {
+				//System.out.println(player.getItems().get(itemCounter).getDescription());
+				//System.out.println(Y);
+				g.drawImage(player.getItems().get(itemCounter).getItemImage(), canvasWidth-70, Y,null);
+			}
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		 }
+		
 		
 
 	}
