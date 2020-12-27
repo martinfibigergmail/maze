@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+	public int selectedItem=0;
 	public int health=3;
     List<Item> items;
     public Player(){

@@ -175,6 +175,34 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			
 			}
 		}
+		if(actions.contains(KeyEvent.VK_1)) {
+			player.selectedItem = 0;
+			
+		}
+		
+		if(actions.contains(KeyEvent.VK_2)) {
+			player.selectedItem = 1;
+		}
+	
+		if(actions.contains(KeyEvent.VK_3)) {
+			player.selectedItem = 2;
+		}
+		
+		if(actions.contains(KeyEvent.VK_4)) {
+			player.selectedItem = 3;
+		}
+		
+		if(actions.contains(KeyEvent.VK_5)) {
+			player.selectedItem = 4;
+		}
+		
+		if(actions.contains(KeyEvent.VK_6)) {
+			player.selectedItem = 5;
+		}
+		
+		if(actions.contains(KeyEvent.VK_7)) {
+			player.selectedItem = 6;
+		}
 		
 		System.out.println(playersPosition.getDescription());
 		
@@ -242,7 +270,6 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		drawEasternRoom(g2, canvasWidth, canvasHeight);
 		drawWesternRoom(g2, canvasWidth, canvasHeight);
 		drawSouthernRoom(g2, canvasWidth, canvasHeight);
-
 		drawShadowCorners(g2, canvasWidth, canvasHeight);
 		g2.setColor(Color.green);
 		g2.drawString(playersPosition.description, canvasWidth / 20, canvasHeight - canvasHeight / 15);
@@ -285,7 +312,12 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				//System.out.println(Y);
 				g.drawImage(player.getItems().get(itemCounter).getItemImage(), canvasWidth-70, Y,null);
 			}
+			g.setColor(Color.RED);
+			g.drawRect(canvasWidth-71, 4+49*player.selectedItem, 66, 47);
+			g.drawRect(canvasWidth-72, 3+49*player.selectedItem, 68, 49);
+			g.drawRect(canvasWidth-73, 2+49*player.selectedItem, 70, 51);
 		}
+		
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
