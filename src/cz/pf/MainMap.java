@@ -52,7 +52,7 @@ public class MainMap {
 		 * null, "There is a door. But they are locked!"));
 		 * main.getNorth().getNorth().getNorth().getEast().setExit(true);
 		 */
-		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyGreen.png");
+		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
 		try {
 			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
 			Item key = new Item("Klíč ke konci",Color.YELLOW, 1, imgKey);

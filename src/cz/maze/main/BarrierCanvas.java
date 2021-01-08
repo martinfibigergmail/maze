@@ -20,7 +20,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class BarrierCanvas extends Canvas implements KeyListener {
-	public Room playersPosition;
+	
+	
 	
 	Item key;
 	Room map;
@@ -28,7 +29,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	String deathList;
 
 	public BarrierCanvas() {
-		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyGreen.png");
+		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
 		try {
 			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
 			Item key = new Item("žlutej klíč", Color.YELLOW, 1, imgKey);
@@ -41,11 +42,11 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		playersPosition = map;
+		player.playersPosition = map;
 		addKeyListener(this);
 
-		if (playersPosition instanceof LockerRoom) {
-			LockerRoom lockerRoom = (LockerRoom) playersPosition;
+		if (player.playersPosition instanceof LockerRoom) {
+			LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 
 		}
 
@@ -82,7 +83,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 		if (actions.contains(KeyEvent.VK_W)) {
 			
-			if(playersPosition.getNorth() == null) {
+			if(player.playersPosition.getNorth() == null) {
 				//deathList +="North in wall";
 				player.health = player.health - 1;
 				
@@ -91,8 +92,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				}
 			}
 
-			if (playersPosition.getNorth() != null) {
-				playersPosition = playersPosition.getNorth();
+			if (player.playersPosition.getNorth() != null) {
+				player.playersPosition = player.playersPosition.getNorth();
 				steps.play();
 			
 			}
@@ -101,7 +102,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 		if (actions.contains(KeyEvent.VK_S)) {
 			
-			if(playersPosition.getSouth() == null) {
+			if(player.playersPosition.getSouth() == null) {
 				//deathList +="South in wall";
 				player.health = player.health - 1;
 				
@@ -110,8 +111,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				}
 			}
 
-			if (playersPosition.getSouth() != null) {
-				playersPosition = playersPosition.getSouth();
+			if (player.playersPosition.getSouth() != null) {
+				player.playersPosition = player.playersPosition.getSouth();
 				steps.play();
 				
 			}
@@ -119,7 +120,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 		if (actions.contains(KeyEvent.VK_A)) {
 			
-			if(playersPosition.getWest() == null) {
+			if(player.playersPosition.getWest() == null) {
 				//deathList +="West in wall";
 				player.health = player.health - 1;
 				
@@ -128,15 +129,15 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				}
 			}
 
-			if (playersPosition.getWest() != null) {
-				playersPosition = playersPosition.getWest();
+			if (player.playersPosition.getWest() != null) {
+				player.playersPosition = player.playersPosition.getWest();
 				steps.play();
 			}
 		}
 
 		if (actions.contains(KeyEvent.VK_D)) {
 			
-			if(playersPosition.getEast() == null) {
+			if(player.playersPosition.getEast() == null) {
 				//deathList +="East in wall";
 				player.health = player.health - 1;
 				
@@ -145,36 +146,46 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				}
 			}
 
-			if (playersPosition.getEast() != null) {
-				playersPosition = playersPosition.getEast();
+			if (player.playersPosition.getEast() != null) {
+				player.playersPosition = player.playersPosition.getEast();
  				steps.play();
 			}
 		}
 
 		if (actions.contains(KeyEvent.VK_SPACE)) {
 
-			if (playersPosition.getUp() != null) {
-				playersPosition = playersPosition.getUp();
+			if (player.playersPosition.getUp() != null) {
+				player.playersPosition = player.playersPosition.getUp();
 				steps.play();
 			}
 		}
 		
 		if (actions.contains(KeyEvent.VK_SHIFT)) {
 
-			if (playersPosition.getDown() != null) {
-				playersPosition = playersPosition.getDown();
+			if (player.playersPosition.getDown() != null) {
+				player.playersPosition = player.playersPosition.getDown();
 				steps.play();
 			}
 		}
 		
 		if (actions.contains(KeyEvent.VK_E)) {
 			
-			if(player.getItems().size() != 7 && playersPosition.getItems().size() != 0 ) {
-				player.getItems().add(playersPosition.getItems().get(0));
-				playersPosition.getItems().remove(0);
+			if(player.getItems().size() != 7 && player.playersPosition.getItems().size() != 0 ) {
+				player.getItems().add(player.playersPosition.getItems().get(0));
+				player.playersPosition.getItems().remove(0);
 			
 			}
 		}
+		
+		if (actions.contains(KeyEvent.VK_Q)) {
+			
+			if(player.selectedItem < player.getItems().size()) {
+				player.playersPosition.getItems().add(player.getItems().get(player.selectedItem));
+				player.getItems().remove(player.selectedItem);
+		
+			}
+		}
+		
 		if(actions.contains(KeyEvent.VK_1)) {
 			player.selectedItem = 0;
 			
@@ -194,6 +205,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		
 		if(actions.contains(KeyEvent.VK_5)) {
 			player.selectedItem = 4;
+			
 		}
 		
 		if(actions.contains(KeyEvent.VK_6)) {
@@ -204,10 +216,10 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			player.selectedItem = 6;
 		}
 		
-		System.out.println(playersPosition.getDescription());
+		System.out.println(player.playersPosition.getDescription());
 		
-		if (playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+		if (player.playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeyEast())
 					&& playersPositionLocked.getEast() == null) {
 				playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
@@ -215,8 +227,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			}
 		}
 
-		if (playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+		if (player.playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeyWest())
 					&& playersPositionLocked.getWest() == null) {
 				playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
@@ -224,8 +236,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			}
 		}
 
-		if (playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+		if (player.playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeySouth())
 					&& playersPositionLocked.getSouth() == null) {
 				playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
@@ -233,8 +245,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			}
 		}
 
-		if (playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) playersPosition;
+		if (player.playersPosition instanceof LockerRoom) {
+			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
 			if (player.getItems().contains(playersPositionLocked.getKeyNorth())
 					&& playersPositionLocked.getNorth() == null) {
 				playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
@@ -272,7 +284,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		drawSouthernRoom(g2, canvasWidth, canvasHeight);
 		drawShadowCorners(g2, canvasWidth, canvasHeight);
 		g2.setColor(Color.green);
-		g2.drawString(playersPosition.description, canvasWidth / 20, canvasHeight - canvasHeight / 15);
+		g2.drawString(player.playersPosition.description, canvasWidth / 20, canvasHeight - canvasHeight / 15);
 		
 
 
@@ -345,7 +357,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		g2.drawOval(x, y, 100, 100);
 		g2.setColor(Color.red);
 		g2.fillOval(x, y, 100, 100);
-		for (Item item : playersPosition.getItems()) {
+		for (Item item : player.playersPosition.getItems()) {
 			if (item.getType() == 1) {
 				g2.setColor(item.getColor());
 				g2.drawOval(x, y, 20, 20);
@@ -361,24 +373,24 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int x = 0;
 		int y = 0;
 
-		if (!((playersPosition.getWest() != null && playersPosition.getWest().getNorth() != null))
-				&& (!(playersPosition.getNorth() != null && playersPosition.getNorth().getWest() != null))) {
+		if (!((player.playersPosition.getWest() != null && player.playersPosition.getWest().getNorth() != null))
+				&& (!(player.playersPosition.getNorth() != null && player.playersPosition.getNorth().getWest() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
 
-			if (playersPosition.getWest() instanceof LockerRoom) {
-				LockerRoom lockerRoomWest = (LockerRoom) playersPosition.getWest();
-				if ((playersPosition.getWest() != null && lockerRoomWest.getLockedNorth() != null)) {
+			if (player.playersPosition.getWest() instanceof LockerRoom) {
+				LockerRoom lockerRoomWest = (LockerRoom) player.playersPosition.getWest();
+				if ((player.playersPosition.getWest() != null && lockerRoomWest.getLockedNorth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					System.out.println("jsem tu");
 
 				}
 			}
-			if (playersPosition.getNorth() instanceof LockerRoom) {
-				LockerRoom lockerRoomNorth = (LockerRoom) playersPosition.getNorth();
+			if (player.playersPosition.getNorth() instanceof LockerRoom) {
+				LockerRoom lockerRoomNorth = (LockerRoom) player.playersPosition.getNorth();
 
-				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedWest() != null)) {
+				if ((player.playersPosition.getNorth() != null && lockerRoomNorth.getLockedWest() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					// System.out.println("jsem tu");
@@ -392,24 +404,24 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		x = 0;
 		y = boxHeight * 2;
 
-		if (!((playersPosition.getWest() != null && playersPosition.getWest().getSouth() != null))
-				&& (!(playersPosition.getSouth() != null && playersPosition.getSouth().getWest() != null))) {
+		if (!((player.playersPosition.getWest() != null && player.playersPosition.getWest().getSouth() != null))
+				&& (!(player.playersPosition.getSouth() != null && player.playersPosition.getSouth().getWest() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
 
-			if (playersPosition.getWest() instanceof LockerRoom) {
-				LockerRoom lockerRoomWest = (LockerRoom) playersPosition.getWest();
-				if ((playersPosition.getWest() != null && lockerRoomWest.getLockedSouth() != null)) {
+			if (player.playersPosition.getWest() instanceof LockerRoom) {
+				LockerRoom lockerRoomWest = (LockerRoom) player.playersPosition.getWest();
+				if ((player.playersPosition.getWest() != null && lockerRoomWest.getLockedSouth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					System.out.println("jsem tu");
 
 				}
 			}
-			if (playersPosition.getSouth() instanceof LockerRoom) {
-				LockerRoom lockerRoomSouth = (LockerRoom) playersPosition.getSouth();
+			if (player.playersPosition.getSouth() instanceof LockerRoom) {
+				LockerRoom lockerRoomSouth = (LockerRoom) player.playersPosition.getSouth();
 
-				if ((playersPosition.getSouth() != null && lockerRoomSouth.getLockedWest() != null)) {
+				if ((player.playersPosition.getSouth() != null && lockerRoomSouth.getLockedWest() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					// System.out.println("jsem tu");
@@ -423,24 +435,24 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		x = boxWidth * 2;
 		y = 0;
 
-		if (!((playersPosition.getEast() != null && playersPosition.getEast().getNorth() != null))
-				&& (!(playersPosition.getNorth() != null && playersPosition.getNorth().getEast() != null))) {
+		if (!((player.playersPosition.getEast() != null && player.playersPosition.getEast().getNorth() != null))
+				&& (!(player.playersPosition.getNorth() != null && player.playersPosition.getNorth().getEast() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
 
-			if (playersPosition.getEast() instanceof LockerRoom) {
-				LockerRoom lockerRoomEast = (LockerRoom) playersPosition.getEast();
-				if ((playersPosition.getEast() != null && lockerRoomEast.getLockedNorth() != null)) {
+			if (player.playersPosition.getEast() instanceof LockerRoom) {
+				LockerRoom lockerRoomEast = (LockerRoom) player.playersPosition.getEast();
+				if ((player.playersPosition.getEast() != null && lockerRoomEast.getLockedNorth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					System.out.println("jsem tu");
 
 				}
 			}
-			if (playersPosition.getNorth() instanceof LockerRoom) {
-				LockerRoom lockerRoomNorth = (LockerRoom) playersPosition.getNorth();
+			if (player.playersPosition.getNorth() instanceof LockerRoom) {
+				LockerRoom lockerRoomNorth = (LockerRoom) player.playersPosition.getNorth();
 
-				if ((playersPosition.getNorth() != null && lockerRoomNorth.getLockedEast() != null)) {
+				if ((player.playersPosition.getNorth() != null && lockerRoomNorth.getLockedEast() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					// System.out.println("jsem tu");
@@ -454,24 +466,24 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		x = boxWidth * 2;
 		y = boxHeight * 2;
 
-		if (!((playersPosition.getEast() != null && playersPosition.getEast().getSouth() != null))
-				&& (!(playersPosition.getSouth() != null && playersPosition.getSouth().getEast() != null))) {
+		if (!((player.playersPosition.getEast() != null && player.playersPosition.getEast().getSouth() != null))
+				&& (!(player.playersPosition.getSouth() != null && player.playersPosition.getSouth().getEast() != null))) {
 			g2.setColor(Color.black);
 			drawBox(g2, x, y, boxWidth, boxHeight);
 
-			if (playersPosition.getEast() instanceof LockerRoom) {
-				LockerRoom lockerRoomEast = (LockerRoom) playersPosition.getEast();
-				if ((playersPosition.getEast() != null && lockerRoomEast.getLockedSouth() != null)) {
+			if (player.playersPosition.getEast() instanceof LockerRoom) {
+				LockerRoom lockerRoomEast = (LockerRoom) player.playersPosition.getEast();
+				if ((player.playersPosition.getEast() != null && lockerRoomEast.getLockedSouth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					System.out.println("jsem tu");
 
 				}
 			}
-			if (playersPosition.getSouth() instanceof LockerRoom) {
-				LockerRoom lockerRoomSouth = (LockerRoom) playersPosition.getSouth();
+			if (player.playersPosition.getSouth() instanceof LockerRoom) {
+				LockerRoom lockerRoomSouth = (LockerRoom) player.playersPosition.getSouth();
 
-				if ((playersPosition.getSouth() != null && lockerRoomSouth.getLockedEast() != null)) {
+				if ((player.playersPosition.getSouth() != null && lockerRoomSouth.getLockedEast() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
 					// System.out.println("jsem tu");
@@ -489,7 +501,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getDown() != null) {
+		if (player.playersPosition.getDown() != null) {
 			g2.setColor(Color.gray);
 			width = canvasWidth / 3;
 			x = width;
@@ -510,7 +522,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getSouth() == null) {
+		if (player.playersPosition.getSouth() == null) {
 			width = canvasWidth / 3;
 			x = width;
 			height = canvasHeight / 3;
@@ -519,8 +531,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g2.setColor(Color.black);
 
 			Color keyColor = null;
-			if (playersPosition instanceof LockerRoom) {
-				LockerRoom lockerRoom = (LockerRoom) playersPosition;
+			if (player.playersPosition instanceof LockerRoom) {
+				LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 				if (lockerRoom.getLockedSouth() != null) {
 
 					g2.setColor(Color.gray);
@@ -548,7 +560,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getWest() == null) {
+		if (player.playersPosition.getWest() == null) {
 			width = canvasWidth / 3;
 			x = 0;
 			height = canvasHeight / 3;
@@ -557,8 +569,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g2.setColor(Color.black);
 
 			Color keyColor = null;
-			if (playersPosition instanceof LockerRoom) {
-				LockerRoom lockerRoom = (LockerRoom) playersPosition;
+			if (player.playersPosition instanceof LockerRoom) {
+				LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 				if (lockerRoom.getLockedWest() != null) {
 
 					g2.setColor(Color.gray);
@@ -585,7 +597,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getEast() == null) {
+		if (player.playersPosition.getEast() == null) {
 			width = canvasWidth / 3;
 			x = 2 * width;
 			height = canvasHeight / 3;
@@ -595,8 +607,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 			Color keyColor = null;
 
-			if (playersPosition instanceof LockerRoom) {
-				LockerRoom lockerRoom = (LockerRoom) playersPosition;
+			if (player.playersPosition instanceof LockerRoom) {
+				LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 				if (lockerRoom.getLockedEast() != null) {
 
 					g2.setColor(Color.gray);
@@ -623,7 +635,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
-		if (playersPosition.getNorth() == null) {
+		if (player.playersPosition.getNorth() == null) {
 			width = canvasWidth / 3;
 			x = width;
 			height = canvasHeight / 3;
@@ -632,8 +644,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g2.setColor(Color.black);
 
 			Color keyColor = null;
-			if (playersPosition instanceof LockerRoom) {
-				LockerRoom lockerRoom = (LockerRoom) playersPosition;
+			if (player.playersPosition instanceof LockerRoom) {
+				LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 				if (lockerRoom.getLockedNorth() != null) {
 
 					g2.setColor(Color.gray);
@@ -659,7 +671,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 	public void exit() {
 
-		if (playersPosition.isExit() == true && player.getItems().contains(this.key)) {
+		if (player.playersPosition.isExit() == true && player.getItems().contains(this.key)) {
 			System.exit(0);
 		}
 	}

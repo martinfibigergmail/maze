@@ -7,6 +7,7 @@ public class Player {
 	public int selectedItem=0;
 	public int health=3;
     List<Item> items;
+	public Room playersPosition;
     public Player(){
         this.items = new ArrayList<>();
     }
