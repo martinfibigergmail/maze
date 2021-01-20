@@ -27,6 +27,12 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	Room map;
 	Player player = new Player();
 	String deathList;
+	public String endMassage;
+	
+	public void makeEnd(){
+		endMassage= "Umřels";
+		
+	}
 
 	public BarrierCanvas() {
 		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
@@ -80,7 +86,9 @@ public class BarrierCanvas extends Canvas implements KeyListener {
         Sound doors = new Sound();
         doors.file = "door_sound.wav";
         
-
+        if(endMassage == null){
+        	
+        
 		if (actions.contains(KeyEvent.VK_W)) {
 			
 			if(player.playersPosition.getNorth() == null) {
@@ -88,7 +96,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				player.health = player.health - 1;
 				
 				if(player.health == 0) {
-					System.exit(0);
+					makeEnd();					
 				}
 			}
 
@@ -107,7 +115,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				player.health = player.health - 1;
 				
 				if(player.health == 0) {
-					System.exit(0);
+					makeEnd();
+					
 				}
 			}
 
@@ -125,7 +134,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				player.health = player.health - 1;
 				
 				if(player.health == 0) {
-					System.exit(0);
+					makeEnd();		
 				}
 			}
 
@@ -142,7 +151,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				player.health = player.health - 1;
 				
 				if(player.health == 0) {
-					System.exit(0);
+					makeEnd();		
 				}
 			}
 
@@ -215,7 +224,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		if(actions.contains(KeyEvent.VK_7)) {
 			player.selectedItem = 6;
 		}
-		
+        
 		System.out.println(player.playersPosition.getDescription());
 		
 		if (player.playersPosition instanceof LockerRoom) {
@@ -253,14 +262,21 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				doors.play();
 			}
 		}
-
-		repaint();
+		}
+		else {
+			
+			if(actions.contains(KeyEvent.VK_K)) {
+				System.exit(0);
+			}
+			if(actions.contains(KeyEvent.VK_N)) {
+				
+			}
 		
-		
-		
+		}
 		actions.remove(new Integer(event.getKeyCode()));
-
 		this.exit();
+		repaint();
+
 	}
 	
 	
@@ -328,10 +344,24 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g.drawRect(canvasWidth-71, 4+49*player.selectedItem, 66, 47);
 			g.drawRect(canvasWidth-72, 3+49*player.selectedItem, 68, 49);
 			g.drawRect(canvasWidth-73, 2+49*player.selectedItem, 70, 51);
+			
+			if(endMassage != null) {
+				g.setColor(Color.BLACK);
+				g.fillRect(canvasWidth/3, canvasHeight/3, canvasWidth/3, canvasHeight/3);
+				g.setColor(Color.RED);
+				g.drawRect(canvasWidth/3, canvasHeight/3, canvasWidth/3, canvasHeight/3);
+				g.drawRect(canvasWidth/3+1, canvasHeight/3+1, canvasWidth/3-2, canvasHeight/3-2);
+				Font originalFont= g.getFont();
+				Font endMenuFont = new Font("Verdana", Font.BOLD, canvasWidth/40); 
+				g.setFont(endMenuFont);
+				g.drawString(endMassage, canvasWidth/3+canvasWidth/40, canvasHeight/3+canvasHeight/10);
+				g.setFont(originalFont);
+				
+			}
+			
 		}
 		
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		 }
 		
@@ -672,7 +702,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public void exit() {
 
 		if (player.playersPosition.isExit() == true && player.getItems().contains(this.key)) {
-			System.exit(0);
+			endMassage = "Vyhráls";
 		}
 	}
 }
