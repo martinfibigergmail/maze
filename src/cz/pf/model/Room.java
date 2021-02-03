@@ -15,6 +15,7 @@ public class Room {
     Sound ajeje;
     public String description;
     List<Item> items;
+    public List<Entity> entities;
     boolean isExit;
 
     public Room(String description  ){
@@ -37,6 +38,7 @@ public class Room {
 
         this.description = description;
         items = new ArrayList<Item>();
+        entities = new ArrayList<Entity>();
     }
 
     public void printRoom(Player player) {

@@ -1,6 +1,7 @@
 package cz.pf;
 
 import cz.maze.main.BarrierCanvas;
+import cz.pf.model.Entity;
 import cz.pf.model.Item;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -84,7 +85,13 @@ public class MainMap {
 		
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().setEast(soundRoom);		
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
-		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(new Room("Hlíněná stezka"));
+		Entity leopard = new Entity();
+		leopard.name ="Leopard";
+		leopard.health = 2;
+		Room lleopard = new Room("Hlíněná stezka s leopardem");
+		lleopard.entities.add(leopard);
+		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(lleopard);
+		//startingPosition.getEast().getSouth().getSouth().getWest().getSouth().entities.add(leopard);		
 		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(new Room("Hlíněná stezka"));
 		LockerRoom yellowLockerRoom = new LockerRoom("Hlíněná stezka");
 		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth().setSouth(yellowLockerRoom);
