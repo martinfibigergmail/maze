@@ -13,6 +13,7 @@ import cz.pf.model.Room;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -57,9 +58,10 @@ public class MainMap {
 		try {
 			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
 			Item key = new Item("Klíč ke konci",Color.YELLOW, 1, imgKey);
+			ArrayList entityDirectory  = new ArrayList();
 			MainMap support=new MainMap();
 	    
-			Room map=support.createMap(key);
+			Room map=support.createMap(key,entityDirectory);
 			support.run(map, key);
 		}
 		 catch (IOException e) {
@@ -69,7 +71,7 @@ public class MainMap {
 		}
 	}
 	
-    public Room createFirstFloor (Sound ajajajaj,Item key) {
+    public Room createFirstFloor (Sound ajajajaj,Item key,ArrayList entityDirectory) {
     	
     	Room startingPosition = new Room(null, null, null, null, null, null, "Stratil jses sám v husté džungli, sanžíš se najít cestu ven");
 		startingPosition.setEast(new Room("Banánoví les"));
@@ -85,12 +87,14 @@ public class MainMap {
 		
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().setEast(soundRoom);		
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
+		
 		Entity leopard = new Entity();
 		leopard.name ="Leopard";
 		leopard.health = 2;
+		entityDirectory.add(leopard);
 		Room lleopard = new Room("Hlíněná stezka s leopardem");
 		lleopard.entities.add(leopard);
-		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(lleopard);
+		startingPosition.getEast().getSouth().getSouth().getWest().setSouth(lleopard );
 		//startingPosition.getEast().getSouth().getSouth().getWest().getSouth().entities.add(leopard);		
 		startingPosition.getEast().getSouth().getSouth().getWest().getSouth().setSouth(new Room("Hlíněná stezka"));
 		LockerRoom yellowLockerRoom = new LockerRoom("Hlíněná stezka");
@@ -267,12 +271,12 @@ public class MainMap {
         }
 	
 	
-	public Room createMap(Item key) {
+	public Room createMap(Item key,ArrayList entityDirectory) {
 		
 		LockerRoom yellowLockerRoom;
 		Sound disapointmentSound = new Sound();
 		disapointmentSound.file = "D:\\Filip\\Videa\\ajajajajaj.wav";
-		Room startingPosition = createFirstFloor(disapointmentSound,key);
+		Room startingPosition = createFirstFloor(disapointmentSound,key,entityDirectory);
 		yellowLockerRoom = (LockerRoom)startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth().getSouth();
 		Item keyh = new Item("CYAN klíč",Color.CYAN, 1, loadImage("ItemKeyCyan.png"));
 		LockerRoom orangeLockerRoom = (LockerRoom)createSecondFloor(disapointmentSound,key,yellowLockerRoom,keyh);

@@ -28,6 +28,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	Player player = new Player();
 	String deathList;
 	public String endMassage;
+	ArrayList entityDirectory  = new ArrayList();
 	
 	public void makeEnd(){
 		endMassage= "Umřels";
@@ -35,12 +36,13 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	}
 
 	public BarrierCanvas() {
+		
 		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
 		try {
 			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
 			Item key = new Item("žlutej klíč", Color.YELLOW, 1, imgKey);
 			MainMap support = new MainMap();
-			map = support.createMap(key);
+			map = support.createMap(key,entityDirectory);
 			this.key = key;
 		}
 		 catch (IOException e) {
@@ -55,7 +57,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 
 		}
-
+		
 	}
 	
 		
