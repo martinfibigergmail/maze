@@ -296,6 +296,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		
 		drawPlayer(g2, canvasWidth, canvasHeight);
 		drawStairs(g2, canvasWidth, canvasHeight);
+		drawLeopard(g2, canvasWidth, canvasHeight);
 		drawNorthernRoom(g2, canvasWidth, canvasHeight);
 		drawEasternRoom(g2, canvasWidth, canvasHeight);
 		drawWesternRoom(g2, canvasWidth, canvasHeight);
@@ -315,33 +316,14 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			for(int hp = 0;hp < player.health; hp++ ) {
 				g.drawImage(imgLife, hp*imgLife.getWidth(),0, null);
 			}
-			
-			
-			
-			/*eif(player.health == 3) {
-				g.drawImage(img, 0 ,0, null);
-				g.drawImage(img, 75, 0, null);
-				g.drawImage(img, 150, 0, null);
-				
-			}
-			
-			if(player.health == 2) {
-				g.drawImage(img, 0, 0, null);
-				g.drawImage(img, 75, 0, null);
-					
-				}
-				
-			if(player.health == 1) {
-					g.drawImage(img, 0, 0, null);
-						
-					}*/
-				
+		
 			int Y = 5;
 			for(int itemCounter = 0; itemCounter < player.getItems().size() ;itemCounter++,Y=Y+50) {
 				//System.out.println(player.getItems().get(itemCounter).getDescription());
 				//System.out.println(Y);
 				g.drawImage(player.getItems().get(itemCounter).getItemImage(), canvasWidth-70, Y,null);
 			}
+			
 			g.setColor(Color.RED);
 			g.drawRect(canvasWidth-71, 4+49*player.selectedItem, 66, 47);
 			g.drawRect(canvasWidth-72, 3+49*player.selectedItem, 68, 49);
@@ -543,7 +525,37 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g2.fillRect(x, y, width, height);
 		}
 	}
-
+	
+	
+	public void drawLeopard(Graphics2D g2, int canvasWidth, int canvasHeight) {
+		
+		try {
+			
+		int width;
+		int height;
+		double doubleX;
+		double doubleY;
+		InputStream imageInputStreamLeopard = BarrierCanvas.class.getResourceAsStream("leopard.png");
+		BufferedImage imgLeopard = ImageIO.read(imageInputStreamLeopard);
+		width = canvasWidth/6;
+		height = canvasHeight/6;
+		doubleX = width * 2.5;
+		doubleY = height * 2.5;
+		
+		int x = (int)doubleX;
+		int y = (int)doubleY;
+	
+		
+		g2.drawImage(imgLeopard, x ,y ,width ,height, null);
+		
+		
+	}
+		
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	private void drawBox(Graphics2D g2, int x, int y, int width, int height) {
 		g2.setColor(Color.black);
 		g2.fillRect(x, y, width, height);
