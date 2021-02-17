@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 
 import cz.pf.MainMap;
 import cz.pf.Sound;
+import cz.pf.model.Entity;
 import cz.pf.model.Item;
 import cz.pf.model.LockerRoom;
 import cz.pf.model.Room;
@@ -28,7 +29,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	Player player = new Player();
 	String deathList;
 	public String endMassage;
-	ArrayList entityDirectory  = new ArrayList();
+	ArrayList<Entity> entityDirectory  = new ArrayList();
 	
 	public void makeEnd(){
 		endMassage= "Umřels";
@@ -64,6 +65,13 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		
 		
 	public ArrayList actions = new ArrayList();
+	
+	public void activateEntities() {
+		for(int round = 0;round<entityDirectory.size();round++) {
+			entityDirectory.get(round).move(player.playersPosition, player);
+		}
+	}
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -74,6 +82,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public void keyPressed(KeyEvent event) {
 		if (!actions.contains(event.getKeyCode())) {
 			actions.add(new Integer(event.getKeyCode()));
+			
 
 		}
 		//System.out.println("Pressed" + event.getKeyCode());
@@ -97,6 +106,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				//deathList +="North in wall";
 				player.health = player.health - 1;
 				
+				
 				if(player.health == 0) {
 					makeEnd();					
 				}
@@ -105,7 +115,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getNorth() != null) {
 				player.playersPosition = player.playersPosition.getNorth();
 				steps.play();
-			
+				activateEntities();			
 			}
 			
 		}
@@ -125,7 +135,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getSouth() != null) {
 				player.playersPosition = player.playersPosition.getSouth();
 				steps.play();
-				
+				activateEntities();	
 			}
 		}
 
@@ -143,6 +153,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getWest() != null) {
 				player.playersPosition = player.playersPosition.getWest();
 				steps.play();
+				activateEntities();	
 			}
 		}
 
@@ -160,6 +171,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getEast() != null) {
 				player.playersPosition = player.playersPosition.getEast();
  				steps.play();
+ 				activateEntities();	
 			}
 		}
 
@@ -168,6 +180,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getUp() != null) {
 				player.playersPosition = player.playersPosition.getUp();
 				steps.play();
+				activateEntities();	
 			}
 		}
 		
@@ -176,6 +189,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if (player.playersPosition.getDown() != null) {
 				player.playersPosition = player.playersPosition.getDown();
 				steps.play();
+				activateEntities();	
 			}
 		}
 		
