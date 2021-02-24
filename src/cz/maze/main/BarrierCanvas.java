@@ -28,11 +28,11 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	Room map;
 	Player player = new Player();
 	String deathList;
-	public String endMassage;
+	public String endMessage;
 	ArrayList<Entity> entityDirectory  = new ArrayList();
 	
 	public void makeEnd(){
-		endMassage= "Umřels";
+		endMessage= "Umřels";
 		
 	}
 
@@ -97,7 +97,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
         Sound doors = new Sound();
         doors.file = "door_sound.wav";
         
-        if(endMassage == null){
+        if(endMessage == null){
         	
         
 		if (actions.contains(KeyEvent.VK_W)) {
@@ -310,7 +310,18 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		
 		drawPlayer(g2, canvasWidth, canvasHeight);
 		drawStairs(g2, canvasWidth, canvasHeight);
-		drawLeopard(g2, canvasWidth, canvasHeight);
+		
+		 Entity creature;
+		for(int counter = 0;counter<entityDirectory.size(); counter ++) {
+			creature = entityDirectory.get(counter);
+			if (player.playersPosition.equals(creature.entityPosition)) {
+				creature.draw(g2, canvasWidth, canvasHeight);
+			
+			}
+		
+		 }
+		
+		
 		drawNorthernRoom(g2, canvasWidth, canvasHeight);
 		drawEasternRoom(g2, canvasWidth, canvasHeight);
 		drawWesternRoom(g2, canvasWidth, canvasHeight);
@@ -343,7 +354,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			g.drawRect(canvasWidth-72, 3+49*player.selectedItem, 68, 49);
 			g.drawRect(canvasWidth-73, 2+49*player.selectedItem, 70, 51);
 			
-			if(endMassage != null) {
+			if(endMessage != null) {
 				g.setColor(Color.BLACK);
 				g.fillRect(canvasWidth/3, canvasHeight/3, canvasWidth/3, canvasHeight/3);
 				g.setColor(Color.RED);
@@ -352,7 +363,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				Font originalFont= g.getFont();
 				Font endMenuFont = new Font("Verdana", Font.BOLD, canvasWidth/40); 
 				g.setFont(endMenuFont);
-				g.drawString(endMassage, canvasWidth/3+canvasWidth/40, canvasHeight/3+canvasHeight/10);
+				g.drawString(endMessage, canvasWidth/3+canvasWidth/40, canvasHeight/3+canvasHeight/10);
 				g.setFont(originalFont);
 				
 			}
@@ -541,35 +552,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	}
 	
 	
-	public void drawLeopard(Graphics2D g2, int canvasWidth, int canvasHeight) {
-		
-		try {
-			
-		int width;
-		int height;
-		double doubleX;
-		double doubleY;
-		InputStream imageInputStreamLeopard = BarrierCanvas.class.getResourceAsStream("leopard.png");
-		BufferedImage imgLeopard = ImageIO.read(imageInputStreamLeopard);
-		width = canvasWidth/6;
-		height = canvasHeight/6;
-		doubleX = width * 2.5;
-		doubleY = height * 2.5;
-		
-		int x = (int)doubleX;
-		int y = (int)doubleY;
-	
-		
-		g2.drawImage(imgLeopard, x ,y ,width ,height, null);
-		
-		
-	}
-		
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
+
 	private void drawBox(Graphics2D g2, int x, int y, int width, int height) {
 		g2.setColor(Color.black);
 		g2.fillRect(x, y, width, height);
@@ -730,7 +713,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public void exit() {
 
 		if (player.playersPosition.isExit() == true && player.getItems().contains(this.key)) {
-			endMassage = "Vyhráls";
+			endMessage = "Vyhráls";
 		}
 	}
 }

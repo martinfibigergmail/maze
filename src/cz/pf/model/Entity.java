@@ -1,4 +1,5 @@
 package cz.pf.model;
+import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,6 +44,9 @@ public class Entity {
 			}, delay, period);
 			
 		}
+		public void draw(Graphics2D g2, int canvasWidth, int canvasHeight) {
+			
+		}
 		public void scheduleAttack(Room playersPosition,Player player) {
 			if(entityPosition.equals(playersPosition)) {
 				Timer timer;
@@ -54,7 +58,9 @@ public class Entity {
 					public void run() {
 						if(entityPosition.equals(playersPosition)) {
 							player.health = player.health-1;
-							
+							if (player.health == 0 ) {
+								System.exit(0);
+							}
 						}
 						timer.cancel();
 					}
