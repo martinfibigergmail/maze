@@ -33,17 +33,18 @@ public class Entity {
 		public void scheduleReposition (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 	
 			Timer timer;
-			int delay = 500;
-			int period = 500;
+			int delay = 750;
+			int period = 750;
 			timer = new Timer();
 			timer.scheduleAtFixedRate(new TimerTask() {
 
 				public void run() {
-					System.out.println("Entity position:" + entityPosition.getDescription()); 
-					System.out.println("Players position at time of scheduling:" +playersPosition.getDescription());
-					System.out.println("Players actual position:" +player.playersPosition.getDescription());
+					//System.out.println("Entity position:" + entityPosition.getDescription()); 
+					//System.out.println("Players position at time of scheduling:" +playersPosition.getDescription());
+					//System.out.println("Players actual position:" +player.playersPosition.getDescription());
 					entityPosition = playersPosition;	
 					barrierCanvas.repaint();
+					scheduleAttack( player.playersPosition, player, barrierCanvas);
 					timer.cancel();
 					
 				}
@@ -57,8 +58,8 @@ public class Entity {
 		public void scheduleAttack(Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			if(entityPosition.equals(playersPosition)) {
 				Timer timer;
-				int delay = 10000;
-				int period = 10000;
+				int delay = 1000;
+				int period = 1000;
 				timer = new Timer();
 				timer.scheduleAtFixedRate(new TimerTask() {
 
