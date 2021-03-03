@@ -68,7 +68,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	
 	public void activateEntities() {
 		for(int round = 0;round<entityDirectory.size();round++) {
-			entityDirectory.get(round).move(player.playersPosition, player);
+			entityDirectory.get(round).move(player.playersPosition, player,this);
 		}
 	}
 	

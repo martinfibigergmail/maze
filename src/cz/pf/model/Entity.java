@@ -3,6 +3,8 @@ import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cz.maze.main.BarrierCanvas;
+
 public class Entity {
 	
 	public Room entityPosition;
@@ -12,23 +14,23 @@ public class Entity {
 	public int damage;
 	
 	
-		public void move (Room playersPosition,Player player) {
+		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
 			if(entityPosition.getWest()!=null && entityPosition.getWest().equals(playersPosition)) {
-				this.scheduleReposition( playersPosition, player);
+				this.scheduleReposition( playersPosition, player, barrierCanvas);
 			}
-			if(entityPosition.getWest()!=null && entityPosition.getEast().equals(playersPosition)) {
-				this.scheduleReposition( playersPosition, player);
+			if(entityPosition.getEast()!=null && entityPosition.getEast().equals(playersPosition)) {
+				this.scheduleReposition( playersPosition, player, barrierCanvas);
 			}
-			if(entityPosition.getWest()!=null && entityPosition.getSouth().equals(playersPosition)) {
-				this.scheduleReposition( playersPosition, player);
+			if(entityPosition.getSouth()!=null && entityPosition.getSouth().equals(playersPosition)) {
+				this.scheduleReposition( playersPosition, player, barrierCanvas);
 			}
-			if(entityPosition.getWest()!=null && entityPosition.getNorth().equals(playersPosition)) {
-				this.scheduleReposition( playersPosition, player);
+			if(entityPosition.getNorth()!=null && entityPosition.getNorth().equals(playersPosition)) {
+				this.scheduleReposition( playersPosition, player, barrierCanvas);
 			}
-			scheduleAttack( playersPosition, player);
+			scheduleAttack( playersPosition, player, barrierCanvas);
 		}
-		public void scheduleReposition (Room playersPosition,Player player) {
+		public void scheduleReposition (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 	
 			Timer timer;
 			int delay = 500;
@@ -37,21 +39,26 @@ public class Entity {
 			timer.scheduleAtFixedRate(new TimerTask() {
 
 				public void run() {
-					
+					System.out.println("Entity position:" + entityPosition.getDescription()); 
+					System.out.println("Players position at time of scheduling:" +playersPosition.getDescription());
+					System.out.println("Players actual position:" +player.playersPosition.getDescription());
 					entityPosition = playersPosition;	
+					barrierCanvas.repaint();
 					timer.cancel();
+					
 				}
+				
 			}, delay, period);
 			
 		}
-		public void draw(Graphics2D g2, int canvasWidth, int canvasHeight) {
+	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight) {
 			
 		}
-		public void scheduleAttack(Room playersPosition,Player player) {
+		public void scheduleAttack(Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			if(entityPosition.equals(playersPosition)) {
 				Timer timer;
-				int delay = 500;
-				int period = 500;
+				int delay = 10000;
+				int period = 10000;
 				timer = new Timer();
 				timer.scheduleAtFixedRate(new TimerTask() {
 
@@ -61,8 +68,12 @@ public class Entity {
 							if (player.health == 0 ) {
 								System.exit(0);
 							}
+							barrierCanvas.repaint();
+						} else {
+							
+							timer.cancel();
+						
 						}
-						timer.cancel();
 					}
 				}, delay, period);
 			}
