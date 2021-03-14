@@ -52,7 +52,7 @@ public class Entity {
 			}, delay, period);
 			
 		}
-	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight) {
+	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 			
 		}
 		public void scheduleAttack(Room playersPosition,Player player, BarrierCanvas barrierCanvas) {

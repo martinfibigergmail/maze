@@ -315,11 +315,37 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		for(int counter = 0;counter<entityDirectory.size(); counter ++) {
 			creature = entityDirectory.get(counter);
 			if (player.playersPosition.equals(creature.entityPosition)) {
-				creature.draw(g2, canvasWidth, canvasHeight);
+				creature.draw(g2, canvasWidth, canvasHeight,2.5f,2.5f);
 			
 			}
+				
+			if (player.playersPosition.getNorth()!=null && player.playersPosition.getNorth().equals(creature.entityPosition)) {
+				creature.draw(g2, canvasWidth, canvasHeight,2.5f, 0.5f);
+				
+			}
+
+			if (player.playersPosition.getSouth()!=null && player.playersPosition.getSouth().equals(creature.entityPosition)) {
+				creature.draw(g2, canvasWidth, canvasHeight, 2.5f,4.5f);
 		
-		 }
+			}
+		
+	
+			if (player.playersPosition.getWest()!=null && player.playersPosition.getWest().equals(creature.entityPosition)) {
+				creature.draw(g2, canvasWidth, canvasHeight, 0.5f, 2.5f );
+	
+			}
+		 
+
+			if (player.playersPosition.getEast()!=null && player.playersPosition.getEast().equals(creature.entityPosition)) {
+				creature.draw(g2, canvasWidth, canvasHeight, 4.5f,2.5f);
+
+			}
+
+		}			
+				
+				
+			
+		
 		
 		
 		drawNorthernRoom(g2, canvasWidth, canvasHeight);

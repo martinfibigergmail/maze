@@ -17,7 +17,7 @@ public class Leopard extends Entity {
 		name = "Leopard";
 		
 	}
-	public void draw(Graphics2D g2, int canvasWidth, int canvasHeight) {
+	public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 		
 		try {
 			
@@ -29,8 +29,9 @@ public class Leopard extends Entity {
 		BufferedImage imgLeopard = ImageIO.read(imageInputStreamLeopard);
 		width = canvasWidth/6;
 		height = canvasHeight/6;
-		doubleX = width * 2.5;
-		doubleY = height * 2.5;
+		
+		doubleX = width * segmentWidth;
+		doubleY = height * segmentHeight;
 		
 		int x = (int)doubleX;
 		int y = (int)doubleY;
