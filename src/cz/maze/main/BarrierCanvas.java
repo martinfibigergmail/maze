@@ -340,7 +340,30 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				creature.draw(g2, canvasWidth, canvasHeight, 4.5f,2.5f);
 
 			}
-
+			if (((player.playersPosition.getWest() != null && player.playersPosition.getWest().getNorth() != null 
+				&& player.playersPosition.getWest().getNorth().equals(creature.entityPosition)))
+					|| ((player.playersPosition.getNorth() != null && player.playersPosition.getNorth().getWest() != null 
+						&& player.playersPosition.getNorth().getWest().equals(creature.entityPosition)))) {
+				creature.draw(g2, canvasWidth, canvasHeight, 0.5f,0.5f);
+			}
+			if (((player.playersPosition.getEast() != null && player.playersPosition.getEast().getNorth() != null 
+					&& player.playersPosition.getEast().getNorth().equals(creature.entityPosition)))
+						|| ((player.playersPosition.getNorth() != null && player.playersPosition.getNorth().getEast() != null 
+							&& player.playersPosition.getNorth().getEast().equals(creature.entityPosition)))) {
+					creature.draw(g2, canvasWidth, canvasHeight, 4.5f,0.5f);
+				}
+			if (((player.playersPosition.getWest() != null && player.playersPosition.getWest().getSouth() != null 
+					&& player.playersPosition.getWest().getSouth().equals(creature.entityPosition)))
+						|| ((player.playersPosition.getSouth() != null && player.playersPosition.getSouth().getWest() != null 
+							&& player.playersPosition.getSouth().getWest().equals(creature.entityPosition)))) {
+					creature.draw(g2, canvasWidth, canvasHeight, 0.5f,4.5f);
+				}
+			if (((player.playersPosition.getEast() != null && player.playersPosition.getEast().getSouth() != null 
+					&& player.playersPosition.getEast().getSouth().equals(creature.entityPosition)))
+						|| ((player.playersPosition.getSouth() != null && player.playersPosition.getSouth().getEast() != null 
+							&& player.playersPosition.getSouth().getEast().equals(creature.entityPosition)))) {
+					creature.draw(g2, canvasWidth, canvasHeight, 4.5f,4.5f);
+				}
 		}			
 				
 				
