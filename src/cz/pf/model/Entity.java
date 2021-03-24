@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cz.maze.main.BarrierCanvas;
+import cz.pf.Sound;
 
 public class Entity {
 	
@@ -12,8 +13,14 @@ public class Entity {
 	public int health;
 	public String name;
 	public int damage;
-	
-	
+	public Sound slash1;
+	public Sound slash2;
+	public Entity() {
+		slash1 = new Sound();
+		slash1.file = "LeopardStrike1.wav";
+        slash2 = new Sound();
+        slash2.file = "LeopardStrike2.wav";
+	}
 		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
 			if(entityPosition.getWest()!=null && entityPosition.getWest().equals(playersPosition)) {
@@ -66,6 +73,7 @@ public class Entity {
 					public void run() {
 						if(entityPosition.equals(playersPosition)) {
 							player.health = player.health-1;
+							slash1.play();
 							if (player.health == 0 ) {
 								System.exit(0);
 							}

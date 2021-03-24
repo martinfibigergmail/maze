@@ -30,7 +30,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	String deathList;
 	public String endMessage;
 	ArrayList<Entity> entityDirectory  = new ArrayList();
-	
+	Sound wallHurt;
 	public void makeEnd(){
 		endMessage= "Umřels";
 		
@@ -38,6 +38,8 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 	public BarrierCanvas() {
 		
+			wallHurt = new Sound();
+			wallHurt.file = "WallHurt.wav";
 		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
 		try {
 			BufferedImage imgKey = ImageIO.read(imageInputStreamKey);
@@ -105,7 +107,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if(player.playersPosition.getNorth() == null) {
 				//deathList +="North in wall";
 				player.health = player.health - 1;
-				
+				wallHurt.play();
 				
 				if(player.health == 0) {
 					makeEnd();					
@@ -125,7 +127,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if(player.playersPosition.getSouth() == null) {
 				//deathList +="South in wall";
 				player.health = player.health - 1;
-				
+				wallHurt.play();
 				if(player.health == 0) {
 					makeEnd();
 					
@@ -144,7 +146,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if(player.playersPosition.getWest() == null) {
 				//deathList +="West in wall";
 				player.health = player.health - 1;
-				
+				wallHurt.play();
 				if(player.health == 0) {
 					makeEnd();		
 				}
@@ -162,7 +164,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			if(player.playersPosition.getEast() == null) {
 				//deathList +="East in wall";
 				player.health = player.health - 1;
-				
+				wallHurt.play();
 				if(player.health == 0) {
 					makeEnd();		
 				}
