@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import cz.pf.model.LockerRoom;
 import cz.pf.model.Player;
 import cz.pf.model.Room;
+import cz.pf.model.Strazce;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,7 +108,7 @@ public class MainMap {
 	return startingPosition;}
     
     
-    public Room createSecondFloor (Sound disapointmentSound,Item key,LockerRoom yellowLockerRoom,Item keyh) {
+    public Room createSecondFloor (Sound disapointmentSound,Item key,LockerRoom yellowLockerRoom,Item keyh,ArrayList entityDirectory) {
 	    yellowLockerRoom.getLockedEast().getEast().getNorth().setDown(new Room("Gratuluji prošel jsi Džunglí, to co se zdálo jako jeskyně je ve skutečnosti tajné sklepení, rozhodl jses ho prozkoumat."));
 		Room first = new Room("rozcestí");
 		first.setSouth(yellowLockerRoom.getLockedEast().getEast().getNorth().getDown());
@@ -125,6 +126,13 @@ public class MainMap {
 		BLR.setLockedWest(new Room("špinavá chodba"));
 		LockerRoom BLRT = new LockerRoom("křivý sál");
 		first.setNorth(new Room("křivý přechod"));
+		
+		Strazce strazceSecondFloor = new Strazce();
+		entityDirectory.add(strazceSecondFloor);
+		Room strazceRoom = new Room("Hlíněná stezka");
+		strazceSecondFloor.entityPosition = strazceRoom;
+		first.getNorth().setNorth(strazceRoom);
+		
 		first.getNorth().setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom orangeLockerRoom = new LockerRoom("křivý sál");
@@ -280,7 +288,7 @@ public class MainMap {
 		Room startingPosition = createFirstFloor(disapointmentSound,key,entityDirectory);
 		yellowLockerRoom = (LockerRoom)startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth().getSouth();
 		Item keyh = new Item("CYAN klíč",Color.CYAN, 1, loadImage("ItemKeyCyan.png"));
-		LockerRoom orangeLockerRoom = (LockerRoom)createSecondFloor(disapointmentSound,key,yellowLockerRoom,keyh);
+		LockerRoom orangeLockerRoom = (LockerRoom)createSecondFloor(disapointmentSound,key,yellowLockerRoom,keyh, entityDirectory);
 		LockerRoom GLR = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom);
 		Room shortcut = createFourthFloor(GLR);
 		//return shortcut;
