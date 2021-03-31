@@ -2,7 +2,7 @@ package cz.pf.model;
 import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import java.util.Random;
 import cz.maze.main.BarrierCanvas;
 import cz.pf.Sound;
 
@@ -73,8 +73,16 @@ public class Entity {
 					public void run() {
 						if(entityPosition.equals(playersPosition)) {
 							player.health = player.health-1;
-							slash1.play();
-							if (player.health == 0 ) {
+							Random slashSound = new Random();
+							int slash;
+							slash = 1 + slashSound.nextInt(2);
+							if(slash == 1) {
+								slash1.play();
+							}
+							if(slash == 2) {
+								slash2.play();
+							}
+							if (player.health <= 0 ) {
 								System.exit(0);
 							}
 							barrierCanvas.repaint();
