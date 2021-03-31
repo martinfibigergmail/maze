@@ -72,7 +72,7 @@ public class Entity {
 
 					public void run() {
 						if(entityPosition.equals(playersPosition)) {
-							player.health = player.health-1;
+							player.health = player.health-damage;
 							Random slashSound = new Random();
 							int slash;
 							slash = 1 + slashSound.nextInt(2);

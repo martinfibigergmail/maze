@@ -25,7 +25,7 @@ public class Strazce extends Entity {
 		int height;
 		double doubleX;
 		double doubleY;
-		InputStream imageInputStreamStrazce = BarrierCanvas.class.getResourceAsStream("leopard.png");
+		InputStream imageInputStreamStrazce = BarrierCanvas.class.getResourceAsStream("knight.png");
 		BufferedImage imgStrazce= ImageIO.read(imageInputStreamStrazce);
 		width = canvasWidth/6;
 		height = canvasHeight/6;
