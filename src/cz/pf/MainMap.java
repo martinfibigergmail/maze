@@ -129,11 +129,11 @@ public class MainMap {
 		
 		Strazce strazceSecondFloor = new Strazce();
 		entityDirectory.add(strazceSecondFloor);
-		Room strazceRoom = new Room("Hlíněná stezka");
+		Room strazceRoom = new Room("křivý přechod");
 		strazceSecondFloor.entityPosition = strazceRoom;
 		first.getNorth().setNorth(strazceRoom);
 		
-		first.getNorth().setNorth(BLRT);
+		first.getNorth().getNorth().setNorth(BLRT);
 		BLRT.setKeyNorth(keyb);
 		LockerRoom orangeLockerRoom = new LockerRoom("křivý sál");
 		Item keyo = new Item("oranžovej klíč",Color.ORANGE, 1, loadImage("ItemKeyOrange.png"));

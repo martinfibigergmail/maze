@@ -71,7 +71,7 @@ public class Entity {
 				timer.scheduleAtFixedRate(new TimerTask() {
 
 					public void run() {
-						if(entityPosition.equals(playersPosition)) {
+						if(entityPosition.equals(player.playersPosition)) {
 							player.health = player.health-damage;
 							Random slashSound = new Random();
 							int slash;

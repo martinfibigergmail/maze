@@ -17,6 +17,10 @@ public class Strazce extends Entity {
 		name = "Strazce";
 		
 	}
+	
+	public void scheduleReposition (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
+		
+	}
 	public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 		
 		try {
