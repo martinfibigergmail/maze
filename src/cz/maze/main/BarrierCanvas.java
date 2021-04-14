@@ -435,18 +435,48 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	}
 
 	private void drawPlayer(Graphics2D g2, int canvasWidth, int canvasHeight) {
+		
 		int width;
 		int height;
 		int x;
 		int y;
+		int playerTopMostPoint;
+		int playerLeftMostPoint;
+		int halfImageWidth;
+		int halfImageHeight;
 		width = canvasWidth / 2;
+		playerLeftMostPoint = canvasWidth / 3;
 		x = width - 50;
 		height = canvasHeight / 2;
+		playerTopMostPoint = canvasHeight / 3;
 		y = height - 50;
-		g2.setColor(Color.black);
+		
+		int playerImageWidth;		
+		int playerImageHeight;
+		playerImageWidth = canvasWidth / 9;
+		playerImageHeight = canvasHeight / 6;
+		halfImageWidth = playerImageWidth /2;
+		halfImageHeight = playerImageHeight /2;
+		playerLeftMostPoint = width - halfImageWidth; 
+		playerTopMostPoint = height - halfImageHeight;
+		
+		
+		try{
+			InputStream imageInputStreamHero = BarrierCanvas.class.getResourceAsStream("adventurer.png");
+			BufferedImage imgAdventurer = ImageIO.read(imageInputStreamHero);
+			g2.drawImage(imgAdventurer, playerLeftMostPoint, playerTopMostPoint, playerImageWidth, playerImageHeight, null);
+		
+		} catch(IOException adventurerEx) {
+			System.out.println("adventurerEx triggered"+adventurerEx.getMessage());
+			System.exit(0);
+		}
+		
+		
+		/*g2.setColor(Color.black);
 		g2.drawOval(x, y, 100, 100);
 		g2.setColor(Color.red);
-		g2.fillOval(x, y, 100, 100);
+		g2.fillOval(x, y, 100, 100);*/  
+		
 		for (Item item : player.playersPosition.getItems()) {
 			if (item.getType() == 1) {
 				g2.setColor(item.getColor());
