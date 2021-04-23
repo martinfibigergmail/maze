@@ -3,6 +3,7 @@ package cz.pf;
 import cz.maze.main.BarrierCanvas;
 import cz.pf.model.Archer;
 import cz.pf.model.Entity;
+import cz.pf.model.FireElemental;
 import cz.pf.model.Item;
 import cz.pf.model.Leopard;
 
@@ -289,6 +290,11 @@ public class MainMap {
         	portal.getNorth().getWest().setWest(new Room("jiný svět"));
         	portal.getNorth().getWest().getWest().setDown(new Room("jiný svět"));
         	purpleDoubleDoor.getLockedEast().setSouth(new Room("Nekromantova Laboratoř"));
+        	
+        	FireElemental fireElementalFourthFloor = new FireElemental();
+    		entityDirectory.add(fireElementalFourthFloor);
+    		fireElementalFourthFloor.entityPosition = purpleDoubleDoor.getLockedEast().getSouth();	
+    		
         	purpleDoubleDoor.getLockedEast().getSouth().setSouth(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().setSouth(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().setWest(new Room("Nekromantova Laboratoř"));
