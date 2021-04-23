@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 
 import cz.maze.main.BarrierCanvas;
 
-public class Strazce extends Entity {
+public class Guard extends Entity {
 	
-	public Strazce (){
+	public Guard (){
 		damage = 2;
 		health = 10;
 		name = "Strazce";

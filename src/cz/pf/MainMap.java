@@ -1,6 +1,7 @@
 package cz.pf;
 
 import cz.maze.main.BarrierCanvas;
+import cz.pf.model.Archer;
 import cz.pf.model.Entity;
 import cz.pf.model.Item;
 import cz.pf.model.Leopard;
@@ -11,7 +12,7 @@ import java.awt.image.BufferedImage;
 import cz.pf.model.LockerRoom;
 import cz.pf.model.Player;
 import cz.pf.model.Room;
-import cz.pf.model.Strazce;
+import cz.pf.model.Guard;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,7 +127,7 @@ public class MainMap {
 		LockerRoom BLRT = new LockerRoom("křivý sál");
 		first.setNorth(new Room("křivý přechod"));
 		
-		Strazce strazceSecondFloor = new Strazce();
+		Guard strazceSecondFloor = new Guard();
 		entityDirectory.add(strazceSecondFloor);
 		strazceSecondFloor.entityPosition = first.getNorth();
 		
@@ -164,7 +165,7 @@ public class MainMap {
 		HLR.setWest(new Room("seznamovací koutek"));		
 		HLR.getLockedSouth().setSouth(new Room("překvapivě čistý sklad"));
 		
-		Strazce strazceThirdFloor = new Strazce();
+		Guard strazceThirdFloor = new Guard();
 		entityDirectory.add(strazceThirdFloor);
 		strazceThirdFloor.entityPosition = HLR.getLockedSouth().getSouth();	
 		
@@ -174,6 +175,12 @@ public class MainMap {
 		HLR.getLockedSouth().getSouth().getEast().getEast().getItems().add(keyg);
 		HLR.getLockedSouth().getSouth().setWest(new Room("překvapivě čistý sklad"));
 		HLR.getLockedSouth().getSouth().getWest().setWest(new Room("překvapivě čistý sklad"));
+		
+		Archer archerThirdFloor = new Archer();
+		entityDirectory.add(archerThirdFloor);
+		archerThirdFloor.entityPosition = HLR.getLockedSouth().getSouth().getWest().getWest();
+		
+		
 		HLR.getLockedSouth().getSouth().getWest().getWest().setNorth(new Room("překvapivě čistý sklad"));
 		HLR.getLockedSouth().getSouth().getWest().getWest().getNorth().setNorth(new Room("fake regál"));
 		LockerRoom GLR = new LockerRoom("tajná chodba za regálem");
@@ -213,7 +220,7 @@ public class MainMap {
         	tunnelCorner.setEast(new Room("škvoří chodba"));
         	tunnelCorner.getEast().setEast(new Room("škvoří chodba"));
         	
-        	Strazce strazceFourthFloor = new Strazce();
+        	Guard strazceFourthFloor = new Guard();
     		entityDirectory.add(strazceFourthFloor);
     		strazceFourthFloor.entityPosition = tunnelCorner.getEast().getEast();	
     		
@@ -249,7 +256,7 @@ public class MainMap {
         	firstFourthFloorRoom.getEast().setEast(new Room("Temná cesta"));
         	firstFourthFloorRoom.getEast().getEast().setEast(greenDoor);
         	
-        	Strazce secondStrazceFourthFloor = new Strazce();
+        	Guard secondStrazceFourthFloor = new Guard();
     		entityDirectory.add(secondStrazceFourthFloor);
     		secondStrazceFourthFloor.entityPosition = firstFourthFloorRoom.getEast().getEast().getEast();
         	
