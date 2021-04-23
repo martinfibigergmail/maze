@@ -23,7 +23,7 @@ public class Archer extends Entity{
 		double doubleX;
 		double doubleY;
 		try {
-			InputStream imageInputStreamArcher = BarrierCanvas.class.getResourceAsStream("knight.png");
+			InputStream imageInputStreamArcher = BarrierCanvas.class.getResourceAsStream("Archer.png");
 			BufferedImage imgArcher= ImageIO.read(imageInputStreamArcher);
 			width = canvasWidth/6;
 			height = canvasHeight/6;
