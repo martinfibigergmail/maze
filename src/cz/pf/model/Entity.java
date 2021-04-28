@@ -21,6 +21,11 @@ public class Entity {
         slash2 = new Sound();
         slash2.file = "LeopardStrike2.wav";
 	}
+	
+		public void death (BarrierCanvas barrierCanvas) {
+			
+		}
+		
 		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
 			if(entityPosition.getWest()!=null && entityPosition.getWest().equals(playersPosition)) {
@@ -57,6 +62,10 @@ public class Entity {
 				}
 				
 			}, delay, period);
+			
+		}
+		
+		public void shoot (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
 		}
 	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {

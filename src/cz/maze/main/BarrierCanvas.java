@@ -35,7 +35,10 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		endMessage= "Umřels";
 		
 	}
-
+	
+	public java.util.List<Entity> getEntityDirectory() {
+		return entityDirectory; 
+	}
 	public BarrierCanvas() {
 		
 			wallHurt = new Sound();
