@@ -37,19 +37,19 @@ public class ArrowProjectile extends Entity{
 			
 				if(direction == 0) {
 					entityPosition = entityPosition.getNorth();
-					shoot(player,barrierCanvas);
+					processHit(player,barrierCanvas);
 				}
 				if(direction == 1) {
 					entityPosition = entityPosition.getSouth();
-					shoot(player,barrierCanvas);
+					processHit(player,barrierCanvas);
 				}
 				if(direction == 2) {
 					entityPosition = entityPosition.getWest();
-					shoot(player,barrierCanvas);
+					processHit(player,barrierCanvas);
 				}
 				if(direction == 3) {
 					entityPosition = entityPosition.getEast();
-					shoot(player,barrierCanvas);
+					processHit(player,barrierCanvas);
 				}
 		
 				barrierCanvas.repaint();
@@ -60,16 +60,19 @@ public class ArrowProjectile extends Entity{
 		}, delay, period);
 		
 	}
-	public void shoot (Player player, BarrierCanvas barrierCanvas) {
+	public void processHit (Player player, BarrierCanvas barrierCanvas) {
 		if(entityPosition.equals(null)) {
 			this.death(barrierCanvas); 
 		}
 		if(entityPosition.equals(player.playersPosition )) {
 			player.health = player.health-1;
-			if(player.health < 0) {
+			if(player.health <= 0) {
 				System.exit(0);
 			}
 		}
+	}
+	public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
+		
 	}
 
 	

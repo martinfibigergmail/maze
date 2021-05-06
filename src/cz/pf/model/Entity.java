@@ -23,7 +23,7 @@ public class Entity {
 	}
 	
 		public void death (BarrierCanvas barrierCanvas) {
-			
+				
 		}
 		
 		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {

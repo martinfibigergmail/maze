@@ -88,8 +88,10 @@ public class MainMap {
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().setNorth(new Room("Hlíněná stezka"));		
 		Room soundRoom = new Room("konec Hlíněné stezky");
 		
-		
-		
+		/*Archer archerThirdFloor = new Archer();
+		entityDirectory.add(archerThirdFloor);
+		archerThirdFloor.entityPosition =soundRoom;
+		*/
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().setEast(soundRoom);		
 		startingPosition.getEast().getSouth().getSouth().getEast().getEast().getNorth().getEast().getItems().add(key);
 		

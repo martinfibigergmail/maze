@@ -72,6 +72,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public ArrayList actions = new ArrayList();
 	
 	public void activateEntities() {
+		ArrayList<Integer> entitiesToDelete= new ArrayList<Integer>();
 		for(int round = 0;round<entityDirectory.size();round++) {
 			entityDirectory.get(round).move(player.playersPosition, player,this);
 		}
