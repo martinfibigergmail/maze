@@ -28,12 +28,16 @@ public class ArrowProjectile extends Entity{
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 
+			
 			public void run() {
 				if(entityPosition == null) {
-					timer.cancel();
-					death(barrierCanvas);
-					return;
-				}
+					timer.cancel();	
+						synchronized(barrierCanvas) {
+							death(barrierCanvas);	
+						}	
+						return;
+				
+			}
 			
 				if(direction == 0) {
 					entityPosition = entityPosition.getNorth();
@@ -53,21 +57,28 @@ public class ArrowProjectile extends Entity{
 				}
 		
 				barrierCanvas.repaint();
-				timer.cancel();
-				
 			}
 			
 		}, delay, period);
 		
 	}
 	public void processHit (Player player, BarrierCanvas barrierCanvas) {
-		if(entityPosition.equals(null)) {
-			this.death(barrierCanvas); 
+		if(entityPosition == null) {
+			synchronized(barrierCanvas) {
+				this.death(barrierCanvas); 
+			}
+			return;
 		}
+		
+		
 		if(entityPosition.equals(player.playersPosition )) {
 			player.health = player.health-1;
+			
 			if(player.health <= 0) {
 				System.exit(0);
+			}
+			synchronized(barrierCanvas) {
+				this.death(barrierCanvas);
 			}
 		}
 	}
