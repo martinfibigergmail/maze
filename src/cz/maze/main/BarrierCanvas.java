@@ -316,7 +316,6 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int canvasHeight = this.getHeight();
 
 		drawRectangle(g2, canvasWidth, canvasHeight);
-		
 		drawPlayer(g2, canvasWidth, canvasHeight);
 		drawStairs(g2, canvasWidth, canvasHeight);
 		
