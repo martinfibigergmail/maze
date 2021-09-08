@@ -318,7 +318,7 @@ public class MainMap {
 		LockerRoom GLR = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom, entityDirectory);
 		Room shortcut = createFourthFloor(GLR,entityDirectory);
 		//return shortcut;
-		return startingPosition;
+		return shortcut;
 	}
 	
 	

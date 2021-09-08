@@ -42,21 +42,61 @@ public class FireBall extends Entity {
 
 				}
 				if (direction == 0) {
+					if (entityPosition.getNorth() == null) { synchronized (barrierCanvas) {
+						FireElemental kid = new FireElemental  (); 
+						barrierCanvas.getEntityDirectory().add(kid);
+						kid.entityPosition=entityPosition;
+						death(barrierCanvas);
+					
+						}
+				
+			
+					}
 					entityPosition = entityPosition.getNorth();
 					processHit(player, barrierCanvas);
 
 				}
 				if (direction == 1) {
+					if (entityPosition.getSouth() == null) { synchronized (barrierCanvas) {
+						FireElemental kid = new FireElemental  (); 
+						barrierCanvas.getEntityDirectory().add(kid);
+						kid.entityPosition=entityPosition;
+						death(barrierCanvas);
+					
+						}
+				
+			
+					}
 					entityPosition = entityPosition.getSouth();
 					processHit(player, barrierCanvas);
 
 				}
 				if (direction == 2) {
+					if (entityPosition.getWest() == null) { synchronized (barrierCanvas) {
+						FireElemental kid = new FireElemental  (); 
+						barrierCanvas.getEntityDirectory().add(kid);
+						kid.entityPosition=entityPosition;
+						death(barrierCanvas);
+					
+						}
+				
+			
+					}
 					entityPosition = entityPosition.getWest();
 					processHit(player, barrierCanvas);
 
 				}
 				if (direction == 3) {
+					if (entityPosition.getEast() == null) { synchronized (barrierCanvas) {
+						FireElemental kid = new FireElemental  (); 
+						barrierCanvas.getEntityDirectory().add(kid);
+						kid.entityPosition=entityPosition;
+						death(barrierCanvas);
+					
+						}
+				
+			
+					}
 					entityPosition = entityPosition.getEast();
 					processHit(player, barrierCanvas);
 
@@ -79,7 +119,7 @@ public class FireBall extends Entity {
 		}
 
 		if (entityPosition.equals(player.playersPosition)) {
-			player.health = player.health - 3;
+			player.health = player.health - 1;
 
 			if (player.health <= 0) {
 				System.exit(0);

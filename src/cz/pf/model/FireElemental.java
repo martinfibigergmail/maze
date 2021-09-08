@@ -32,6 +32,7 @@ public class FireElemental extends Entity{
 			north.entityPosition=entityPosition;
 			north.scheduleShooting(player, barrierCanvas, direction);
 			
+			this.death(barrierCanvas);
 			}
 		
 		if((entityPosition.getSouth() != null 
@@ -47,6 +48,7 @@ public class FireElemental extends Entity{
 			south.entityPosition=entityPosition;
 			south.scheduleShooting(player, barrierCanvas, direction);
 			
+			this.death(barrierCanvas);
 			}
 	
 		if((entityPosition.getWest() != null 
@@ -62,7 +64,8 @@ public class FireElemental extends Entity{
 				west.entityPosition=entityPosition;
 				west.scheduleShooting(player, barrierCanvas, direction);
 			
-			}
+				this.death(barrierCanvas);
+				}
 	
 		if((entityPosition.getEast() != null 
 				 && entityPosition.getEast().equals(playersPosition)) 
@@ -77,7 +80,8 @@ public class FireElemental extends Entity{
 			int direction = 3;
 			east.scheduleShooting(player, barrierCanvas, direction);
 			
-			}
+			this.death(barrierCanvas);
+			} 
 	}
 	
 	
