@@ -47,13 +47,14 @@ public class FireBall extends Entity {
 						barrierCanvas.getEntityDirectory().add(kid);
 						kid.entityPosition=entityPosition;
 						death(barrierCanvas);
+						timer.cancel();
 					
 						}
 				
 			
 					}
 					entityPosition = entityPosition.getNorth();
-					processHit(player, barrierCanvas);
+					processHit(player, barrierCanvas, timer);
 
 				}
 				if (direction == 1) {
@@ -62,13 +63,13 @@ public class FireBall extends Entity {
 						barrierCanvas.getEntityDirectory().add(kid);
 						kid.entityPosition=entityPosition;
 						death(barrierCanvas);
-					
+						timer.cancel();
 						}
 				
 			
 					}
 					entityPosition = entityPosition.getSouth();
-					processHit(player, barrierCanvas);
+					processHit(player, barrierCanvas, timer);
 
 				}
 				if (direction == 2) {
@@ -77,13 +78,13 @@ public class FireBall extends Entity {
 						barrierCanvas.getEntityDirectory().add(kid);
 						kid.entityPosition=entityPosition;
 						death(barrierCanvas);
-					
+						timer.cancel();
 						}
 				
 			
 					}
 					entityPosition = entityPosition.getWest();
-					processHit(player, barrierCanvas);
+					processHit(player, barrierCanvas, timer);
 
 				}
 				if (direction == 3) {
@@ -92,13 +93,13 @@ public class FireBall extends Entity {
 						barrierCanvas.getEntityDirectory().add(kid);
 						kid.entityPosition=entityPosition;
 						death(barrierCanvas);
-					
+						timer.cancel();
 						}
 				
 			
 					}
 					entityPosition = entityPosition.getEast();
-					processHit(player, barrierCanvas);
+					processHit(player, barrierCanvas, timer);
 
 				}
 
@@ -109,24 +110,26 @@ public class FireBall extends Entity {
 
 	}
 
-	public void processHit(Player player, BarrierCanvas barrierCanvas) {
+	public void processHit(Player player, BarrierCanvas barrierCanvas, Timer timer) {
 
 		if (entityPosition == null) {
 			synchronized (barrierCanvas) {
 				this.death(barrierCanvas);
+				timer.cancel();
 			}
 			return;
 		}
 
 		if (entityPosition.equals(player.playersPosition)) {
-			player.health = player.health - 1;
+			player.health = player.health - 1; 
 
 			if (player.health <= 0) {
 				System.exit(0);
 			}
 			synchronized (barrierCanvas) {
 				this.death(barrierCanvas);
-			}
+				timer.cancel();
+			}  
 		}
 	}
 

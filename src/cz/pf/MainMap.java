@@ -190,6 +190,7 @@ public class MainMap {
 		HLR.getLockedSouth().getSouth().getWest().getWest().getNorth().getNorth().setNorth(GLR);
 		GLR.setKeyEast(keyg);
 		GLR.setLockedEast(new Room("vchod do krápníkové jeskyně"));
+		
 		GLR.getLockedEast();
 		return GLR ;
 		
@@ -290,7 +291,8 @@ public class MainMap {
         	portal.setNorth(new Room("jiný svět"));
         	portal.getNorth().setWest(new Room("jiný svět"));
         	portal.getNorth().getWest().setWest(new Room("jiný svět"));
-        	portal.getNorth().getWest().getWest().setDown(new Room("jiný svět"));
+        	Room differentWorld = new Room("jiný  svět");
+        	portal.getNorth().getWest().getWest().setDown(differentWorld);
         	purpleDoubleDoor.getLockedEast().setSouth(new Room("Nekromantova Laboratoř"));
         	
         	FireElemental fireElementalFourthFloor = new FireElemental();
@@ -302,9 +304,14 @@ public class MainMap {
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().setWest(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().getWest().setWest(new Room("Nekromantova Laboratoř"));
         	purpleDoubleDoor.getLockedEast().getSouth().getSouth().getSouth().getWest().getWest().getItems().add(keyBlack);    //udělat texturu jako kyblík(keyBlack)
-        return tunnelCorner; 
+        return differentWorld; 
         }
-	
+        public Room createFifthFloor(Room start,  ArrayList<Entity> entityDirectory) {
+        	
+        	
+        	
+        	return start;
+	 }
 	
 	public Room createMap(Item key,ArrayList <Entity>entityDirectory) {
 		
@@ -315,8 +322,9 @@ public class MainMap {
 		yellowLockerRoom = (LockerRoom)startingPosition.getEast().getSouth().getSouth().getWest().getSouth().getSouth();
 		Item keyh = new Item("CYAN klíč",Color.CYAN, 1, loadImage("ItemKeyCyan.png"));
 		LockerRoom orangeLockerRoom = (LockerRoom)createSecondFloor(disapointmentSound,key,yellowLockerRoom,keyh, entityDirectory);
-		LockerRoom GLR = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom, entityDirectory);
-		Room shortcut = createFourthFloor(GLR,entityDirectory);
+		LockerRoom GLR1 = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom, entityDirectory);
+		Room firstRoomOfFifthFloor = createFourthFloor(GLR1,entityDirectory);
+		Room differentWorld1 = createFifthFloor(firstRoomOfFifthFloor,entityDirectory);
 		//return shortcut;
 		return startingPosition;
 	}
@@ -342,4 +350,6 @@ public class MainMap {
 		System.out.println("Došel jsi cíle gratuluji.                 HURRRRÁÁÁÁÁÁÁÁÁÁÁÁÁÁ");
 
 	}
-}
+	
+	 }
+ 
