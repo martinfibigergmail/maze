@@ -307,10 +307,21 @@ public class MainMap {
         return differentWorld; 
         }
         public Room createFifthFloor(Room start,  ArrayList<Entity> entityDirectory) {
-        	
-        	
-        	
-        	return start;
+       
+        Room baseRoom = start;
+        Room newRoom = new Room("nevinná chodba");
+       baseRoom.setNorth(newRoom);
+       baseRoom = newRoom;
+       Room crossWay = new Room("nevinné rozcestí");
+       newRoom = crossWay;
+        baseRoom.setNorth(newRoom);
+        baseRoom = newRoom;
+        newRoom =  new Room("plamenné zákoutí");
+        baseRoom.setWest(newRoom);	
+        newRoom = new Room("nevinná chodba");
+        baseRoom.setNorth(newRoom);
+        baseRoom = newRoom;
+        return start;
 	 }
 	
 	public Room createMap(Item key,ArrayList <Entity>entityDirectory) {
