@@ -321,6 +321,64 @@ public class MainMap {
         newRoom = new Room("nevinná chodba");
         baseRoom.setNorth(newRoom);
         baseRoom = newRoom;
+        Room fourPath = new Room("čtiřčlenka");
+        newRoom = fourPath;
+        baseRoom.setNorth(newRoom);
+        baseRoom = newRoom;
+        newRoom  = new Room("zicZac chodba");
+        baseRoom.setWest(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("zicZac chodba");
+        baseRoom.setWest(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("zicZac chodba");
+        baseRoom.setSouth(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("zicZac chodba");
+        baseRoom.setWest(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new LockerRoom("zicZac dveře");
+        baseRoom.setSouth(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("plameňákův pokojík");
+        baseRoom.setSouth(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("plameňákův pokojík");
+        baseRoom.setSouth(newRoom);	
+        baseRoom = newRoom;
+        newRoom  = new Room("plameňákův pokojík");
+        baseRoom.setEast(newRoom);	
+        baseRoom = fourPath;
+        newRoom = new Room("vinná chodba");
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        newRoom = new Room("vinná chodba");
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        Room guiltyCorridor = new Room("vinná chodba");
+        newRoom = guiltyCorridor;
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        newRoom = new Room("vinná chodba");
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        Room secondGuiltyCorridor = new Room("vinná chodba");
+        newRoom = secondGuiltyCorridor;
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        newRoom = new Room("vinná chodba");
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;        newRoom = new Room("vinná chodba");
+        baseRoom.setEast(newRoom);
+        baseRoom = newRoom;
+        newRoom = new Room("klíčový konec");
+        baseRoom.setSouth(newRoom);
+        baseRoom = guiltyCorridor;
+        newRoom = new Room("spojovací");
+        baseRoom.setNorth(newRoom);
+        baseRoom = newRoom;
+        //Room novezakouti = fourPath.getWest().getWest().getSouth();
+        //novezakouti.getItems().add(new Item());
         return start;
 	 }
 	
@@ -336,8 +394,8 @@ public class MainMap {
 		LockerRoom GLR1 = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom, entityDirectory);
 		Room firstRoomOfFifthFloor = createFourthFloor(GLR1,entityDirectory);
 		Room differentWorld1 = createFifthFloor(firstRoomOfFifthFloor,entityDirectory);
-		//return shortcut;
-		return startingPosition;
+		return firstRoomOfFifthFloor;
+		//return startingPosition;
 	}
 	
 	
