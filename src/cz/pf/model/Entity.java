@@ -66,7 +66,7 @@ public class Entity {
 			
 		}
 		
-		public void shoot (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
+		public void spawn (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
 		}
 	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {

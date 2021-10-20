@@ -6,6 +6,8 @@ import cz.pf.model.Entity;
 import cz.pf.model.FireElemental;
 import cz.pf.model.Item;
 import cz.pf.model.Leopard;
+import cz.pf.model.WaterElemental;
+import cz.pf.model.WaterWall; 
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -400,6 +402,9 @@ public class MainMap {
         baseRoom = newRoom; 
         newRoom = new Room("smrdutý sklad");
         baseRoom.setEast(newRoom);
+        WaterElemental waterElementalFifthFloorStinkyStorage = new WaterElemental();
+        entityDirectory.add(waterElementalFifthFloorStinkyStorage);
+        waterElementalFifthFloorStinkyStorage.entityPosition = newRoom;
         baseRoom = newRoom; 
         newRoom = new Room("smrdutý sklad");
         baseRoom.setNorth(newRoom);
