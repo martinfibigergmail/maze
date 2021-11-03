@@ -55,6 +55,7 @@ public class Entity {
 					//System.out.println("Entity position:" + entityPosition.getDescription()); 
 					//System.out.println("Players position at time of scheduling:" +playersPosition.getDescription());
 					//System.out.println("Players actual position:" +player.playersPosition.getDescription());
+					spawn(barrierCanvas, entityPosition);
 					entityPosition = playersPosition;	
 					barrierCanvas.repaint();
 					scheduleAttack( player.playersPosition, player, barrierCanvas);
@@ -66,12 +67,14 @@ public class Entity {
 			
 		}
 		
-		public void spawn (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
-			
-		}
 	    public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 			
 		}
+	   
+	    public void spawn(BarrierCanvas barrierCanvas, Room entityPosition) {
+	    	
+	    }
+	    
 		public void scheduleAttack(Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			if(entityPosition.equals(playersPosition)) {
 				Timer timer;

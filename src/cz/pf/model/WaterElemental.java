@@ -14,10 +14,22 @@ public class WaterElemental extends Entity {
 	public WaterElemental (){
 		damage = 1;
 		health = 4;
-		name = "Leopard";
+		name = "WaterElemental";
 		
 	}
 	
+	public void spawn(BarrierCanvas barrierCanvas, Room entityPosition) {
+		for(int count = 0; count < barrierCanvas.getEntityDirectory().size(); count++ ) {
+			
+			Entity entity = barrierCanvas.getEntityDirectory().get(count);
+			if(entity.entityPosition == entityPosition &&  entity instanceof WaterWall) {
+				return;
+			}
+		}
+		WaterWall waterWall = new WaterWall();
+		barrierCanvas.getEntityDirectory().add(waterWall);
+		waterWall.entityPosition = entityPosition;
+	}
 	
 	public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 		

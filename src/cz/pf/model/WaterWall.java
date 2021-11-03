@@ -20,6 +20,8 @@ import cz.maze.main.BarrierCanvas;
 		
 		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
 			
+			scheduleAttack( playersPosition, player, barrierCanvas);
+			
 		}
 		public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 			

@@ -81,7 +81,6 @@ public class Archer extends Entity{
 			
 			}
 }
-
 	
 	public void draw(Graphics2D g2, int canvasWidth, int canvasHeight, float segmentWidth, float segmentHeight ) {
 		
