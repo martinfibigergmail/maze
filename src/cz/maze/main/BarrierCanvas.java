@@ -1,6 +1,8 @@
 package cz.maze.main;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import cz.pf.MainMap;
 import cz.pf.Sound;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.stream.Collector;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 public class BarrierCanvas extends Canvas implements KeyListener {
@@ -39,8 +42,14 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	public java.util.List<Entity> getEntityDirectory() {
 		return entityDirectory; 
 	}
-	public BarrierCanvas() {
-		
+	private BufferStrategy strategy;
+	public BarrierCanvas(JFrame f) {
+		setIgnoreRepaint(true);
+		JPanel panel = (JPanel) f.getContentPane();
+		panel.add(this);
+		panel.setPreferredSize(f.getSize());
+		createBufferStrategy(2);
+		strategy = getBufferStrategy();
 			wallHurt = new Sound();
 			wallHurt.file = "WallHurt.wav";
 		InputStream imageInputStreamKey = BarrierCanvas.class.getResourceAsStream("ItemKeyYellow.png");
@@ -81,6 +90,18 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 	}
 	
+
+	
+	public void newFrame() {
+		Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
+		g.setColor(getBackground());
+		g.fillRect(0, 0, getWidth(), getHeight());		
+		g.setColor(getForeground());
+		
+		paint(g);
+		g.dispose();
+		strategy.show();
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
