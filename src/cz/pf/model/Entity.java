@@ -24,7 +24,7 @@ public class Entity {
 	
 		public void death (BarrierCanvas barrierCanvas) {
 				barrierCanvas.getEntityDirectory().remove(this);
-				barrierCanvas.repaint();
+				//barrierCanvas.repaint();
 		}
 		
 		public void move (Room playersPosition,Player player, BarrierCanvas barrierCanvas) {
@@ -57,7 +57,7 @@ public class Entity {
 					//System.out.println("Players actual position:" +player.playersPosition.getDescription());
 					spawn(barrierCanvas, entityPosition);
 					entityPosition = playersPosition;	
-					barrierCanvas.repaint();
+					//barrierCanvas.repaint();
 					scheduleAttack( player.playersPosition, player, barrierCanvas);
 					timer.cancel();
 					
@@ -98,7 +98,7 @@ public class Entity {
 							if (player.health <= 0 ) {
 								System.exit(0);
 							}
-							barrierCanvas.repaint();
+							//barrierCanvas.repaint();
 						} else {
 							
 							timer.cancel();

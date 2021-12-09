@@ -97,7 +97,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());		
 		g.setColor(getForeground());
-		
+		//System.out.println("here");
 		paint(g);
 		g.dispose();
 		strategy.show();
@@ -130,186 +130,185 @@ public class BarrierCanvas extends Canvas implements KeyListener {
         if(endMessage == null){
         	
         
-		if (actions.contains(KeyEvent.VK_W)) {
-			
-			if(player.playersPosition.getNorth() == null) {
-				//deathList +="North in wall";
-				player.health = player.health - 1;
-				wallHurt.play();
-				
-				if(player.health == 0) {
-					makeEnd();					
-				}
-			}
-
-			if (player.playersPosition.getNorth() != null) {
-				player.playersPosition = player.playersPosition.getNorth();
-				steps.play();
-				activateEntities();			
-			}
-			
-		}
-
-		if (actions.contains(KeyEvent.VK_S)) {
-			
-			if(player.playersPosition.getSouth() == null) {
-				//deathList +="South in wall";
-				player.health = player.health - 1;
-				wallHurt.play();
-				if(player.health == 0) {
-					makeEnd();
+				if (actions.contains(KeyEvent.VK_W)) {
+					
+					if(player.playersPosition.getNorth() == null) {
+						//deathList +="North in wall";
+						player.health = player.health - 1;
+						wallHurt.play();
+						
+						if(player.health == 0) {
+							makeEnd();					
+						}
+					}
+		
+					if (player.playersPosition.getNorth() != null) {
+						player.playersPosition = player.playersPosition.getNorth();
+						steps.play();
+						activateEntities();			
+					}
 					
 				}
-			}
-
-			if (player.playersPosition.getSouth() != null) {
-				player.playersPosition = player.playersPosition.getSouth();
-				steps.play();
-				activateEntities();	
-			}
-		}
-
-		if (actions.contains(KeyEvent.VK_A)) {
-			
-			if(player.playersPosition.getWest() == null) {
-				//deathList +="West in wall";
-				player.health = player.health - 1;
-				wallHurt.play();
-				if(player.health == 0) {
-					makeEnd();		
+		
+				if (actions.contains(KeyEvent.VK_S)) {
+					
+					if(player.playersPosition.getSouth() == null) {
+						//deathList +="South in wall";
+						player.health = player.health - 1;
+						wallHurt.play();
+						if(player.health == 0) {
+							makeEnd();
+							
+						}
+					}
+		
+					if (player.playersPosition.getSouth() != null) {
+						player.playersPosition = player.playersPosition.getSouth();
+						steps.play();
+						activateEntities();	
+					}
 				}
-			}
-
-			if (player.playersPosition.getWest() != null) {
-				player.playersPosition = player.playersPosition.getWest();
-				steps.play();
-				activateEntities();	
-			}
-		}
-
-		if (actions.contains(KeyEvent.VK_D)) {
-			
-			if(player.playersPosition.getEast() == null) {
-				//deathList +="East in wall";
-				player.health = player.health - 1;
-				wallHurt.play();
-				if(player.health == 0) {
-					makeEnd();		
+		
+				if (actions.contains(KeyEvent.VK_A)) {
+					
+					if(player.playersPosition.getWest() == null) {
+						//deathList +="West in wall";
+						player.health = player.health - 1;
+						wallHurt.play();
+						if(player.health == 0) {
+							makeEnd();		
+						}
+					}
+		
+					if (player.playersPosition.getWest() != null) {
+						player.playersPosition = player.playersPosition.getWest();
+						steps.play();
+						activateEntities();	
+					}
 				}
-			}
-
-			if (player.playersPosition.getEast() != null) {
-				player.playersPosition = player.playersPosition.getEast();
- 				steps.play();
- 				activateEntities();	
-			}
-		}
-
-		if (actions.contains(KeyEvent.VK_SPACE)) {
-
-			if (player.playersPosition.getUp() != null) {
-				player.playersPosition = player.playersPosition.getUp();
-				steps.play();
-				activateEntities();	
-			}
-		}
 		
-		if (actions.contains(KeyEvent.VK_SHIFT)) {
-
-			if (player.playersPosition.getDown() != null) {
-				player.playersPosition = player.playersPosition.getDown();
-				steps.play();
-				activateEntities();	
-			}
-		}
+				if (actions.contains(KeyEvent.VK_D)) {
+					
+					if(player.playersPosition.getEast() == null) {
+						//deathList +="East in wall";
+						player.health = player.health - 1;
+						wallHurt.play();
+						if(player.health == 0) {
+							makeEnd();		
+						}
+					}
 		
-		if (actions.contains(KeyEvent.VK_E)) {
+					if (player.playersPosition.getEast() != null) {
+						player.playersPosition = player.playersPosition.getEast();
+		 				steps.play();
+		 				activateEntities();	
+					}
+				}
+		
+				if (actions.contains(KeyEvent.VK_SPACE)) {
+		
+					if (player.playersPosition.getUp() != null) {
+						player.playersPosition = player.playersPosition.getUp();
+						steps.play();
+						activateEntities();	
+					}
+				}
+				
+				if (actions.contains(KeyEvent.VK_SHIFT)) {
+		
+					if (player.playersPosition.getDown() != null) {
+						player.playersPosition = player.playersPosition.getDown();
+						steps.play();
+						activateEntities();	
+					}
+				}
+				
+				if (actions.contains(KeyEvent.VK_E)) {
+					
+					if(player.getItems().size() != 7 && player.playersPosition.getItems().size() != 0 ) {
+						player.getItems().add(player.playersPosition.getItems().get(0));
+						player.playersPosition.getItems().remove(0);
+					
+					}
+				}
+				
+				if (actions.contains(KeyEvent.VK_Q)) {
+					
+					if(player.selectedItem < player.getItems().size()) {
+						player.playersPosition.getItems().add(player.getItems().get(player.selectedItem));
+						player.getItems().remove(player.selectedItem);
+				
+					}
+				}
+				
+				if(actions.contains(KeyEvent.VK_1)) {
+					player.selectedItem = 0;
+					
+				}
+				
+				if(actions.contains(KeyEvent.VK_2)) {
+					player.selectedItem = 1;
+				}
 			
-			if(player.getItems().size() != 7 && player.playersPosition.getItems().size() != 0 ) {
-				player.getItems().add(player.playersPosition.getItems().get(0));
-				player.playersPosition.getItems().remove(0);
-			
-			}
-		}
+				if(actions.contains(KeyEvent.VK_3)) {
+					player.selectedItem = 2;
+				}
+				
+				if(actions.contains(KeyEvent.VK_4)) {
+					player.selectedItem = 3;
+				}
+				
+				if(actions.contains(KeyEvent.VK_5)) {
+					player.selectedItem = 4;
+					
+				}
+				
+				if(actions.contains(KeyEvent.VK_6)) {
+					player.selectedItem = 5;
+				}
+				
+				if(actions.contains(KeyEvent.VK_7)) {
+					player.selectedItem = 6;
+				}
+		        
+				System.out.println(player.playersPosition.getDescription());
+				
+				if (player.playersPosition instanceof LockerRoom) {
+					LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
+					if (player.getItems().contains(playersPositionLocked.getKeyEast())
+							&& playersPositionLocked.getEast() == null) {
+						playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
+						doors.play();
+					}
+				}
 		
-		if (actions.contains(KeyEvent.VK_Q)) {
-			
-			if(player.selectedItem < player.getItems().size()) {
-				player.playersPosition.getItems().add(player.getItems().get(player.selectedItem));
-				player.getItems().remove(player.selectedItem);
+				if (player.playersPosition instanceof LockerRoom) {
+					LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
+					if (player.getItems().contains(playersPositionLocked.getKeyWest())
+							&& playersPositionLocked.getWest() == null) {
+						playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
+						doors.play();
+					}
+				}
 		
-			}
-		}
+				if (player.playersPosition instanceof LockerRoom) {
+					LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
+					if (player.getItems().contains(playersPositionLocked.getKeySouth())
+							&& playersPositionLocked.getSouth() == null) {
+						playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
+						doors.play();
+					}
+				}
 		
-		if(actions.contains(KeyEvent.VK_1)) {
-			player.selectedItem = 0;
-			
-		}
-		
-		if(actions.contains(KeyEvent.VK_2)) {
-			player.selectedItem = 1;
-		}
-	
-		if(actions.contains(KeyEvent.VK_3)) {
-			player.selectedItem = 2;
-		}
-		
-		if(actions.contains(KeyEvent.VK_4)) {
-			player.selectedItem = 3;
-		}
-		
-		if(actions.contains(KeyEvent.VK_5)) {
-			player.selectedItem = 4;
-			
-		}
-		
-		if(actions.contains(KeyEvent.VK_6)) {
-			player.selectedItem = 5;
-		}
-		
-		if(actions.contains(KeyEvent.VK_7)) {
-			player.selectedItem = 6;
-		}
-        
-		System.out.println(player.playersPosition.getDescription());
-		
-		if (player.playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
-			if (player.getItems().contains(playersPositionLocked.getKeyEast())
-					&& playersPositionLocked.getEast() == null) {
-				playersPositionLocked.setEast(playersPositionLocked.getLockedEast());
-				doors.play();
-			}
-		}
-
-		if (player.playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
-			if (player.getItems().contains(playersPositionLocked.getKeyWest())
-					&& playersPositionLocked.getWest() == null) {
-				playersPositionLocked.setWest(playersPositionLocked.getLockedWest());
-				doors.play();
-			}
-		}
-
-		if (player.playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
-			if (player.getItems().contains(playersPositionLocked.getKeySouth())
-					&& playersPositionLocked.getSouth() == null) {
-				playersPositionLocked.setSouth(playersPositionLocked.getLockedSouth());
-				doors.play();
-			}
-		}
-
-		if (player.playersPosition instanceof LockerRoom) {
-			LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
-			if (player.getItems().contains(playersPositionLocked.getKeyNorth())
-					&& playersPositionLocked.getNorth() == null) {
-				playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
-				doors.play();
-			}
-		}
-		}
-		else {
+				if (player.playersPosition instanceof LockerRoom) {
+					LockerRoom playersPositionLocked = (LockerRoom) player.playersPosition;
+					if (player.getItems().contains(playersPositionLocked.getKeyNorth())
+							&& playersPositionLocked.getNorth() == null) {
+						playersPositionLocked.setNorth(playersPositionLocked.getLockedNorth());
+						doors.play();
+					}
+				}
+		} else {
 			
 			if(actions.contains(KeyEvent.VK_K)) {
 				System.exit(0);
@@ -321,7 +320,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 		actions.remove(new Integer(event.getKeyCode()));
 		this.exit();
-		repaint();
+		//repaint();
 
 	}
 	
@@ -462,7 +461,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	}
 
 	private void drawPlayer(Graphics2D g2, int canvasWidth, int canvasHeight) {
-		
+		//System.out.println("draw player");
 		int width;
 		int height;
 		int x;
@@ -530,7 +529,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				if ((player.playersPosition.getWest() != null && lockerRoomWest.getLockedNorth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					System.out.println("jsem tu");
+					//System.out.println("jsem tu");
 
 				}
 			}
@@ -561,7 +560,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				if ((player.playersPosition.getWest() != null && lockerRoomWest.getLockedSouth() != null)) {
 					g2.setColor(Color.gray);
 					g2.fillRect(x, y, boxWidth, boxHeight);
-					System.out.println("jsem tu");
+					//System.out.println("jsem tu");
 
 				}
 			}

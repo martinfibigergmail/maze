@@ -35,7 +35,7 @@ public class MazeMain {
 		long lastFrame = System.currentTimeMillis();
 		while(running) {
 			if(lastFrame +3 < System.currentTimeMillis()) {
-				
+				//System.out.println("here");
 				lastFrame = System.currentTimeMillis();	
 			
 			
