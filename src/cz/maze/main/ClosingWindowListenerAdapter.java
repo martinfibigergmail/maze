@@ -6,7 +6,8 @@ package cz.maze.main;
 
 	public class ClosingWindowListenerAdapter extends WindowAdapter { 
 	    public void windowClosing(WindowEvent windowEvent){
-	    	System.exit(0);
+	    	MazeMain.running = false; 
+	    	//System.exit(0);
 	         
 	    }
 
