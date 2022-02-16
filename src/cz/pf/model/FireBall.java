@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 
 import cz.maze.main.BarrierCanvas;
+import cz.maze.main.MazeMain;
 
 public class FireBall extends Entity {
 
@@ -102,8 +103,9 @@ public class FireBall extends Entity {
 					processHit(player, barrierCanvas, timer);
 
 				}
-
+				if(MazeMain.running) {		
 				barrierCanvas.repaint();
+				}
 			}
 
 		}, delay, period);
@@ -124,7 +126,7 @@ public class FireBall extends Entity {
 			player.health = player.health - 1; 
 
 			if (player.health <= 0) {
-				System.exit(0);
+				MazeMain.running = false; 
 			}
 			synchronized (barrierCanvas) {
 				this.death(barrierCanvas);

@@ -553,8 +553,8 @@ public class MainMap {
 		LockerRoom GLR1 = (LockerRoom)createThirdFloor(keyh, orangeLockerRoom, entityDirectory);
 		Room firstRoomOfFifthFloor = createFourthFloor(GLR1,entityDirectory);
 		Room differentWorld1 = createFifthFloor(firstRoomOfFifthFloor,entityDirectory);
-		return firstRoomOfFifthFloor;
-		//return startingPosition;
+		//return firstRoomOfFifthFloor;
+		return startingPosition;
 	}
 	
 	

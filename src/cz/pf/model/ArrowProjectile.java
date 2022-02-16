@@ -11,6 +11,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 
 import cz.maze.main.BarrierCanvas;
+import cz.maze.main.MazeMain;
 
 public class ArrowProjectile extends Entity{
 	int direction ;
@@ -62,8 +63,10 @@ public class ArrowProjectile extends Entity{
 					processHit(player,barrierCanvas);
 					
 				}
-		
-				barrierCanvas.repaint();
+		if(MazeMain.running) {
+			barrierCanvas.repaint();	
+		}
+				
 			}
 			
 		}, delay, period);
@@ -82,7 +85,7 @@ public class ArrowProjectile extends Entity{
 			player.health = player.health-1;
 			
 			if(player.health <= 0) {
-				System.exit(0);
+				MazeMain.running = false; 
 			}
 			synchronized(barrierCanvas) {
 				this.death(barrierCanvas);

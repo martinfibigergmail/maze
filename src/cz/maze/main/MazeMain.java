@@ -24,10 +24,10 @@ public class MazeMain {
 
         
         run(myCanvas);
-			
+        System.exit(0);
   
 	}
-	public static boolean running = true;
+    public static boolean running = true;
 	
 	
 	public static void run(BarrierCanvas canvas) {

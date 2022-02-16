@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;
 import cz.maze.main.BarrierCanvas;
+import cz.maze.main.MazeMain;
 import cz.pf.Sound;
 
 public class Entity {
@@ -96,8 +97,7 @@ public class Entity {
 								slash2.play();
 							}
 							if (player.health <= 0 ) {
-								System.exit(0);
-							}
+								MazeMain.running = false; 							}
 							//barrierCanvas.repaint();
 						} else {
 							
