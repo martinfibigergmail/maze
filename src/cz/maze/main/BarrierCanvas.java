@@ -27,6 +27,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	
 	
 	
+	boolean menu = false ;
 	Item key;
 	Room map;
 	Player player = new Player();
@@ -120,7 +121,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent event) {
-		/** Todo as members */
+		/** To do as members */
 		Sound steps = new Sound();
         steps.file = "stepsImproved.wav";
         
@@ -241,6 +242,18 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 					}
 				}
 				
+				if (actions.contains(KeyEvent.VK_ESCAPE)) {
+					if(menu==false) {
+						menu = true ;
+					}
+					else {
+						menu=false;
+					}
+				}
+				
+				
+				
+				
 				if(actions.contains(KeyEvent.VK_1)) {
 					player.selectedItem = 0;
 					
@@ -338,6 +351,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		drawRectangle(g2, canvasWidth, canvasHeight);
 		drawPlayer(g2, canvasWidth, canvasHeight);
 		drawStairs(g2, canvasWidth, canvasHeight);
+		drawMenu(g2, canvasWidth, canvasHeight);
 		
 		 Entity creature;
 		for(int counter = 0;counter<entityDirectory.size(); counter ++) {
@@ -805,16 +819,33 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 				}
 			}
 			g2.fillRect(x, y, width, height);
-
+			
 			if (keyColor != null) {
 				g2.setColor(keyColor);
 				g2.fillOval(x, y, width, height);
 			}
 
 		}
-
-	}
 	
+	}
+	private void drawMenu(Graphics2D g2, int canvasWidth, int canvasHeight) {
+		int width;
+		int height;
+		int x;
+		int y;
+		
+		width =  canvasWidth / 4;
+		height =  canvasHeight / 2; 
+		x = canvasWidth /2 - canvasWidth/8 ;
+		y = canvasHeight /4 ;
+		
+		if(menu == true) {
+			
+			g2.setColor(Color.darkGray);
+			g2.fillRect(x, y, width, height);
+		} 
+	
+	}
 	
 
 	public void exit() {
@@ -822,5 +853,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		if (player.playersPosition.isExit() == true && player.getItems().contains(this.key)) {
 			endMessage = "Vyhráls";
 		}
+		
 	}
+	
 }
