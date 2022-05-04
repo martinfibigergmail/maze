@@ -13,6 +13,9 @@ import cz.pf.model.Room;
 
 import java.awt.*;
 import cz.pf.model.Player;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-public class BarrierCanvas extends Canvas implements KeyListener {
+public class BarrierCanvas extends Canvas implements KeyListener , MouseListener {
 	
 	
 	
@@ -73,6 +76,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			LockerRoom lockerRoom = (LockerRoom) player.playersPosition;
 
 		}
+		addMouseListener(this);
 		
 	}
 	
@@ -112,7 +116,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent event) {
 		if (!actions.contains(event.getKeyCode())) {
-			actions.add(new Integer(event.getKeyCode()));
+			actions.add( Integer.valueOf(event.getKeyCode()));
 			
 
 		}
@@ -331,7 +335,7 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 			}
 		
 		}
-		actions.remove(new Integer(event.getKeyCode()));
+		actions.remove(Integer.valueOf(event.getKeyCode()));
 		this.exit();
 		//repaint();
 
@@ -833,16 +837,34 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		int height;
 		int x;
 		int y;
+		int widthButton;
+		int heightButton;
+		int xButton;
+		int yButton1;
+		int yButton2;
+		int yButton3;
 		
 		width =  canvasWidth / 4;
 		height =  canvasHeight / 2; 
 		x = canvasWidth /2 - canvasWidth/8 ;
 		y = canvasHeight /4 ;
-		
+		widthButton = width/2;
+		heightButton = height/7;
+		xButton = x+width/4;
+		yButton1 = y+height/7;
+		yButton2 = y+3*height/7;
+		yButton3 = y+5*height/7;
 		if(menu == true) {
 			
 			g2.setColor(Color.darkGray);
 			g2.fillRect(x, y, width, height);
+			g2.setColor(Color.lightGray);
+			g2.fillRect(xButton, yButton1, widthButton, heightButton);
+			g2.setColor(Color.lightGray);
+			g2.fillRect(xButton, yButton2, widthButton, heightButton);
+			g2.setColor(Color.lightGray);
+			g2.fillRect(xButton, yButton3, widthButton, heightButton);
+
 		} 
 	
 	}
@@ -855,5 +877,29 @@ public class BarrierCanvas extends Canvas implements KeyListener {
 		}
 		
 	}
-	
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
 }
