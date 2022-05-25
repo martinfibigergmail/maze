@@ -26,12 +26,14 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JButton;
 public class BarrierCanvas extends Canvas implements KeyListener , MouseListener {
 	
 	
 	
 	boolean menu = false ;
 	Item key;
+	JFrame frame; 
 	Room map;
 	Player player = new Player();
 	String deathList;
@@ -77,7 +79,7 @@ public class BarrierCanvas extends Canvas implements KeyListener , MouseListener
 
 		}
 		addMouseListener(this);
-		
+		frame = f;
 	}
 	
 		
@@ -821,7 +823,7 @@ public class BarrierCanvas extends Canvas implements KeyListener , MouseListener
 					keyColor = lockerRoom.getKeyNorth().getColor();
 
 				}
-			}
+		  	}
 			g2.fillRect(x, y, width, height);
 			
 			if (keyColor != null) {
@@ -832,39 +834,91 @@ public class BarrierCanvas extends Canvas implements KeyListener , MouseListener
 		}
 	
 	}
+	
+	ArrayList buttonCoordinatesList = new ArrayList(); 
 	private void drawMenu(Graphics2D g2, int canvasWidth, int canvasHeight) {
-		int width;
-		int height;
-		int x;
-		int y;
-		int widthButton;
-		int heightButton;
-		int xButton;
-		int yButton1;
-		int yButton2;
-		int yButton3;
 		
-		width =  canvasWidth / 4;
-		height =  canvasHeight / 2; 
-		x = canvasWidth /2 - canvasWidth/8 ;
-		y = canvasHeight /4 ;
-		widthButton = width/2;
-		heightButton = height/7;
-		xButton = x+width/4;
-		yButton1 = y+height/7;
-		yButton2 = y+3*height/7;
-		yButton3 = y+5*height/7;
+		/*
+		JButton  button1 = new JButton();
+		JButton  button2 = new JButton();
+		JButton  button3 = new JButton();
+		*/ 
+		
+
+
+		
+		int menuWidth;
+		int menuHeight;
+		int menuX;
+		int menuY;
+		int widthMenuButton;
+		int heightMenuButton;
+		int xMenuButton;
+		int yMenuButton1;
+		int yMenuButton2;
+		int yMenuButton3;
+		
+		//JPanel panel = (JPanel) frame.getContentPane();
+		
+		menuWidth =  canvasWidth / 4;
+		menuHeight =  canvasHeight / 2; 
+		menuX = canvasWidth /2 - canvasWidth/8;
+		menuY = canvasHeight /4 ;
+		
+		widthMenuButton = menuWidth/2;
+		heightMenuButton = menuHeight/7;
+		xMenuButton = menuX+menuWidth/4;
+		yMenuButton1 = menuY+menuHeight/7;
+		yMenuButton2 = menuY+3*menuHeight/7;
+		yMenuButton3 = menuY+5*menuHeight/7;
+	
+		ButtonCoordinates buttonPosition;
+		for(int count = menuY+menuHeight/7; count<menuY+6*menuHeight/7; count = count + 2*menuHeight/7) {
+			
+			buttonPosition = new ButtonCoordinates();
+			buttonPosition.width = widthMenuButton;
+			buttonPosition.height = heightMenuButton;
+			buttonPosition.x = xMenuButton;
+			buttonPosition.y = count;
+			buttonCoordinatesList.add(buttonPosition);
+			
+		}
+		
+			
+		//buttonPosition.y = menuY;		
+		
+		/*
+		button1.setBounds(xButton, yButton1, widthButton, heightButton);
+		button2.setBounds(xButton, yButton2, widthButton, heightButton); 
+		button3.setBounds(xButton, yButton3, widthButton, heightButton); 
+		button1.setBackground(Color.lightGray);
+		button2.setBackground(Color.lightGray);
+		button3.setBackground(Color.lightGray);
+		button1.setVisible(true);
+		button2.setVisible(true);
+		button3.setVisible(true);
+		button1.setText("Respawn");
+		button2.setText("NewGame");
+		button3.setText("quit");
+		*/
+		
 		if(menu == true) {
 			
+			
 			g2.setColor(Color.darkGray);
-			g2.fillRect(x, y, width, height);
+			g2.fillRect(menuX, menuY, menuWidth, menuHeight);
+			/*
+			panel.add(button1);
+			panel.add(button2);
+			panel.add(button3);
+		*/
 			g2.setColor(Color.lightGray);
-			g2.fillRect(xButton, yButton1, widthButton, heightButton);
+			g2.fillRect(xMenuButton, yMenuButton1, widthMenuButton, heightMenuButton);
 			g2.setColor(Color.lightGray);
-			g2.fillRect(xButton, yButton2, widthButton, heightButton);
+			g2.fillRect(xMenuButton, yMenuButton2, widthMenuButton, heightMenuButton);
 			g2.setColor(Color.lightGray);
-			g2.fillRect(xButton, yButton3, widthButton, heightButton);
-
+			g2.fillRect(xMenuButton, yMenuButton3, widthMenuButton, heightMenuButton);
+		
 		} 
 	
 	}
